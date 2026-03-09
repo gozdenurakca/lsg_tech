@@ -1,6 +1,6 @@
-import Link from "next/link"
-import connectDB from "@/lib/db"
-import Product from "@/models/Product"
+import Link from "next/link";
+import connectDB from "@/lib/db";
+import Product from "@/models/Product";
 
 import {
   ShieldCheck,
@@ -13,16 +13,15 @@ import {
   Building2,
   Crown,
   CheckCircle,
-} from "lucide-react"
+} from "lucide-react";
 
 export default async function SSLPage() {
-  await connectDB()
+  await connectDB();
 
-  const products = await Product.find({ category: "SSL" }).lean()
+  const products = await Product.find({ category: "SSL" }).lean();
 
   return (
     <main className="bg-[#f4f6f8] text-slate-900 overflow-hidden">
-
       <section className="relative py-32 bg-gradient-to-br from-blue-950 via-indigo-950 to-blue-900 text-white overflow-hidden">
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-3xl" />
@@ -51,14 +50,15 @@ export default async function SSLPage() {
             { value: "24/7", label: "Uzman Destek", icon: Headphones },
             { value: "30 Gün", label: "Para İade Garantisi", icon: BadgeCheck },
           ].map((stat, i) => (
-            <div key={i} className="bg-white rounded-2xl shadow-lg border p-8 text-center">
+            <div
+              key={i}
+              className="bg-white rounded-2xl shadow-lg border p-8 text-center"
+            >
               <stat.icon className="w-8 h-8 text-blue-900 mx-auto mb-4" />
               <div className="text-3xl font-bold text-blue-900">
                 {stat.value}
               </div>
-              <div className="text-sm text-slate-600 mt-2">
-                {stat.label}
-              </div>
+              <div className="text-sm text-slate-600 mt-2">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -66,22 +66,17 @@ export default async function SSLPage() {
 
       <section className="py-28 bg-[#f8fafc]">
         <div className="max-w-6xl mx-auto px-6">
-
           <h2 className="text-4xl font-bold text-center mb-16">
             SSL Ürünlerimiz
           </h2>
 
           <div className="grid md:grid-cols-3 gap-10">
-
             {products.map((product: any) => (
               <div
                 key={product._id}
                 className="bg-white p-10 rounded-3xl shadow-lg border border-slate-200 hover:shadow-2xl transition"
               >
-
-                <h3 className="text-2xl font-bold mb-4">
-                  {product.name}
-                </h3>
+                <h3 className="text-2xl font-bold mb-4">{product.name}</h3>
 
                 <p className="text-slate-600 mb-6">
                   {product.shortDescription}
@@ -97,10 +92,8 @@ export default async function SSLPage() {
                 >
                   Detayları Gör →
                 </Link>
-
               </div>
             ))}
-
           </div>
         </div>
       </section>
@@ -119,7 +112,6 @@ export default async function SSLPage() {
           </Link>
         </div>
       </section>
-
     </main>
-  )
+  );
 }

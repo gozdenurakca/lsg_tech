@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useState } from "react"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   LayoutDashboard,
   BarChart3,
@@ -16,12 +16,12 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react"
+} from "lucide-react";
 
 interface Props {
-  totalUsers: number
-  pendingOrders: number
-  newPartnerCount?: number
+  totalUsers: number;
+  pendingOrders: number;
+  newPartnerCount?: number;
 }
 
 export default function AdminSidebar({
@@ -29,8 +29,8 @@ export default function AdminSidebar({
   pendingOrders,
   newPartnerCount = 0,
 }: Props) {
-  const pathname = usePathname()
-  const [collapsed, setCollapsed] = useState(false)
+  const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   const menuGroups = [
     {
@@ -69,7 +69,11 @@ export default function AdminSidebar({
       items: [
         { name: "SSL Yönetimi", href: "/admin/ssl", icon: Shield },
         { name: "Sertifikalar", href: "/admin/certificates", icon: KeyRound },
-        { name: "Güvenlik Logları", href: "/admin/security-logs", icon: FileWarning },
+        {
+          name: "Güvenlik Logları",
+          href: "/admin/security-logs",
+          icon: FileWarning,
+        },
       ],
     },
     {
@@ -78,7 +82,7 @@ export default function AdminSidebar({
         { name: "Site Ayarları", href: "/admin/settings", icon: Settings },
       ],
     },
-  ]
+  ];
 
   return (
     <aside
@@ -90,12 +94,8 @@ export default function AdminSidebar({
       <div className="flex items-center justify-between px-6 py-6 border-b border-slate-800">
         {!collapsed && (
           <div>
-            <div className="text-white font-semibold text-lg">
-              LSG Admin
-            </div>
-            <div className="text-xs text-slate-500">
-              Yönetim Paneli
-            </div>
+            <div className="text-white font-semibold text-lg">LSG Admin</div>
+            <div className="text-xs text-slate-500">Yönetim Paneli</div>
           </div>
         )}
 
@@ -119,8 +119,8 @@ export default function AdminSidebar({
 
             <div className="space-y-1">
               {group.items.map((item) => {
-                const active = pathname === item.href
-                const Icon = item.icon
+                const active = pathname === item.href;
+                const Icon = item.icon;
 
                 return (
                   <Link
@@ -150,7 +150,7 @@ export default function AdminSidebar({
                       </span>
                     )}
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
@@ -173,5 +173,5 @@ export default function AdminSidebar({
         </Link>
       </div>
     </aside>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -15,20 +15,20 @@ export default function Footer() {
               <span className="text-2xl font-bold">TRLSG</span>
             </Link>
             <p className="text-gray-400 leading-relaxed mb-4">
-              Türkiye'nin güvenilir SSL sertifikası ve web güvenlik çözümleri sağlayıcısı. 
-              DigiCert, Sectigo ve Comodo yetkili partneri.
+              Türkiye'nin güvenilir SSL sertifikası ve web güvenlik çözümleri
+              sağlayıcısı. DigiCert, Sectigo ve Comodo yetkili partneri.
             </p>
             <div className="flex gap-4">
               {/* Social Media Icons - Placeholder */}
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <span className="text-xl">in</span>
               </a>
-              <a 
-                href="#" 
+              <a
+                href="#"
                 className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Twitter"
               >
@@ -42,32 +42,50 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4">Ürünler</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/ssl/dv" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/ssl/dv"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   DV SSL
                 </Link>
               </li>
               <li>
-                <Link href="/ssl/ov" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/ssl/ov"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   OV SSL
                 </Link>
               </li>
               <li>
-                <Link href="/ssl/ev" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/ssl/ev"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   EV SSL
                 </Link>
               </li>
               <li>
-                <Link href="/ssl/wildcard" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/ssl/wildcard"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Wildcard SSL
                 </Link>
               </li>
               <li>
-                <Link href="/ssl/code-signing" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/ssl/code-signing"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Code Signing
                 </Link>
               </li>
               <li>
-                <Link href="/guvenlik/imunify360" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/guvenlik/imunify360"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Imunify360
                 </Link>
               </li>
@@ -79,28 +97,43 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-4">Kurumsal</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/kurumsal/hakkimizda" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/kurumsal/hakkimizda"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Hakkımızda
                 </Link>
               </li>
               <li>
-                <Link href="/kurumsal/referanslar" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/kurumsal/referanslar"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Referanslar
                 </Link>
               </li>
-            
+
               <li>
-                <Link href="/kurumsal/sss" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/kurumsal/sss"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Sık Sorulan Sorular
                 </Link>
               </li>
               <li>
-                <Link href="/iletisim" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/iletisim"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   İletişim
                 </Link>
               </li>
               <li>
-                <Link href="/kurumsal/kariyer" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  href="/kurumsal/kariyer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Kariyer
                 </Link>
               </li>
@@ -115,7 +148,10 @@ export default function Footer() {
                 <span className="text-secondary mt-1">📞</span>
                 <div>
                   <div className="font-medium text-white">Telefon</div>
-                  <a href="tel:+902162858578" className="hover:text-white transition-colors">
+                  <a
+                    href="tel:+902162858578"
+                    className="hover:text-white transition-colors"
+                  >
                     0216 285 85 78
                   </a>
                 </div>
@@ -124,7 +160,10 @@ export default function Footer() {
                 <span className="text-secondary mt-1">✉️</span>
                 <div>
                   <div className="font-medium text-white">E-posta</div>
-                  <a href="mailto:info@trlsg.com" className="hover:text-white transition-colors">
+                  <a
+                    href="mailto:info@trlsg.com"
+                    className="hover:text-white transition-colors"
+                  >
                     info@trlsg.com
                   </a>
                 </div>
@@ -134,8 +173,10 @@ export default function Footer() {
                 <div>
                   <div className="font-medium text-white">Adres</div>
                   <p className="leading-relaxed">
-                    Yapı Kredi Plaza C Blok<br />
-                    No:40-41, Levent<br />
+                    Yapı Kredi Plaza C Blok
+                    <br />
+                    No:40-41, Levent
+                    <br />
                     İstanbul, Türkiye
                   </p>
                 </div>
@@ -153,13 +194,22 @@ export default function Footer() {
               © 2026 LSG Teknoloji. Tüm hakları saklıdır.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link href="/gizlilik" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/gizlilik"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Gizlilik Politikası
               </Link>
-              <Link href="/kvkk" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/kvkk"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 KVKK
               </Link>
-              <Link href="/kullanim-kosullari" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/kullanim-kosullari"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Kullanım Koşulları
               </Link>
             </div>
@@ -167,5 +217,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

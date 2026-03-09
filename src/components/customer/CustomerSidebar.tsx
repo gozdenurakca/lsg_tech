@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useState } from "react"
-import { signOut } from "next-auth/react"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
 
 interface Props {
-  openOrders: number
+  openOrders: number;
 }
 
 export default function CustomerSidebar({ openOrders }: Props) {
-  const pathname = usePathname()
-  const [collapsed, setCollapsed] = useState(false)
+  const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   const menuGroups = [
     {
@@ -21,8 +21,18 @@ export default function CustomerSidebar({ openOrders }: Props) {
           name: "Dashboard",
           href: "/panel",
           icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2 7-7 7 7 2 2M5 10v10h14V10" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M3 12l2-2 7-7 7 7 2 2M5 10v10h14V10"
+              />
             </svg>
           ),
         },
@@ -35,8 +45,18 @@ export default function CustomerSidebar({ openOrders }: Props) {
           name: "Sertifikalarım",
           href: "/panel/ssl",
           icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              />
             </svg>
           ),
         },
@@ -44,8 +64,18 @@ export default function CustomerSidebar({ openOrders }: Props) {
           name: "Siparişlerim",
           href: "/panel/orders",
           icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 9h14l1 12H4L5 9z" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 9h14l1 12H4L5 9z"
+              />
             </svg>
           ),
           badge: openOrders > 0 ? openOrders.toString() : undefined,
@@ -59,8 +89,18 @@ export default function CustomerSidebar({ openOrders }: Props) {
           name: "Destek Taleplerim",
           href: "/panel/support",
           icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 13v6a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h8a2 2 0 012 2v2" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M18 13v6a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h8a2 2 0 012 2v2"
+              />
             </svg>
           ),
         },
@@ -73,14 +113,24 @@ export default function CustomerSidebar({ openOrders }: Props) {
           name: "Profil Ayarları",
           href: "/panel/profile",
           icon: (
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A9 9 0 1118.88 6.196M15 21H9" />
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5.121 17.804A9 9 0 1118.88 6.196M15 21H9"
+              />
             </svg>
           ),
         },
       ],
     },
-  ]
+  ];
 
   return (
     <aside
@@ -133,7 +183,7 @@ export default function CustomerSidebar({ openOrders }: Props) {
               {group.items.map((item) => {
                 const isActive =
                   pathname === item.href ||
-                  pathname.startsWith(item.href + "/")
+                  pathname.startsWith(item.href + "/");
 
                 return (
                   <Link
@@ -157,7 +207,7 @@ export default function CustomerSidebar({ openOrders }: Props) {
                       </>
                     )}
                   </Link>
-                )
+                );
               })}
             </div>
           </div>
@@ -170,12 +220,22 @@ export default function CustomerSidebar({ openOrders }: Props) {
           onClick={() => signOut({ callbackUrl: "/giris" })}
           className="flex items-center gap-3 text-red-500 hover:text-red-600 text-sm"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7" />
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 16l4-4m0 0l-4-4m4 4H7"
+            />
           </svg>
           {!collapsed && "Çıkış Yap"}
         </button>
       </div>
     </aside>
-  )
+  );
 }

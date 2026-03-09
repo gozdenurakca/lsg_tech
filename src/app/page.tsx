@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import SSLComparisonServer from '@/components/SSLComparisonServer'
+import SSLComparisonServer from "@/components/SSLComparisonServer";
 
 import {
   Shield,
@@ -159,7 +159,13 @@ function PlatformDiagram() {
                   strokeWidth="2"
                   opacity="0.7"
                 />
-                <circle cx={n.x} cy={n.y} r="28" fill="url(#g2)" opacity="0.95" />
+                <circle
+                  cx={n.x}
+                  cy={n.y}
+                  r="28"
+                  fill="url(#g2)"
+                  opacity="0.95"
+                />
                 <text
                   x={n.x}
                   y={n.y + 4}
@@ -176,10 +182,12 @@ function PlatformDiagram() {
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold">Tek Çatı Altında Güvenlik Mimarisi</h3>
+          <h3 className="text-2xl font-bold">
+            Tek Çatı Altında Güvenlik Mimarisi
+          </h3>
           <p className="mt-4 text-slate-600">
-            SSL, web güvenlik, hosting ve Keeper çözümlerini tek bir kurumsal güvenlik
-            yaklaşımı altında birleştiriyoruz.
+            SSL, web güvenlik, hosting ve Keeper çözümlerini tek bir kurumsal
+            güvenlik yaklaşımı altında birleştiriyoruz.
           </p>
 
           <div className="mt-8 grid sm:grid-cols-2 gap-4">
@@ -240,25 +248,24 @@ export default function HomePage() {
                 </h1>
 
                 <p className="mt-6 text-lg text-blue-100">
-                  SSL sertifikaları, web güvenlik çözümleri ve hosting hizmetleri ile
-                  dijital altyapınızı geleceğe hazırlıyoruz.
+                  SSL sertifikaları, web güvenlik çözümleri ve hosting
+                  hizmetleri ile dijital altyapınızı geleceğe hazırlıyoruz.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link
-  href="/ssl"
-  className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:shadow-lg transition-all"
->
-  SSL Sertifikası Al
-</Link>
+                    href="/ssl"
+                    className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 hover:shadow-lg transition-all"
+                  >
+                    SSL Sertifikası Al
+                  </Link>
 
                   <Link
-  href="/#teklif"
-  className="border-2 border-white/70 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all"
->
-  Teklif Al
-</Link>
-
+                    href="/#teklif"
+                    className="border-2 border-white/70 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all"
+                  >
+                    Teklif Al
+                  </Link>
                 </div>
               </div>
             </div>
@@ -267,11 +274,15 @@ export default function HomePage() {
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
               <div className="text-3xl font-bold text-blue-900">10,000+</div>
-              <div className="text-sm text-slate-600 mt-1">Aktif SSL Sertifikası</div>
+              <div className="text-sm text-slate-600 mt-1">
+                Aktif SSL Sertifikası
+              </div>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
               <div className="text-3xl font-bold text-blue-900">99.9%</div>
-              <div className="text-sm text-slate-600 mt-1">Uptime Garantisi</div>
+              <div className="text-sm text-slate-600 mt-1">
+                Uptime Garantisi
+              </div>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow">
               <div className="text-3xl font-bold text-blue-900">24/7</div>
@@ -286,45 +297,40 @@ export default function HomePage() {
       </section>
 
       <section className="py-20 bg-gray-50 border-y border-gray-100">
-  <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-10">
+            Global Markalar & Teknoloji Ortakları
+          </h2>
 
-    <h2 className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-10">
-      Global Markalar & Teknoloji Ortakları
-    </h2>
-
-<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 items-center opacity-80">
-
-  {[
-    "/logos/digicert.svg",
-    "/logos/geotrust.png",
-    "/logos/thawte.png",
-    "/logos/rapidssl.png",
-    "/logos/cloudflare.png",
-    "/logos/sectigo.png",
-    "/logos/venafi.png",
-    "/logos/keeper.png",
-    "/logos/securenvoy.png",
-    "/logos/nospamproxy.png",
-    "/logos/keytalk.png",
-    "/logos/positiveSSL.png",
-  ].map((logo, i) => (
-    <div
-      key={i}
-      className="flex items-center justify-center grayscale hover:grayscale-0 transition duration-300"
-    >
-      <img
-        src={logo}
-        alt="Partner Logo"
-        className="h-10 object-contain"
-      />
-    </div>
-  ))}
-
-</div>
-
-  </div>
-</section>
-
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10 items-center opacity-80">
+            {[
+              "/logos/digicert.svg",
+              "/logos/geotrust.png",
+              "/logos/thawte.png",
+              "/logos/rapidssl.png",
+              "/logos/cloudflare.png",
+              "/logos/sectigo.png",
+              "/logos/venafi.png",
+              "/logos/keeper.png",
+              "/logos/securenvoy.png",
+              "/logos/nospamproxy.png",
+              "/logos/keytalk.png",
+              "/logos/positiveSSL.png",
+            ].map((logo, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center grayscale hover:grayscale-0 transition duration-300"
+              >
+                <img
+                  src={logo}
+                  alt="Partner Logo"
+                  className="h-10 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6 space-y-6">
@@ -341,8 +347,8 @@ export default function HomePage() {
                 </h2>
 
                 <p className="mt-4 text-blue-100">
-                  SSL sertifikaları, web güvenlik çözümleri ve en iyi uygulama önerileri
-                  ile dijital güvenliğinizi artırın.
+                  SSL sertifikaları, web güvenlik çözümleri ve en iyi uygulama
+                  önerileri ile dijital güvenliğinizi artırın.
                 </p>
 
                 <button className="mt-8 bg-white text-blue-900 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition shadow-lg hover:shadow-xl">
@@ -352,120 +358,128 @@ export default function HomePage() {
 
               <div className="justify-self-end w-full">
                 <div className="relative w-full max-w-[420px] h-[260px] bg-white rounded-2xl shadow-2xl overflow-hidden">
-                  <Image src="/images/resim2.png" alt="LSG Güvenlik Raporu" fill className="object-cover" />
+                  <Image
+                    src="/images/resim2.png"
+                    alt="LSG Güvenlik Raporu"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
-         <div className="grid md:grid-cols-2 gap-6">
-  <Link
-    href="/cozumler/ssl-yonetimi"
-    className="bg-white p-7 md:p-8 rounded-2xl shadow-md flex items-center justify-between hover:shadow-xl transition-all hover:-translate-y-1 group"
-  >
-    <div>
-      <h3 className="text-lg md:text-xl font-semibold group-hover:text-blue-900 transition-colors">
-        SSL Sertifikası Yenilemeyi Mi Unuttunuz?
-      </h3>
-      <p className="text-slate-600 mt-2">
-        Otomatik yenileme ile siteniz kesintisiz güvende kalır.
-      </p>
-    </div>
-    <span className="text-3xl text-blue-900 group-hover:translate-x-2 transition-transform">
-      →
-    </span>
-  </Link>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Link
+              href="/cozumler/ssl-yonetimi"
+              className="bg-white p-7 md:p-8 rounded-2xl shadow-md flex items-center justify-between hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div>
+                <h3 className="text-lg md:text-xl font-semibold group-hover:text-blue-900 transition-colors">
+                  SSL Sertifikası Yenilemeyi Mi Unuttunuz?
+                </h3>
+                <p className="text-slate-600 mt-2">
+                  Otomatik yenileme ile siteniz kesintisiz güvende kalır.
+                </p>
+              </div>
+              <span className="text-3xl text-blue-900 group-hover:translate-x-2 transition-transform">
+                →
+              </span>
+            </Link>
 
-  <Link
-    href="/cozumler/web-guvenligi"
-    className="bg-white p-7 md:p-8 rounded-2xl shadow-md flex items-center justify-between hover:shadow-xl transition-all hover:-translate-y-1 group"
-  >
-    <div>
-      <h3 className="text-lg md:text-xl font-semibold group-hover:text-blue-900 transition-colors">
-        Malware Saldırıları Endişe Mi Veriyor?
-      </h3>
-      <p className="text-slate-600 mt-2">
-        7/24 otomatik tarama ile sitenizi koruyun.
-      </p>
-    </div>
-    <span className="text-3xl text-blue-900 group-hover:translate-x-2 transition-transform">
-      →
-    </span>
-  </Link>
-</div>
-
+            <Link
+              href="/cozumler/web-guvenligi"
+              className="bg-white p-7 md:p-8 rounded-2xl shadow-md flex items-center justify-between hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div>
+                <h3 className="text-lg md:text-xl font-semibold group-hover:text-blue-900 transition-colors">
+                  Malware Saldırıları Endişe Mi Veriyor?
+                </h3>
+                <p className="text-slate-600 mt-2">
+                  7/24 otomatik tarama ile sitenizi koruyun.
+                </p>
+              </div>
+              <span className="text-3xl text-blue-900 group-hover:translate-x-2 transition-transform">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
 
-     
       <SSLComparisonServer />
 
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
-  <div className="max-w-7xl mx-auto px-6">
-    <div className="grid md:grid-cols-2 gap-8">
-      
-      <Link
-  href="/cozumler/sunucu-guvenligi"
-  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all block"
->
-  <div className="flex items-start gap-4 mb-4">
-    <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
-  <Shield className="w-6 h-6 text-orange-600" />
-</div>
+      <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Link
+              href="/cozumler/sunucu-guvenligi"
+              className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all block"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-orange-600" />
+                </div>
 
-    <div>
-      <h3 className="text-2xl font-bold mb-2">Sunucu Güvenliği</h3>
-      <p className="text-slate-600">
-        Imunify360 ile sunucunuzu malware, DDoS ve saldırılara karşı koruyun.
-        Real-time tarama ve otomatik temizlik.
-      </p>
-    </div>
-  </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">Sunucu Güvenliği</h3>
+                  <p className="text-slate-600">
+                    Imunify360 ile sunucunuzu malware, DDoS ve saldırılara karşı
+                    koruyun. Real-time tarama ve otomatik temizlik.
+                  </p>
+                </div>
+              </div>
 
-  <span className="text-blue-900 font-semibold">
-    Daha Fazla Bilgi →
-  </span>
-</Link>
+              <span className="text-blue-900 font-semibold">
+                Daha Fazla Bilgi →
+              </span>
+            </Link>
 
-     <Link
-  href="/cozumler/web-guvenligi"
-  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all block"
->
-  <div className="flex items-start gap-4 mb-4">
-    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-  <Search className="w-6 h-6 text-green-600" />
-</div>
+            <Link
+              href="/cozumler/web-guvenligi"
+              className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all block"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                  <Search className="w-6 h-6 text-green-600" />
+                </div>
 
-    <div>
-      <h3 className="text-2xl font-bold mb-2">Web Sitesi Güvenliği</h3>
-      <p className="text-slate-600">
-        Securi ile web sitenizi günlük tara, malware'den temizle.
-        WAF, DDoS koruması ve CDN dahil.
-      </p>
-    </div>
-  </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-2">
+                    Web Sitesi Güvenliği
+                  </h3>
+                  <p className="text-slate-600">
+                    Securi ile web sitenizi günlük tara, malware'den temizle.
+                    WAF, DDoS koruması ve CDN dahil.
+                  </p>
+                </div>
+              </div>
 
-  <span className="text-blue-900 font-semibold">
-    Daha Fazla Bilgi →
-  </span>
-</Link>
-
-    </div>
-  </div>
-</section>
+              <span className="text-blue-900 font-semibold">
+                Daha Fazla Bilgi →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="py-28">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
-            <Image src="/images/resim3.png" alt="Security Testing" fill className="object-cover" />
+            <Image
+              src="/images/resim3.png"
+              alt="Security Testing"
+              fill
+              className="object-cover"
+            />
           </div>
 
           <div className="bg-white p-12 rounded-3xl shadow-lg">
             <h2 className="text-3xl font-bold">Ücretsiz SSL Güvenlik Testi</h2>
 
             <p className="mt-6 text-slate-600 leading-relaxed">
-              Mevcut SSL sertifikanızı analiz edin, güvenlik açıklarını tespit edin ve
-              iyileştirme önerilerimizi inceleyin.
+              Mevcut SSL sertifikanızı analiz edin, güvenlik açıklarını tespit
+              edin ve iyileştirme önerilerimizi inceleyin.
             </p>
 
             <button className="mt-8 bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
@@ -481,15 +495,18 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold">7/24 Güvenlik İzleme</h2>
 
             <p className="mt-6 text-slate-600 leading-relaxed">
-              Web sitenizi kesintisiz izliyor, potansiyel tehditlere anında müdahale
-              ediyoruz. Güvenliğiniz bizim önceliğimiz.
+              Web sitenizi kesintisiz izliyor, potansiyel tehditlere anında
+              müdahale ediyoruz. Güvenliğiniz bizim önceliğimiz.
             </p>
 
             <ul className="mt-8 space-y-4">
-              {["Real-time malware tarama", "Otomatik yedekleme", "Anında alarm sistemi"].map((t) => (
+              {[
+                "Real-time malware tarama",
+                "Otomatik yedekleme",
+                "Anında alarm sistemi",
+              ].map((t) => (
                 <li key={t} className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
-
 
                   <span className="text-slate-700">{t}</span>
                 </li>
@@ -498,7 +515,12 @@ export default function HomePage() {
           </div>
 
           <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
-            <Image src="/images/resim4.png" alt="Security Monitoring" fill className="object-cover" />
+            <Image
+              src="/images/resim4.png"
+              alt="Security Monitoring"
+              fill
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
@@ -513,19 +535,19 @@ export default function HomePage() {
 
           <div className="mt-16 grid md:grid-cols-5 gap-6">
             {[
-               { name: "SSL Sertifikaları", icon: Lock },
-  { name: "Web Güvenlik", icon: Shield },
-  { name: "Malware Tarama", icon: Search },
-  { name: "DDoS Koruması", icon: Zap },
-  { name: "7/24 Destek", icon: MessageCircle },
+              { name: "SSL Sertifikaları", icon: Lock },
+              { name: "Web Güvenlik", icon: Shield },
+              { name: "Malware Tarama", icon: Search },
+              { name: "DDoS Koruması", icon: Zap },
+              { name: "7/24 Destek", icon: MessageCircle },
             ].map((item, i) => (
               <div
                 key={i}
                 className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all hover:-translate-y-2 cursor-pointer"
               >
                 <div className="w-12 h-12 mx-auto mb-3 bg-blue-50 rounded-xl flex items-center justify-center">
-  <item.icon className="w-6 h-6 text-blue-900" />
-</div>
+                  <item.icon className="w-6 h-6 text-blue-900" />
+                </div>
 
                 <div className="font-semibold">{item.name}</div>
               </div>
@@ -540,8 +562,14 @@ export default function HomePage() {
 
           <div className="mt-16 grid md:grid-cols-3 gap-8">
             {[
-              { title: "SSL Seçim Rehberi", desc: "Hangi SSL sizin için doğru?" },
-              { title: "Güvenlik Checklist", desc: "Web sitenizi koruma adımları" },
+              {
+                title: "SSL Seçim Rehberi",
+                desc: "Hangi SSL sizin için doğru?",
+              },
+              {
+                title: "Güvenlik Checklist",
+                desc: "Web sitenizi koruma adımları",
+              },
               { title: "Kurulum Kılavuzu", desc: "Adım adım SSL kurulumu" },
             ].map((item, i) => (
               <div
@@ -549,8 +577,8 @@ export default function HomePage() {
                 className="bg-[#f4f5f7] rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all hover:-translate-y-2"
               >
                 <div className="h-40 bg-gradient-to-r from-blue-800 to-indigo-700 flex items-center justify-center">
-  <FileText className="w-14 h-14 text-white" />
-</div>
+                  <FileText className="w-14 h-14 text-white" />
+                </div>
 
                 <div className="p-6">
                   <h3 className="font-bold text-lg mb-2">{item.title}</h3>
@@ -570,7 +598,9 @@ export default function HomePage() {
         className="py-28 bg-gradient-to-br from-blue-900 to-indigo-900 text-white text-center"
       >
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-4">Ücretsiz SSL Danışmanlığı Alın</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            Ücretsiz SSL Danışmanlığı Alın
+          </h2>
           <p className="text-xl text-blue-100 mb-12">
             Uzman ekibimiz size en uygun SSL çözümünü önerir
           </p>
@@ -600,8 +630,8 @@ export default function HomePage() {
             </button>
 
             <p className="mt-6 text-sm text-blue-200">
-              ✓ 24 saat içinde geri dönüş &nbsp; ✓ Taahhütsüz danışmanlık &nbsp; ✓ Özel
-              fiyat teklifi
+              ✓ 24 saat içinde geri dönüş &nbsp; ✓ Taahhütsüz danışmanlık &nbsp;
+              ✓ Özel fiyat teklifi
             </p>
           </div>
         </div>

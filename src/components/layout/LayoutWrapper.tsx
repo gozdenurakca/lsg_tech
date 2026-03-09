@@ -1,19 +1,18 @@
-"use client"
+"use client";
 
-import { usePathname } from "next/navigation"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
+import { usePathname } from "next/navigation";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function LayoutWrapper({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const isDashboard =
-    pathname.startsWith("/panel") ||
-    pathname.startsWith("/admin")
+    pathname.startsWith("/panel") || pathname.startsWith("/admin");
 
   return (
     <>
@@ -21,5 +20,5 @@ export default function LayoutWrapper({
       {children}
       {!isDashboard && <Footer />}
     </>
-  )
+  );
 }

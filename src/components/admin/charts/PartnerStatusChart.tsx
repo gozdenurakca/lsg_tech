@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   PieChart,
@@ -7,12 +7,12 @@ import {
   ResponsiveContainer,
   Tooltip,
   Legend,
-} from "recharts"
+} from "recharts";
 
-type Item = { name: string; value: number }
+type Item = { name: string; value: number };
 
 export default function PartnerStatusChart({ data }: { data: Item[] }) {
-  const COLORS = ["#2563eb", "#16a34a", "#dc2626", "#f59e0b"]
+  const COLORS = ["#2563eb", "#16a34a", "#dc2626", "#f59e0b"];
 
   return (
     <div className="bg-white rounded-xl shadow-sm border p-6">
@@ -21,7 +21,13 @@ export default function PartnerStatusChart({ data }: { data: Item[] }) {
       <div className="h-72">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
-            <Pie data={data} dataKey="value" nameKey="name" outerRadius={95} label>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              outerRadius={95}
+              label
+            >
               {data.map((_, i) => (
                 <Cell key={i} fill={COLORS[i % COLORS.length]} />
               ))}
@@ -32,5 +38,5 @@ export default function PartnerStatusChart({ data }: { data: Item[] }) {
         </ResponsiveContainer>
       </div>
     </div>
-  )
+  );
 }

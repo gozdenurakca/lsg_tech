@@ -1,8 +1,8 @@
 interface Props {
-  certificatesCount: number
-  expiringCount: number
-  ordersCount: number
-  openTicketsCount: number
+  certificatesCount: number;
+  expiringCount: number;
+  ordersCount: number;
+  openTicketsCount: number;
 }
 
 export default function CustomerDashboard({
@@ -13,7 +13,6 @@ export default function CustomerDashboard({
 }: Props) {
   return (
     <div className="space-y-8">
-
       {/* ÜST UYARI BAR (Expiring SSL varsa) */}
       {expiringCount > 0 && (
         <div className="bg-amber-50 border border-amber-200 text-amber-800 px-6 py-4 rounded-xl flex items-center justify-between">
@@ -36,7 +35,6 @@ export default function CustomerDashboard({
 
       {/* KPI KARTLARI */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-
         <DashboardCard
           title="Aktif Sertifikalar"
           value={certificatesCount}
@@ -71,18 +69,17 @@ export default function CustomerDashboard({
           desc="Herhangi bir kısıtlama yok"
           status="success"
         />
-
       </div>
     </div>
-  )
+  );
 }
 
 interface CardProps {
-  title: string
-  value: string | number
-  desc: string
-  highlight?: boolean
-  status?: "success" | "warning" | "default"
+  title: string;
+  value: string | number;
+  desc: string;
+  highlight?: boolean;
+  status?: "success" | "warning" | "default";
 }
 
 function DashboardCard({
@@ -108,8 +105,8 @@ function DashboardCard({
             status === "success"
               ? "text-emerald-600"
               : highlight
-              ? "text-amber-600"
-              : "text-slate-900"
+                ? "text-amber-600"
+                : "text-slate-900"
           }
         `}
       >
@@ -118,5 +115,5 @@ function DashboardCard({
 
       <p className="text-xs text-slate-500 mt-3">{desc}</p>
     </div>
-  )
+  );
 }

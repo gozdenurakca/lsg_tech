@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   LineChart,
@@ -8,11 +8,11 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
-} from "recharts"
+} from "recharts";
 
 type Props = {
-  data: { date: string; count: number }[]
-}
+  data: { date: string; count: number }[];
+};
 
 export default function PartnerChart({ data }: Props) {
   return (
@@ -38,5 +38,5 @@ export default function PartnerChart({ data }: Props) {
         </ResponsiveContainer>
       </div>
     </div>
-  )
+  );
 }

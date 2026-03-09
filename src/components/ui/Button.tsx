@@ -1,31 +1,35 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode
-  variant?: 'primary' | 'secondary' | 'outline'
-  size?: 'sm' | 'md' | 'lg'
+  children: ReactNode;
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
 }
 
-export default function Button({ 
-  children, 
-  variant = 'primary', 
-  size = 'md',
-  className = '',
-  ...props 
+export default function Button({
+  children,
+  variant = "primary",
+  size = "md",
+  className = "",
+  ...props
 }: ButtonProps) {
-  const baseStyles = 'font-semibold rounded-lg transition-all duration-300 inline-flex items-center justify-center'
-  
+  const baseStyles =
+    "font-semibold rounded-lg transition-all duration-300 inline-flex items-center justify-center";
+
   const variants = {
-    primary: 'bg-primary hover:bg-primary-dark text-white hover:shadow-lg hover:-translate-y-0.5',
-    secondary: 'bg-white hover:bg-primary text-primary hover:text-white border-2 border-primary',
-    outline: 'border-2 border-gray-300 hover:border-primary text-gray hover:text-primary',
-  }
-  
+    primary:
+      "bg-primary hover:bg-primary-dark text-white hover:shadow-lg hover:-translate-y-0.5",
+    secondary:
+      "bg-white hover:bg-primary text-primary hover:text-white border-2 border-primary",
+    outline:
+      "border-2 border-gray-300 hover:border-primary text-gray hover:text-primary",
+  };
+
   const sizes = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
-  }
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-base",
+    lg: "px-8 py-4 text-lg",
+  };
 
   return (
     <button
@@ -34,5 +38,5 @@ export default function Button({
     >
       {children}
     </button>
-  )
+  );
 }

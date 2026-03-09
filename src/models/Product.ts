@@ -6,7 +6,7 @@ export interface IProduct extends Document {
   category: 'SSL' | 'Security'
   validation: 'DV' | 'OV' | 'EV'
   productType: 'Standard' | 'Wildcard' | 'Multi-Domain' | 'Code Signing'
-
+  tier: 'Basic' | 'Business' | 'Premium' | 'Enterprise'
   brand: string
 
   description: string
@@ -56,16 +56,20 @@ const ProductSchema = new Schema<IProduct>(
     category: { type: String, required: true },
     validation: { type: String, required: true },
     productType: { type: String, required: true },
-
+    tier: {
+  type: String,
+  enum: ['Basic', 'Premium', 'Enterprise'],
+  default: 'Basic'
+},
     brand: { type: String, required: true },
 
     description: { type: String, required: true },
-    shortDescription: { type: String },
+    shortDescription: { type: String, required: true },
 
     price: {
       oneYear: { type: Number, required: true },
-      twoYear: { type: Number, required: true },
-      threeYear: { type: Number, required: true },
+      twoYear: { type: Number},
+      threeYear: { type: Number},
     },
 
     originalPrice: Number,
