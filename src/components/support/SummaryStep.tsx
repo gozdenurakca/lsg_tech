@@ -1,5 +1,5 @@
 "use client";
-
+import { ICONS } from "@/lib/icons";
 import React from "react";
 
 type FormData = {
@@ -45,7 +45,6 @@ export default function SummaryStep({
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 flex flex-col gap-6">
-      {/* Başlık */}
       <div>
         <h3 className="font-extrabold text-[#1b2a4a] mb-1">
           Talebinizi Gözden Geçirin
@@ -99,12 +98,15 @@ export default function SummaryStep({
           className="flex-[2] py-3.5 bg-[#2ecc8f] hover:bg-[#27b87d] disabled:opacity-60 text-white font-bold rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
         >
           {loading ? (
-            <>
-              <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <span className="flex items-center gap-2">
+              <ICONS.loader size={16} className="animate-spin" />
               Gönderiliyor...
-            </>
+            </span>
           ) : (
-            "🎫 Ticket Oluştur"
+            <span className="flex items-center gap-2">
+              <ICONS.ticket size={16} />
+              Ticket Oluştur
+            </span>
           )}
         </button>
       </div>

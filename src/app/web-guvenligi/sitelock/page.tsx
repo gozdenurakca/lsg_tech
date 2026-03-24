@@ -23,7 +23,7 @@ export default async function SiteLockPage() {
         }}
         title="SiteLock"
         subtitle="SiteLock ile web sitenizi zararlı yazılım saldırılarına, veri ihlallerine ve güvenlik tehditlerine karşı koruyun."
-        imageSrc="/images/sitelock-hero.png"
+        imageSrc="/images/sitelock.png"
         primaryButton={{
           label: "Hemen Başla",
           href: "#pricing",
@@ -50,7 +50,7 @@ export default async function SiteLockPage() {
       <TrustBar
         title="Web siteniz her zaman güvende"
         description="SiteLock, sürekli tarama ve gelişmiş güvenlik katmanları ile sitenizi korur."
-        imageSrc="/images/sitelock-visual.jpg"
+        imageSrc="/images/sitelock-trust.svg"
         stats={[
           { value: "1M+", label: "Korunan Website" },
           { value: "250K+", label: "Temizlenen Malware" },

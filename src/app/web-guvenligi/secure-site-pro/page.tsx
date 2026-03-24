@@ -35,7 +35,7 @@ export default async function SecureSiteProPage() {
           </>
         }
         subtitle="Web sitenizi zararlı yazılımlar, güvenlik açıkları ve siber tehditlere karşı 7/24 koruyun."
-        imageSrc="/images/security-hero.png"
+        imageSrc="/images/secure-site-pro-hero.svg"
         primaryButton={{
           label: "Paketleri İncele",
           href: "#pricing",
@@ -72,7 +72,7 @@ export default async function SecureSiteProPage() {
           { value: "7/24", label: "Aktif İzleme" },
           { value: "%99.9", label: "Uptime" },
         ]}
-        imageSrc="/images/security-trust.jpg"
+        imageSrc="/images/secure-site-pro-trust.png"
       />
 
       <FeatureGrid

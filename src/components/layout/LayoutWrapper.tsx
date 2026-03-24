@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
 import Footer from "./Footer";
 
 export default function LayoutWrapper({
@@ -12,7 +12,9 @@ export default function LayoutWrapper({
   const pathname = usePathname();
 
   const isDashboard =
-    pathname.startsWith("/panel") || pathname.startsWith("/admin");
+    pathname.startsWith("/panel") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/domain/results");
 
   return (
     <>

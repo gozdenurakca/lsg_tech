@@ -1,20 +1,29 @@
-import Link from "next/link";
-import { ShieldCheck, Box } from "lucide-react";
+"use client";
 
-const PRODUCTS = [
+import Link from "next/link";
+import { ICONS } from "@/lib/icons";
+
+type Product = {
+  name: string;
+  description: string;
+  href: string;
+  icon: keyof typeof ICONS;
+};
+
+const PRODUCTS: Product[] = [
   {
     name: "Secure Site Pro",
     description:
       "Web sitenizi zararlı yazılımlara, saldırılara ve güvenlik açıklarına karşı koruyan gelişmiş güvenlik çözümü.",
     href: "/web-guvenligi/secure-site-pro",
-    icon: ShieldCheck,
+    icon: "shieldCheck",
   },
   {
     name: "SiteLock",
     description:
       "Web sitenizi sürekli tarayan ve tehditleri tespit eden profesyonel website güvenlik hizmeti.",
     href: "/web-guvenligi/sitelock",
-    icon: Box,
+    icon: "box",
   },
 ];
 
@@ -36,7 +45,7 @@ export default function SecurityProducts() {
 
         <div className="space-y-6">
           {PRODUCTS.map((product) => {
-            const Icon = product.icon;
+            const Icon = ICONS[product.icon];
 
             return (
               <Link

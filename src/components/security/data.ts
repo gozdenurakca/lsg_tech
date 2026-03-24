@@ -1,16 +1,3 @@
-import {
-  Shield,
-  Lock,
-  Flame,
-  Search,
-  Activity,
-  Zap,
-  Trophy,
-  Brush,
-  Rocket,
-  Database,
-} from "lucide-react";
-
 export const PLANS = [
   {
     id: "standart",
@@ -76,32 +63,32 @@ export const PLANS = [
 
 export const INCLUDED_FEATURES = [
   {
-    icon: Shield,
+    icon : "shield",
     title: "Gelişmiş Güven Damgası",
     desc: "Sitenizin şifrelenmiş ve güvenlik duvarı korumasına sahip olduğunu doğrulayan etkileşimli güven damgası.",
   },
   {
-    icon: Lock,
+    icon: "lock",
     title: "SSL Sertifikası",
     desc: "SHA-2 ve 2048 bit şifreleme ile veri güvenliği ve daha iyi SEO.",
   },
   {
-    icon: Flame,
+    icon: "flame",
     title: "Web Application Firewall (WAF)",
     desc: "Sitenizi SQL injection ve diğer saldırılara karşı korur.",
   },
   {
-    icon: Search,
+    icon: "search",
     title: "Günlük Malware Taraması",
     desc: "Web siteniz düzenli olarak taranır ve tehditler tespit edilir.",
   },
   {
-    icon: Activity,
+    icon: "activity",
     title: "Sürekli İzleme",
     desc: "Blacklist durumu, SSL değişiklikleri ve uptime kontrolü.",
   },
   {
-    icon: Zap,
+    icon: "zap",
     title: "CDN ile Daha Hızlı",
     desc: "Global CDN ile sayfalar daha hızlı yüklenir.",
   },
@@ -110,22 +97,22 @@ export const INCLUDED_FEATURES = [
 
 export const BENEFITS = [
   {
-    icon: Trophy,
+    icon: "trophy",
     title: "Ziyaretçilere güven verin",
     desc: "SSL ve WAF ile ziyaretçilerinize sitenizin güvenli olduğunu gösterin.",
   },
   {
-    icon: Brush,
+    icon: "brush",
     title: "Malware temizleme",
     desc: "Kötü amaçlı yazılım tespit edildiğinde hızlı şekilde temizlenir.",
   },
   {
-    icon: Rocket,
+    icon: "rocket",
     title: "Performans artışı",
     desc: "CDN sayesinde web sitenizin yüklenme süresi ciddi şekilde hızlanır.",
   },
   {
-    icon: Database,
+    icon: "database",
     title: "Yedekleme ve geri yükleme",
     desc: "Günlük otomatik yedekleme ve tek tıklama ile geri yükleme.",
   },

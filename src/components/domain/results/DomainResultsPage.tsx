@@ -119,7 +119,7 @@ export default function DomainResultsPage() {
       <FilterDrawer
         open={filterOpen}
         onClose={() => setFilterOpen(false)}
-        selectedExts={selectedExts}
+        selectedExts={Array.from(selectedExts)}
         toggleExt={toggleExt}
         showAvailableOnly={showAvailableOnly}
         setShowAvailableOnly={setShowAvailableOnly}

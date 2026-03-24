@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Shield,
-  Server,
-  Globe,
-  Mail,
-  CreditCard,
-  Settings,
-  MessageCircle,
-} from "lucide-react";
+import { ICONS } from "@/lib/icons";
 
 type Props = {
   form: {
@@ -24,15 +16,15 @@ type Props = {
 };
 
 const CATEGORIES = [
-  { value: "ssl", label: "SSL Sertifikası", icon: Shield },
-  { value: "hosting", label: "Hosting", icon: Server },
-  { value: "domain", label: "Alan Adı", icon: Globe },
-  { value: "email", label: "E-posta", icon: Mail },
-  { value: "web-security", label: "Web Güvenliği", icon: Shield },
-  { value: "billing", label: "Fatura & Ödeme", icon: CreditCard },
-  { value: "dns", label: "DNS Ayarları", icon: Settings },
-  { value: "other", label: "Diğer", icon: MessageCircle },
-];
+  { value: "ssl", label: "SSL Sertifikası", icon: "shield" },
+  { value: "hosting", label: "Hosting", icon: "server" },
+  { value: "domain", label: "Alan Adı", icon: "globe" },
+  { value: "email", label: "E-posta", icon: "mail" },
+  { value: "web-security", label: "Web Güvenliği", icon: "shield" },
+  { value: "billing", label: "Fatura & Ödeme", icon: "creditCard" },
+  { value: "dns", label: "DNS Ayarları", icon: "settings" },
+  { value: "other", label: "Diğer", icon: "message" },
+] as const;
 
 const PRIORITIES = [
   {
@@ -86,7 +78,6 @@ export default function CategoryStep({
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 flex flex-col gap-7">
-      {/* KATEGORİ */}
       <div>
         <label className="block text-xs font-bold text-[#1b2a4a] uppercase tracking-wide mb-3">
           Sorun Kategorisi <span className="text-red-400">*</span>
@@ -94,7 +85,7 @@ export default function CategoryStep({
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {CATEGORIES.map((cat) => {
-            const Icon = cat.icon;
+            const Icon = ICONS[cat.icon] ?? ICONS.shield;
 
             return (
               <button
@@ -126,7 +117,6 @@ export default function CategoryStep({
         )}
       </div>
 
-      {/* ÖNCELİK */}
       <div>
         <label className="block text-xs font-bold text-[#1b2a4a] uppercase tracking-wide mb-3">
           Öncelik Seviyesi

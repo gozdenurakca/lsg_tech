@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" fill="none">
+  <!-- Background glow effects -->
+  <circle cx="260" cy="210" r="180" fill="url(#radialGlow)" opacity="0.3"/>
+  <circle cx="260" cy="210" r="120" fill="url(#radialGlow2)" opacity="0.2"/>
+
+  <!-- Outer ring -->
+  <circle cx="260" cy="210" r="170" stroke="#3b82f6" stroke-width="1" stroke-dasharray="8 6" opacity="0.4"/>
+  <circle cx="260" cy="210" r="140" stroke="#60a5fa" stroke-width="0.5" stroke-dasharray="4 8" opacity="0.3"/>
+
+  <!-- Rotating orbit dots -->
+  <circle cx="90" cy="210" r="5" fill="#3b82f6" opacity="0.7"/>
+  <circle cx="430" cy="210" r="5" fill="#3b82f6" opacity="0.7"/>
+  <circle cx="260" cy="40" r="5" fill="#60a5fa" opacity="0.6"/>
+  <circle cx="260" cy="380" r="5" fill="#60a5fa" opacity="0.6"/>
+  <circle cx="138" cy="88" r="4" fill="#93c5fd" opacity="0.5"/>
+  <circle cx="382" cy="332" r="4" fill="#93c5fd" opacity="0.5"/>
+  <circle cx="382" cy="88" r="4" fill="#93c5fd" opacity="0.5"/>
+  <circle cx="138" cy="332" r="4" fill="#93c5fd" opacity="0.5"/>
+
+  <!-- Main shield -->
+  <path d="M260 65 L340 95 L340 175 C340 230 300 270 260 290 C220 270 180 230 180 175 L180 95 Z" fill="url(#shieldGrad)" stroke="url(#shieldStroke)" stroke-width="2"/>
+
+  <!-- Shield inner highlight -->
+  <path d="M260 80 L328 106 L328 172 C328 221 293 258 260 276 C227 258 192 221 192 172 L192 106 Z" fill="url(#shieldInner)" opacity="0.6"/>
+
+  <!-- Lock icon in shield -->
+  <rect x="239" y="175" width="42" height="34" rx="5" fill="white" opacity="0.95"/>
+  <path d="M248 175 L248 165 C248 154 272 154 272 165 L272 175" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.95"/>
+  <circle cx="260" cy="192" r="5" fill="#1e3a8a"/>
+  <rect x="258" y="192" width="4" height="8" rx="2" fill="#1e3a8a"/>
+
+  <!-- Checkmark overlay bottom-right of shield -->
+  <circle cx="318" cy="268" r="18" fill="#10b981"/>
+  <path d="M310 268 L316 274 L326 262" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Threat cards - left side -->
+  <rect x="38" y="145" width="108" height="50" rx="10" fill="url(#cardBg)" stroke="#ef444430" stroke-width="1"/>
+  <circle cx="60" cy="170" r="10" fill="#ef444420"/>
+  <path d="M57 167 L63 173 M63 167 L57 173" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+  <rect x="76" y="160" width="58" height="7" rx="3" fill="#ffffff20"/>
+  <rect x="76" y="172" width="42" height="5" rx="2.5" fill="#ffffff12"/>
+
+  <rect x="38" y="210" width="108" height="50" rx="10" fill="url(#cardBg)" stroke="#f59e0b30" stroke-width="1"/>
+  <circle cx="60" cy="235" r="10" fill="#f59e0b20"/>
+  <path d="M60 228 L60 238 M60 240 L60 241" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+  <rect x="76" y="225" width="58" height="7" rx="3" fill="#ffffff20"/>
+  <rect x="76" y="237" width="42" height="5" rx="2.5" fill="#ffffff12"/>
+
+  <!-- Threat cards - right side (blocked) -->
+  <rect x="374" y="145" width="108" height="50" rx="10" fill="url(#cardBg)" stroke="#3b82f630" stroke-width="1"/>
+  <circle cx="396" cy="170" r="10" fill="#3b82f620"/>
+  <path d="M391 168 L396 163 L401 168 L401 173 L396 178 L391 173 Z" fill="#3b82f6" opacity="0.8"/>
+  <rect x="412" y="160" width="58" height="7" rx="3" fill="#ffffff20"/>
+  <rect x="412" y="172" width="42" height="5" rx="2.5" fill="#ffffff12"/>
+
+  <rect x="374" y="210" width="108" height="50" rx="10" fill="url(#cardBg)" stroke="#10b98130" stroke-width="1"/>
+  <circle cx="396" cy="235" r="10" fill="#10b98120"/>
+  <path d="M390 235 L394 239 L402 229" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="412" y="225" width="58" height="7" rx="3" fill="#ffffff20"/>
+  <rect x="412" y="237" width="42" height="5" rx="2.5" fill="#ffffff12"/>
+
+  <!-- Connection lines from threats to shield -->
+  <line x1="146" y1="170" x2="188" y2="150" stroke="#ef4444" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+  <line x1="146" y1="235" x2="185" y2="190" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+  <line x1="374" y1="170" x2="332" y2="150" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+  <line x1="374" y1="235" x2="335" y2="200" stroke="#10b981" stroke-width="1" stroke-dasharray="4 3" opacity="0.3"/>
+
+  <!-- Status badge top -->
+  <rect x="195" y="310" width="130" height="32" rx="16" fill="#10b98115" stroke="#10b98140" stroke-width="1"/>
+  <circle cx="216" cy="326" r="5" fill="#10b981"/>
+  <text x="226" y="330" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#10b981">Aktif Koruma</text>
+
+  <!-- Scan line animation indicator -->
+  <rect x="212" y="342" width="96" height="3" rx="1.5" fill="#ffffff10"/>
+  <rect x="212" y="342" width="72" height="3" rx="1.5" fill="#3b82f6" opacity="0.5"/>
+
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="radialGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="radialGlow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shieldGrad" x1="260" y1="65" x2="260" y2="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="shieldStroke" x1="260" y1="65" x2="260" y2="290" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="shieldInner" x1="260" y1="80" x2="260" y2="276" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1e3a8a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+</svg>

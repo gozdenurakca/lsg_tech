@@ -77,7 +77,6 @@ export default function DetailsStep({
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 flex flex-col gap-5">
-      {/* KONU */}
       <div>
         <label className="block text-xs font-bold text-[#1b2a4a] uppercase tracking-wide mb-1.5">
           Konu <span className="text-red-400">*</span>
@@ -180,7 +179,6 @@ export default function DetailsStep({
         </div>
       </div>
 
-      {/* ORDER NO */}
       <div>
         <label className="block text-xs font-bold text-[#1b2a4a] uppercase tracking-wide mb-1.5">
           Sipariş / Hesap No

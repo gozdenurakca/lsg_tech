@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" fill="none">
+  <!-- Outer glow -->
+  <circle cx="260" cy="200" r="190" fill="url(#proGlow)" opacity="0.25"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.08" stroke="#60a5fa" stroke-width="0.5">
+    <line x1="60" y1="0" x2="60" y2="420"/>
+    <line x1="120" y1="0" x2="120" y2="420"/>
+    <line x1="180" y1="0" x2="180" y2="420"/>
+    <line x1="240" y1="0" x2="240" y2="420"/>
+    <line x1="300" y1="0" x2="300" y2="420"/>
+    <line x1="360" y1="0" x2="360" y2="420"/>
+    <line x1="420" y1="0" x2="420" y2="420"/>
+    <line x1="0" y1="60" x2="520" y2="60"/>
+    <line x1="0" y1="120" x2="520" y2="120"/>
+    <line x1="0" y1="180" x2="520" y2="180"/>
+    <line x1="0" y1="240" x2="520" y2="240"/>
+    <line x1="0" y1="300" x2="520" y2="300"/>
+    <line x1="0" y1="360" x2="520" y2="360"/>
+  </g>
+
+  <!-- Layer rings - from outside in -->
+  <circle cx="260" cy="200" r="160" stroke="#1d4ed8" stroke-width="1.5" stroke-dasharray="12 6" opacity="0.5"/>
+  <circle cx="260" cy="200" r="125" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="8 5" opacity="0.5"/>
+  <circle cx="260" cy="200" r="90" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Layer labels -->
+  <rect x="72" y="180" width="52" height="18" rx="9" fill="#1e3a8a" stroke="#3b82f630" stroke-width="1"/>
+  <text x="98" y="193" font-family="system-ui, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">WAF Katmanı</text>
+
+  <rect x="382" y="180" width="62" height="18" rx="9" fill="#1e3a8a" stroke="#3b82f630" stroke-width="1"/>
+  <text x="413" y="193" font-family="system-ui, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">DDoS Koruması</text>
+
+  <rect x="145" y="52" width="68" height="18" rx="9" fill="#1e3a8a" stroke="#3b82f630" stroke-width="1"/>
+  <text x="179" y="65" font-family="system-ui, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">Malware Tarama</text>
+
+  <rect x="302" y="52" width="62" height="18" rx="9" fill="#1e3a8a" stroke="#3b82f630" stroke-width="1"/>
+  <text x="333" y="65" font-family="system-ui, sans-serif" font-size="8" fill="#93c5fd" text-anchor="middle">SSL İzleme</text>
+
+  <!-- Central shield - larger, more detailed -->
+  <path d="M260 85 L320 108 L320 175 C320 222 288 256 260 272 C232 256 200 222 200 175 L200 108 Z" fill="url(#proShield)" stroke="url(#proStroke)" stroke-width="2.5"/>
+
+  <!-- Shield shine -->
+  <path d="M260 90 L308 110 L308 172 C308 213 280 245 260 260 C240 245 212 213 212 172 L212 110 Z" fill="url(#proInner)" opacity="0.4"/>
+
+  <!-- Pro badge -->
+  <rect x="228" y="88" width="64" height="18" rx="9" fill="#8b5cf6" opacity="0.9"/>
+  <text x="260" y="101" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">PRO</text>
+
+  <!-- Shield icon - server stack -->
+  <rect x="246" y="160" width="28" height="7" rx="2" fill="white" opacity="0.9"/>
+  <rect x="246" y="172" width="28" height="7" rx="2" fill="white" opacity="0.7"/>
+  <rect x="246" y="184" width="28" height="7" rx="2" fill="white" opacity="0.5"/>
+  <circle cx="270" cy="163.5" r="2" fill="#10b981"/>
+  <circle cx="270" cy="175.5" r="2" fill="#10b981"/>
+  <circle cx="270" cy="187.5" r="2" fill="#10b981"/>
+
+  <!-- Scan pulse rings -->
+  <circle cx="260" cy="200" r="96" stroke="#3b82f6" stroke-width="1" opacity="0.3" stroke-dasharray="3 3"/>
+  <circle cx="260" cy="200" r="100" stroke="#60a5fa" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- Corner threat indicators - being blocked -->
+  <!-- Top left -->
+  <rect x="30" y="100" width="88" height="40" rx="8" fill="#0f172a" stroke="#ef444440" stroke-width="1"/>
+  <circle cx="50" cy="120" r="8" fill="#ef444415"/>
+  <path d="M47 117 L53 123 M53 117 L47 123" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="64" y="114" width="42" height="5" rx="2" fill="#ffffff15"/>
+  <rect x="64" y="122" width="30" height="4" rx="2" fill="#ffffff10"/>
+
+  <!-- Bottom left -->
+  <rect x="30" y="270" width="88" height="40" rx="8" fill="#0f172a" stroke="#f59e0b40" stroke-width="1"/>
+  <circle cx="50" cy="290" r="8" fill="#f59e0b15"/>
+  <path d="M50 283 L50 293 M50 295 L50 296" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="64" y="284" width="42" height="5" rx="2" fill="#ffffff15"/>
+  <rect x="64" y="292" width="30" height="4" rx="2" fill="#ffffff10"/>
+
+  <!-- Top right -->
+  <rect x="402" y="100" width="88" height="40" rx="8" fill="#0f172a" stroke="#8b5cf640" stroke-width="1"/>
+  <circle cx="422" cy="120" r="8" fill="#8b5cf615"/>
+  <path d="M418 116 L422 112 L426 116 L426 124 L422 128 L418 124 Z" fill="#8b5cf6" opacity="0.7" transform="scale(0.8) translate(107 25)"/>
+  <rect x="436" y="114" width="42" height="5" rx="2" fill="#ffffff15"/>
+  <rect x="436" y="122" width="30" height="4" rx="2" fill="#ffffff10"/>
+
+  <!-- Bottom right -->
+  <rect x="402" y="270" width="88" height="40" rx="8" fill="#0f172a" stroke="#10b98140" stroke-width="1"/>
+  <circle cx="422" cy="290" r="8" fill="#10b98115"/>
+  <path d="M418 290 L421 293 L427 285" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="436" y="284" width="42" height="5" rx="2" fill="#ffffff15"/>
+  <rect x="436" y="292" width="30" height="4" rx="2" fill="#ffffff10"/>
+
+  <!-- Status pill -->
+  <rect x="185" y="290" width="150" height="28" rx="14" fill="#10b98115" stroke="#10b98140" stroke-width="1"/>
+  <circle cx="205" cy="304" r="4" fill="#10b981"/>
+  <text x="215" y="308" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#10b981">7/24 Aktif Koruma</text>
+
+  <defs>
+    <radialGradient id="proGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="proShield" x1="260" y1="85" x2="260" y2="272" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="proStroke" x1="260" y1="85" x2="260" y2="272" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a5b4fc"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="proInner" x1="260" y1="90" x2="260" y2="260" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="white" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

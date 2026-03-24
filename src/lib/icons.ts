@@ -115,6 +115,8 @@ import {
   Bot,
   Wand2,
   Zap,
+  Link,
+  SlidersHorizontal,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
@@ -122,6 +124,8 @@ export type IconType = keyof typeof ICONS;
 
 export const ICONS: Record<string, LucideIcon> = {
   bot : Bot,
+  link:Link,
+
   wand2 : Wand2,
   zap : Zap,
   triangleAlert : TriangleAlert,
@@ -150,6 +154,7 @@ export const ICONS: Record<string, LucideIcon> = {
   loader: Loader2,
   mailCheck : MailCheck,
   creditCard:CreditCard,
+  slidersHorizontal: SlidersHorizontal,
   menu: Menu,
   arrowRight: ArrowRight,
   arrowUp: ArrowUp,

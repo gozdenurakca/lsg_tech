@@ -1,3 +1,5 @@
+import { features } from "process";
+
 export const ovProducts = [
 
   // OV
@@ -53,11 +55,20 @@ export const ovProducts = [
   description: "DigiCert kurumsal doğrulamalı temel SSL sertifikası.",
   shortDescription: "DigiCert OV giriş seviyesi.",
   price: { oneYear: 1899, twoYear: 3499, threeYear: 4899 },
+
   specs: {
     Warranty: "$1,250,000",
     Encryption: "256-bit",
     Issuance: "1-2 gün"
   },
+
+    features: [
+  "Sınırsız sertifika yeniden oluşturma ve değiştirme",
+  "Otomatik SSL sertifika yaşam döngüsü yönetimi",
+  "Uzman teknik destek",
+  "Merkezi SSL yönetim paneli"
+],
+
   rating: 4.9,
   reviewCount: 110,
   featured: true,
@@ -79,6 +90,14 @@ export const ovProducts = [
     Encryption: "256-bit",
     Issuance: "1 gün"
   },
+  features: [
+    "Otomatik SSL sertifika yaşam döngüsü yönetimi",
+  "Öncelikli sertifika doğrulama ve aktivasyon",
+  "Web sitesi güven mührü (Trust Seal)",
+  "Alan adı itibar izleme",
+  "Web sitesi güvenlik açığı taraması",
+  "Gelişmiş SSL yönetim paneli"
+  ],
   rating: 4.9,
   reviewCount: 140,
   featured: true,
@@ -100,6 +119,14 @@ export const ovProducts = [
     Encryption: "256-bit",
     Issuance: "1 gün"
   },
+  features: [
+  "Gelişmiş SSL sertifika yaşam döngüsü otomasyonu",
+  "Öncelikli sertifika doğrulama ve aktivasyon",
+  "Web sitesi güven mührü (Trust Seal)",
+  "Alan adı itibar izleme",
+  "Web sitesi güvenlik açığı taraması",
+  "Certificate Transparency (CT) log izleme"
+],
   rating: 4.9,
   reviewCount: 160,
   featured: true,
@@ -121,6 +148,14 @@ export const ovProducts = [
     Encryption: "256-bit",
     Issuance: "1-3 gün"
   },
+  features: [
+  "7/24 uzman teknik destek",
+  "Sınırsız sunucu lisansı",
+  "30 gün para iade garantisi",
+  "Tüm modern tarayıcılarla uyumluluk",
+  "Yüksek tutarlı SSL garanti koruması",
+  "Web sitesi güven mührü"
+],
   rating: 4.6,
   reviewCount: 75,
   featured: false,
@@ -142,6 +177,14 @@ export const ovProducts = [
     Encryption: "256-bit",
     Issuance: "1-3 gün"
   },
+  features: [
+  "7/24 uzman teknik destek",
+  "Sınırsız sunucu kurulumu",
+  "30 gün para iade garantisi",
+  "Tüm modern tarayıcı ve mobil cihazlarla uyumluluk",
+  "Yüksek tutarlı SSL garanti koruması",
+  "Web sitesi güven mührü"
+],
   rating: 4.7,
   reviewCount: 95,
   featured: true,

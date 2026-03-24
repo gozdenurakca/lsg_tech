@@ -7,6 +7,8 @@ import Product from "../src/models/Product"
 import { dvProducts } from "./seeds/dv"
 import { ovProducts } from "./seeds/ov"
 import { evProducts } from "./seeds/ev"
+import { securesiteProducts } from "./seeds/securesite"
+import { sitelockProducts } from "./seeds/sitelock"
 
 async function seed() {
   try {
@@ -27,9 +29,12 @@ async function seed() {
       ...dvProducts,
       ...ovProducts,
       ...evProducts,
+      ...securesiteProducts,
+      ...sitelockProducts,
     ])
 
-    console.log("🚀 SSL ürünleri başarıyla eklendi")
+    const total = dvProducts.length + ovProducts.length + evProducts.length + securesiteProducts.length + sitelockProducts.length
+    console.log(`🚀 ${total} ürün başarıyla eklendi (DV: ${dvProducts.length}, OV: ${ovProducts.length}, EV: ${evProducts.length}, SecureSite: ${securesiteProducts.length}, SiteLock: ${sitelockProducts.length})`)
 
     process.exit(0)
 

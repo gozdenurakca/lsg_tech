@@ -1,12 +1,12 @@
-import PricingRow from "@/components/PricingRow";
+import PricingRow, { Product } from "@/components/ssl/SslPricingRow";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ICONS } from "@/lib/icons";
 
 interface Props {
   title: string;
   description: string;
-  products: any[];
-  wildcardProducts?: any[];
+  products: Product[];
+  wildcardProducts?: Product[];
   brands?: string[];
 }
 
@@ -33,9 +33,9 @@ export default function SSLPricingSection({
           </div>
         ) : (
           <div className="flex flex-col gap-6">
-            {products.map((product: any, idx: number) => (
+            {products.map((product, idx) => (
               <PricingRow
-                key={product._id}
+                key={product._id ?? product.slug}
                 product={product}
                 defaultYears={3}
                 featured={product.featured || idx === 0}
@@ -62,14 +62,14 @@ export default function SSLPricingSection({
                 className="inline-flex items-center gap-2 text-sm font-semibold text-blue-900 hover:underline"
               >
                 Wildcard sayfasına git
-                <ArrowRight className="w-4 h-4" />
+                <ICONS.arrowRight size={16} />
               </Link>
             </div>
 
             <div className="flex flex-col gap-6">
-              {wildcardProducts.map((product: any, idx: number) => (
+              {wildcardProducts.map((product, idx) => (
                 <PricingRow
-                  key={product._id}
+                  key={product._id ?? product.slug}
                   product={product}
                   defaultYears={3}
                   featured={product.featured || idx === 0}

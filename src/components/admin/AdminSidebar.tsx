@@ -3,151 +3,171 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import {
-  LayoutDashboard,
-  BarChart3,
-  Users,
-  ShoppingCart,
-  Package,
-  FileText,
-  Shield,
-  KeyRound,
-  FileWarning,
-  Settings,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { signOut } from "next-auth/react";
+import { ICONS } from "@/lib/icons";
 
 interface Props {
   totalUsers: number;
   pendingOrders: number;
   newPartnerCount?: number;
+  userName?: string;
+  userEmail?: string;
 }
+
+const NAV = (badges: Record<string, number>) => [
+  {
+    group: "Genel",
+    items: [
+      { label: "Dashboard", href: "/admin", icon: "dashboard" },
+      { label: "Analitik", href: "/admin/analytics", icon: "chart" },
+    ],
+  },
+  {
+    group: "Yönetim",
+    items: [
+      {
+        label: "Kullanıcılar",
+        href: "/admin/users",
+        icon: "users",
+        badge: badges.users,
+      },
+      {
+        label: "Siparişler",
+        href: "/admin/orders",
+        icon: "cart",
+        badge: badges.orders,
+      },
+      { label: "Ürünler", href: "/admin/products", icon: "box" },
+      {
+        label: "Başvurular",
+        href: "/admin/partners",
+        icon: "file",
+        badge: badges.partners,
+      },
+    ],
+  },
+  {
+    group: "SSL & Güvenlik",
+    items: [
+      { label: "SSL Yönetimi", href: "/admin/ssl", icon: "shield" },
+      { label: "Sertifikalar", href: "/admin/certificates", icon: "keyRound" },
+      {
+        label: "Güvenlik Logları",
+        href: "/admin/security-logs",
+        icon: "alert",
+      },
+    ],
+  },
+  {
+    group: "Ayarlar",
+    items: [
+      { label: "Site Ayarları", href: "/admin/settings", icon: "settings" },
+    ],
+  },
+];
 
 export default function AdminSidebar({
   totalUsers,
   pendingOrders,
   newPartnerCount = 0,
+  userName = "Admin",
+  userEmail = "",
 }: Props) {
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
 
-  const menuGroups = [
-    {
-      title: "Genel",
-      items: [
-        { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-        { name: "Analitik", href: "/admin/analytics", icon: BarChart3 },
-      ],
-    },
-    {
-      title: "Yönetim",
-      items: [
-        {
-          name: "Kullanıcılar",
-          href: "/admin/users",
-          icon: Users,
-          badge: totalUsers > 0 ? String(totalUsers) : undefined,
-        },
-        {
-          name: "Siparişler",
-          href: "/admin/orders",
-          icon: ShoppingCart,
-          badge: pendingOrders > 0 ? String(pendingOrders) : undefined,
-        },
-        { name: "Ürünler", href: "/admin/products", icon: Package },
-        {
-          name: "Başvurular",
-          href: "/admin/partners",
-          icon: FileText,
-          badge: newPartnerCount > 0 ? String(newPartnerCount) : undefined,
-        },
-      ],
-    },
-    {
-      title: "SSL & Güvenlik",
-      items: [
-        { name: "SSL Yönetimi", href: "/admin/ssl", icon: Shield },
-        { name: "Sertifikalar", href: "/admin/certificates", icon: KeyRound },
-        {
-          name: "Güvenlik Logları",
-          href: "/admin/security-logs",
-          icon: FileWarning,
-        },
-      ],
-    },
-    {
-      title: "Ayarlar",
-      items: [
-        { name: "Site Ayarları", href: "/admin/settings", icon: Settings },
-      ],
-    },
-  ];
+  const badges = {
+    users: totalUsers,
+    orders: pendingOrders,
+    partners: newPartnerCount,
+  };
+
+  const groups = NAV(badges);
+
+  const initials =
+    userName
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2) || "A";
+
+  // 🔥 ICONS
+  const ExternalIcon = ICONS.externalLink;
+  const LogoutIcon = ICONS.logout;
+  const LeftIcon = ICONS.chevronLeft;
+  const RightIcon = ICONS.chevronRight;
 
   return (
     <aside
-      className={`${
-        collapsed ? "w-20" : "w-72"
-      } bg-slate-950 text-slate-300 min-h-screen border-r border-slate-800 transition-all duration-300 flex flex-col`}
+      className="relative flex flex-col bg-[#0f172a] border-r border-white/5 transition-all duration-300 shrink-0"
+      style={{ width: collapsed ? 72 : 260, minHeight: "100vh" }}
     >
       {/* HEADER */}
-      <div className="flex items-center justify-between px-6 py-6 border-b border-slate-800">
-        {!collapsed && (
-          <div>
-            <div className="text-white font-semibold text-lg">LSG Admin</div>
-            <div className="text-xs text-slate-500">Yönetim Paneli</div>
+      <div className="flex items-center justify-between h-[72px] px-4 border-b border-white/5">
+        {!collapsed ? (
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-bold text-sm">
+              A
+            </div>
+            <div>
+              <p className="text-white font-semibold text-sm">LSG Admin</p>
+              <p className="text-slate-400 text-xs">Yönetim Paneli</p>
+            </div>
+          </div>
+        ) : (
+          <div className="mx-auto w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white font-bold text-sm">
+            A
           </div>
         )}
-
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="text-slate-500 hover:text-white transition"
-        >
-          {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-        </button>
       </div>
 
-      {/* NAVIGATION */}
-      <nav className="flex-1 px-4 py-6 space-y-8">
-        {menuGroups.map((group, i) => (
-          <div key={i}>
+      {/* NAV */}
+      <nav className="flex-1 overflow-y-auto py-4 space-y-5 px-2">
+        {groups.map(({ group, items }) => (
+          <div key={group}>
             {!collapsed && (
-              <div className="text-xs uppercase tracking-wider text-slate-500 mb-3 px-2">
-                {group.title}
-              </div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 pl-3 mb-1.5">
+                {group}
+              </p>
             )}
 
-            <div className="space-y-1">
-              {group.items.map((item) => {
-                const active = pathname === item.href;
-                const Icon = item.icon;
+            <div className="space-y-0.5">
+              {items.map(({ label, href, icon, badge }) => {
+                const Icon = ICONS[icon] || ICONS.box;
+
+                const isActive =
+                  pathname === href ||
+                  (href !== "/admin" && pathname.startsWith(href + "/"));
 
                 return (
                   <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition
+                    key={href}
+                    href={href}
+                    title={collapsed ? label : undefined}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition
                       ${
-                        active
-                          ? "bg-slate-800 text-white"
-                          : "hover:bg-slate-900 hover:text-white"
-                      }
-                    `}
+                        isActive
+                          ? "bg-violet-600 text-white"
+                          : "text-slate-400 hover:text-white hover:bg-white/5"
+                      }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <Icon
-                        size={18}
-                        className={`${
-                          active ? "text-blue-400" : "text-slate-500"
-                        }`}
-                      />
-                      {!collapsed && <span>{item.name}</span>}
-                    </div>
+                    <Icon size={18} className="shrink-0" />
 
-                    {!collapsed && item.badge && (
-                      <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">
-                        {item.badge}
-                      </span>
+                    {!collapsed && (
+                      <>
+                        <span className="flex-1 truncate">{label}</span>
+
+                        {badge && badge > 0 && (
+                          <span className="text-[10px] font-bold bg-violet-500 text-white px-1.5 py-0.5 rounded-full">
+                            {badge}
+                          </span>
+                        )}
+                      </>
+                    )}
+
+                    {collapsed && badge && badge > 0 && (
+                      <span className="absolute right-2 w-2 h-2 bg-violet-400 rounded-full" />
                     )}
                   </Link>
                 );
@@ -157,21 +177,44 @@ export default function AdminSidebar({
         ))}
       </nav>
 
-      {/* FOOTER */}
-      <div className="px-6 py-6 border-t border-slate-800 space-y-3">
+      {/* USER */}
+      <div className="border-t border-white/5 p-3 space-y-1">
+        {!collapsed && (
+          <div className="flex items-center gap-3 px-3 py-2">
+            <div className="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold">
+              {initials}
+            </div>
+            <div>
+              <p className="text-white text-sm">{userName}</p>
+              <p className="text-slate-500 text-xs">{userEmail}</p>
+            </div>
+          </div>
+        )}
+
         <Link
           href="/"
-          className="block text-sm text-slate-500 hover:text-white transition"
+          className="flex items-center gap-3 px-3 py-2.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
         >
-          Ana Siteye Dön
+          <ExternalIcon size={18} />
+          {!collapsed && <span>Ana Siteye Dön</span>}
         </Link>
-        <Link
-          href="/giris"
-          className="block text-sm text-slate-500 hover:text-white transition"
+
+        <button
+          onClick={() => signOut({ callbackUrl: "/giris" })}
+          className="flex items-center gap-3 px-3 py-2.5 text-sm text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg w-full"
         >
-          Çıkış Yap
-        </Link>
+          <LogoutIcon size={18} />
+          {!collapsed && <span>Çıkış Yap</span>}
+        </button>
       </div>
+
+      {/* TOGGLE */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className="absolute -right-3 top-[84px] w-6 h-6 rounded-full bg-[#1e293b] flex items-center justify-center text-slate-400"
+      >
+        {collapsed ? <RightIcon size={12} /> : <LeftIcon size={12} />}
+      </button>
     </aside>
   );
 }

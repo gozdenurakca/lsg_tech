@@ -7,7 +7,10 @@ kritik conversion component
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search, ShieldCheck, Zap, Headphones, Star, Lock } from "lucide-react";
+
+import { ICONS } from "@/lib/icons";
+import Icon from "@/components/ui/Icon";
+
 import DomainCard from "@/components/domain/DomainCard";
 import type { Extension } from "@/lib/domain/types";
 import { stripExtension } from "@/lib/domain/utils";
@@ -21,12 +24,16 @@ const STATS = [
 ];
 
 const TRUST = [
-  { icon: "ShieldCheck", label: "SSL Güvencesi" },
-  { icon: "Lock", label: "Güvenli Ödeme" },
-  { icon: "Zap", label: "Anında Aktivasyon" },
-  { icon: Headphones, label: "7/24 Destek" },
-  { icon: Star, label: "Müşteri Memnuniyeti" },
+  { icon: "shieldCheck", label: "SSL Güvencesi" },
+  { icon: "lock", label: "Güvenli Ödeme" },
+  { icon: "zap", label: "Anında Aktivasyon" },
+  { icon: "headphones", label: "7/24 Destek" },
+  { icon: "star", label: "Müşteri Memnuniyeti" },
 ];
+
+/* ─────────────────────────────────────────────
+   COMPONENT
+───────────────────────────────────────────── */
 
 export default function DomainHero() {
   const [query, setQuery] = useState("");
@@ -47,6 +54,7 @@ export default function DomainHero() {
   return (
     <section className="bg-gradient-to-br from-[#0b1628] to-[#1a3054] border-b border-white/5">
       <div className="max-w-5xl mx-auto px-6 pt-24 pb-14">
+        {/* BADGE */}
         <div className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-white/10 border border-white/20 text-blue-300">
             <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
@@ -54,10 +62,12 @@ export default function DomainHero() {
           </span>
         </div>
 
+        {/* TITLE */}
         <h1 className="text-center text-white font-extrabold text-4xl md:text-6xl leading-[1.1] tracking-tight mb-4">
           Markanı İnternete <span className="text-blue-400">Taşı</span>
         </h1>
 
+        {/* DESC */}
         <p className="text-center text-slate-300 text-lg mb-10 max-w-lg mx-auto leading-relaxed">
           Hayalindeki alan adını bul, hemen tescil et.{" "}
           <span className="text-white font-semibold">
@@ -66,11 +76,13 @@ export default function DomainHero() {
           fiyatlarla.
         </p>
 
+        {/* SEARCH */}
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-5">
           <div className="flex items-stretch rounded-2xl overflow-hidden border border-white/20 shadow-lg bg-white/5 backdrop-blur-sm">
             <div className="flex items-center pl-5 text-slate-400">
-              <Search size={18} />
+              <Icon name="search" size={18} className="text-slate-400" />
             </div>
+
             <input
               type="text"
               value={query}
@@ -79,6 +91,7 @@ export default function DomainHero() {
               autoFocus
               className="flex-1 bg-transparent px-4 py-4 text-base text-white font-medium outline-none placeholder-slate-500"
             />
+
             <button
               type="submit"
               className="px-7 py-4 font-bold text-white text-sm whitespace-nowrap bg-blue-600 hover:bg-blue-500 transition-colors"
@@ -88,6 +101,7 @@ export default function DomainHero() {
           </div>
         </form>
 
+        {/* QUICK EXTENSIONS */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {QUICK_EXTENSIONS.map((ext) => (
             <button
@@ -101,6 +115,7 @@ export default function DomainHero() {
           ))}
         </div>
 
+        {/* STATS */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10 mb-10">
           {STATS.map(({ value, label }) => (
             <div key={label} className="bg-white/5 px-6 py-5 text-center">
@@ -112,13 +127,14 @@ export default function DomainHero() {
           ))}
         </div>
 
+        {/* TRUST */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-          {TRUST.map(({ icon: Icon, label }) => (
+          {TRUST.map(({ icon, label }) => (
             <div
               key={label}
               className="flex items-center gap-2 text-slate-400 text-sm"
             >
-              <Icon size={14} className="text-blue-400 shrink-0" />
+              <Icon name={icon} size={14} className="text-blue-400 shrink-0" />
               <span>{label}</span>
             </div>
           ))}

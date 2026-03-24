@@ -1,5 +1,3 @@
-"use client";
-
 /*
   Domain result item:
   - domain + extension
@@ -7,8 +5,9 @@
   - price + old price
   - add/remove cart
 */
+"use client";
 
-import { Heart, ShoppingCart } from "lucide-react";
+import Icon from "@/components/ui/Icon";
 import type { DomainResult } from "@/lib/domain/types";
 
 interface Props {
@@ -16,6 +15,10 @@ interface Props {
   result: DomainResult;
   inCart: boolean;
   onToggleCart: () => void;
+
+  // optional (future proof)
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
 }
 
 export default function DomainCard({
@@ -23,6 +26,8 @@ export default function DomainCard({
   result,
   inCart,
   onToggleCart,
+  isFavorite = false,
+  onToggleFavorite,
 }: Props) {
   const {
     ext,
@@ -39,11 +44,20 @@ export default function DomainCard({
   return (
     <div
       className={`group flex items-center gap-4 px-4 py-3.5 border-b border-slate-100 last:border-0 transition
-      ${!loading && available === false ? "opacity-50" : "hover:bg-slate-50/60"}`}
+      ${
+        !loading && available === false
+          ? "bg-slate-50 text-slate-400"
+          : "hover:bg-slate-50/60"
+      }`}
     >
       {/* FAVORITE */}
-      <button className="text-slate-200 hover:text-red-400 transition-colors shrink-0">
-        <Heart size={16} />
+      <button
+        onClick={onToggleFavorite}
+        className={`shrink-0 transition-colors ${
+          isFavorite ? "text-red-500" : "text-slate-300 hover:text-red-400"
+        }`}
+      >
+        <Icon name="heart" size={16} />
       </button>
 
       {/* DOMAIN */}
@@ -67,7 +81,7 @@ export default function DomainCard({
         )}
       </div>
 
-      {/* RIGHT SIDE */}
+      {/* RIGHT */}
       <div className="flex items-center gap-4 shrink-0">
         {loading ? (
           <>
@@ -90,7 +104,7 @@ export default function DomainCard({
               </div>
             </div>
 
-            {/* CART BUTTON */}
+            {/* CART */}
             <button
               onClick={onToggleCart}
               title={inCart ? "Sepetten çıkar" : "Sepete ekle"}
@@ -102,19 +116,18 @@ export default function DomainCard({
               }`}
             >
               {inCart ? (
-                <span className="text-xs font-bold">✓</span>
+                <Icon name="check" size={14} />
               ) : (
-                <ShoppingCart size={14} />
+                <Icon name="cart" size={14} />
               )}
             </button>
           </>
         ) : (
-          /* NOT AVAILABLE */
           <button
             disabled
             className="w-9 h-9 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center cursor-not-allowed"
           >
-            <ShoppingCart size={14} className="text-slate-200" />
+            <Icon name="cart" size={14} className="text-slate-200" />
           </button>
         )}
       </div>

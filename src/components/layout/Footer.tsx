@@ -1,218 +1,434 @@
 import Link from "next/link";
+import { ICONS } from "@/lib/icons";
+const ArrowIcon = ICONS.arrowRight;
+const ShieldIcon = ICONS.shield;
+const PhoneIcon = ICONS.phone;
+const MailIcon = ICONS.mail;
+const MapPinIcon = ICONS.mapPin;
+const LinkedinIcon = ICONS.linkedin;
+const TwitterIcon = ICONS.twitter;
+const YoutubeIcon = ICONS.youtube;
+const GlobeIcon = ICONS.globe;
+const ChevronIcon = ICONS.chevronRight;
+const HeadphonesIcon = ICONS.headphones;
+const BookIcon = ICONS.bookOpen;
+
+const TrustBadges = () => (
+  <div className="border-b border-white/10 bg-white/[0.02]">
+    <div className="max-w-7xl mx-auto px-6 py-6">
+      <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+        <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 mr-2">
+          Yetkili İş Ortağı
+        </span>
+
+        <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <div className="w-7 h-7 rounded-md bg-[#E31837] flex items-center justify-center text-white font-black text-xs">
+            S
+          </div>
+          <span className="text-sm font-semibold text-gray-300">Sectigo</span>
+        </div>
+
+        <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <div className="w-7 h-7 rounded-md bg-[#EE2A24] flex items-center justify-center text-white font-black text-xs">
+            D
+          </div>
+          <span className="text-sm font-semibold text-gray-300">DigiCert</span>
+        </div>
+
+        <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <div className="w-7 h-7 rounded-md bg-[#0078D4] flex items-center justify-center text-white font-black text-xs">
+            G
+          </div>
+          <span className="text-sm font-semibold text-gray-300">
+            GlobalSign
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <div className="w-7 h-7 rounded-md bg-[#FF6B35] flex items-center justify-center text-white font-black text-xs">
+            R
+          </div>
+          <span className="text-sm font-semibold text-gray-300">RapidSSL</span>
+        </div>
+
+        <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <div className="w-7 h-7 rounded-md bg-[#00A651] flex items-center justify-center text-white font-black text-xs">
+            C
+          </div>
+          <span className="text-sm font-semibold text-gray-300">Comodo</span>
+        </div>
+
+        <div className="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+          <div className="w-7 h-7 rounded-md bg-[#7B2D8B] flex items-center justify-center text-white font-black text-xs">
+            G
+          </div>
+          <span className="text-sm font-semibold text-gray-300">GeoTrust</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const FooterCTA = () => (
+  <div className="bg-gradient-to-r from-indigo-700 via-primary to-indigo-600">
+    <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-widest text-indigo-200 mb-1">
+          7/24 Destek
+        </p>
+        <h3 className="text-2xl font-bold text-white">
+          Web sitenizi bugün güvence altına alın
+        </h3>
+        <p className="text-indigo-200 text-sm mt-1">
+          Uzman ekibimiz sizi doğru sertifika seçimine yönlendirsin.
+        </p>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+        <Link
+          href="/ssl"
+          className="px-6 py-3 bg-white text-indigo-700 font-semibold rounded-xl hover:bg-indigo-50 transition flex items-center gap-2 text-sm"
+        >
+          SSL Sertifikalarını İncele
+          <ArrowIcon size={16} />
+        </Link>
+        <a
+          href="tel:+902162858578"
+          className="px-6 py-3 border border-white/40 text-white font-semibold rounded-xl hover:bg-white/10 transition flex items-center gap-2 text-sm"
+        >
+          <PhoneIcon size={15} />
+          0216 285 85 78
+        </a>
+      </div>
+    </div>
+  </div>
+);
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-white">
-      {/* Main Footer */}
-      <div className="section-container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
-          <div>
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white text-xl font-bold">
-                🔒
+    <footer className="bg-[#0d0f14] text-white">
+      <FooterCTA />
+
+      <TrustBadges />
+
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 xl:gap-12">
+          <div className="lg:col-span-1">
+            <Link href="/" className="flex items-center gap-3 mb-5 group">
+              <div className="w-11 h-11 bg-gradient-to-br from-primary to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
+                <ShieldIcon size={13} className="text-green-500" />
               </div>
-              <span className="text-2xl font-bold">TRLSG</span>
+              <div>
+                <div className="text-xl font-extrabold tracking-tight leading-none">
+                  LSG
+                </div>
+                <div className="text-[11px] text-indigo-400 font-medium tracking-widest uppercase -mt-0.5">
+                  Teknoloji
+                </div>
+              </div>
             </Link>
-            <p className="text-gray-400 leading-relaxed mb-4">
+
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Türkiye'nin güvenilir SSL sertifikası ve web güvenlik çözümleri
-              sağlayıcısı. DigiCert, Sectigo ve Comodo yetkili partneri.
+              sağlayıcısı. 2008'den bu yana on binlerce web sitesini korumanın
+              gururunu taşıyoruz.
             </p>
-            <div className="flex gap-4">
-              {/* Social Media Icons - Placeholder */}
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
-                aria-label="LinkedIn"
-              >
-                <span className="text-xl">in</span>
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <span className="text-xl">𝕏</span>
-              </a>
+
+            <div className="flex gap-2">
+              {[
+                {
+                  href: "#",
+                  icon: <LinkedinIcon size={17} />,
+                  label: "LinkedIn",
+                },
+                {
+                  href: "#",
+                  icon: <TwitterIcon size={17} />,
+                  label: "Twitter",
+                },
+                {
+                  href: "#",
+                  icon: <YoutubeIcon size={17} />,
+                  label: "YouTube",
+                },
+              ].map((s) => {
+                const Icon = s.icon;
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    className="w-9 h-9 bg-white/5 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
+                  >
+                    {s.icon}
+                  </a>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-2 mt-5 text-sm text-gray-500 hover:text-gray-300 transition-colors cursor-pointer w-fit">
+              <GlobeIcon size={15} />
+              <span>Türkçe</span>
+              <ChevronIcon size={13} />
             </div>
           </div>
 
-          {/* Products */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Ürünler</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-5">
+              Ürünler
+            </h4>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/ssl/dv"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  DV SSL
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ssl/ov"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  OV SSL
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ssl/ev"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  EV SSL
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ssl/wildcard"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Wildcard SSL
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/ssl/code-signing"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Code Signing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/guvenlik/imunify360"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Imunify360
-                </Link>
-              </li>
+              {[
+                {
+                  label: "Domain Validation SSL",
+                  href: "/ssl/dv",
+                  badge: "Popüler",
+                },
+                { label: "Organization Validation SSL", href: "/ssl/ov" },
+                { label: "Extended Validation SSL", href: "/ssl/ev" },
+                {
+                  label: "Wildcard SSL",
+                  href: "/ssl/wildcard",
+                  badge: "Çok Alan",
+                },
+                {
+                  label: "Multi-Domain (SAN) SSL",
+                  href: "/ssl/multi-domain",
+                },
+                { label: "Code Signing", href: "/ssl/code-signing" },
+                { label: "Imunify360", href: "/guvenlik/imunify360" },
+                {
+                  label: "Web Uygulaması Güvenliği",
+                  href: "/guvenlik/waf",
+                },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="group flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                  >
+                    <ChevronIcon size={13} />
+                    {item.label}
+                    {item.badge && (
+                      <span className="text-[10px] font-semibold bg-primary/20 text-primary px-1.5 py-0.5 rounded-full leading-none">
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Kurumsal</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-5">
+              Kurumsal
+            </h4>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/kurumsal/hakkimizda"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Hakkımızda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/kurumsal/referanslar"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Referanslar
-                </Link>
-              </li>
+              {[
+                { label: "Hakkımızda", href: "/kurumsal/hakkimizda" },
+                { label: "Referanslar", href: "/kurumsal/referanslar" },
+                { label: "Basın & Medya", href: "/kurumsal/basin" },
+                { label: "Kariyer", href: "/kurumsal/kariyer" },
+                { label: "Blog", href: "/blog" },
+                { label: "İletişim", href: "/iletisim" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="group flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                  >
+                    <ChevronIcon size={13} />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-              <li>
-                <Link
-                  href="/kurumsal/sss"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Sık Sorulan Sorular
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/iletisim"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  İletişim
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/kurumsal/kariyer"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Kariyer
-                </Link>
-              </li>
+            <div className="mt-8">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-5">
+                Kaynaklar
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  {
+                    icon: "BookOpen",
+                    label: "Bilgi Tabanı",
+                    href: "/destek/kb",
+                  },
+                  {
+                    icon: <HeadphonesIcon size={14} />,
+                    label: "Sık Sorulan Sorular",
+                    href: "/kurumsal/sss",
+                  },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="group flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                    >
+                      <span className="text-gray-600 group-hover:text-primary transition-colors">
+                        {item.icon}
+                      </span>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-5">
+              Destek
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { label: "Destek Talebi Oluştur", href: "/destek/talep" },
+                { label: "Sertifika Kurulum Rehberi", href: "/destek/kurulum" },
+                {
+                  label: "Sertifika Yenileme",
+                  href: "/destek/yenileme",
+                },
+                {
+                  label: "CSR Oluşturma Rehberi",
+                  href: "/destek/csr",
+                },
+                {
+                  label: "SSL Doğrulama Süreci",
+                  href: "/destek/dogrulama",
+                },
+                {
+                  label: "Uyumluluk & Tarayıcı Desteği",
+                  href: "/destek/uyumluluk",
+                },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="group flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                  >
+                    <ChevronIcon size={13} />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="text-lg font-bold mb-4">İletişim</h4>
-            <ul className="space-y-3 text-gray-400">
-              <li className="flex items-start gap-2">
-                <span className="text-secondary mt-1">📞</span>
-                <div>
-                  <div className="font-medium text-white">Telefon</div>
-                  <a
-                    href="tel:+902162858578"
-                    className="hover:text-white transition-colors"
-                  >
-                    0216 285 85 78
-                  </a>
-                </div>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-indigo-400 mb-5">
+              İletişim
+            </h4>
+
+            <ul className="space-y-5">
+              <li>
+                <a
+                  href="tel:+902162858578"
+                  className="group flex gap-3 items-start"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-primary/20 flex items-center justify-center shrink-0 transition-colors">
+                    <PhoneIcon size={16} />{" "}
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-0.5">
+                      Telefon
+                    </div>
+                    <div className="text-sm text-gray-300 group-hover:text-white transition-colors font-medium">
+                      0216 285 85 78
+                    </div>
+                    <div className="text-[11px] text-gray-600">
+                      Pzt–Cum 09:00–18:00
+                    </div>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-secondary mt-1">✉️</span>
-                <div>
-                  <div className="font-medium text-white">E-posta</div>
-                  <a
-                    href="mailto:info@trlsg.com"
-                    className="hover:text-white transition-colors"
-                  >
-                    info@trlsg.com
-                  </a>
-                </div>
+
+              <li>
+                <a
+                  href="mailto:info@trlsg.com"
+                  className="group flex gap-3 items-start"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-white/5 group-hover:bg-primary/20 flex items-center justify-center shrink-0 transition-colors">
+                    <MailIcon size={16} />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-0.5">
+                      E-posta
+                    </div>
+                    <div className="text-sm text-gray-300 group-hover:text-white transition-colors font-medium">
+                      info@trlsg.com
+                    </div>
+                    <div className="text-[11px] text-gray-600">
+                      Ortalama 2 saat yanıt
+                    </div>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-secondary mt-1">📍</span>
-                <div>
-                  <div className="font-medium text-white">Adres</div>
-                  <p className="leading-relaxed">
-                    Yapı Kredi Plaza C Blok
-                    <br />
-                    No:40-41, Levent
-                    <br />
-                    İstanbul, Türkiye
-                  </p>
+
+              <li>
+                <div className="flex gap-3 items-start">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                    <MapPinIcon size={16} />
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-0.5">
+                      Adres
+                    </div>
+                    <p className="text-sm text-gray-400 leading-relaxed">
+                      Yapı Kredi Plaza C Blok
+                      <br />
+                      No:40–41, Levent
+                      <br />
+                      34330 İstanbul, Türkiye
+                    </p>
+                  </div>
                 </div>
               </li>
             </ul>
+
+            <Link
+              href="/destek/talep"
+              className="mt-7 flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-sm text-gray-300 hover:text-white transition-all"
+            >
+              <HeadphonesIcon size={15} className="text-primary" />
+              Destek Talebi Aç
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="section-container py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-400 text-sm text-center md:text-left">
-              © 2026 LSG Teknoloji. Tüm hakları saklıdır.
-            </p>
-            <div className="flex gap-6 text-sm">
+      <div className="border-t border-white/[0.07]">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-gray-600 text-xs">
+            © {new Date().getFullYear()} LSG Teknoloji Bilişim Hizmetleri Ltd.
+            Şti. Tüm hakları saklıdır.
+          </p>
+
+          <div className="flex items-center gap-2 text-[11px] text-gray-600">
+            <ShieldIcon size={13} className="text-green-500" />
+            <span>256-bit SSL Şifreli</span>
+            <span className="text-gray-700">·</span>
+            <span>KVKK Uyumlu</span>
+            <span className="text-gray-700">·</span>
+            <span>ISO 27001</span>
+          </div>
+
+          <div className="flex gap-5 text-xs text-gray-500">
+            {[
+              { label: "Gizlilik", href: "/gizlilik" },
+              { label: "KVKK", href: "/kvkk" },
+              { label: "Kullanım Koşulları", href: "/kullanim-kosullari" },
+              { label: "Çerez Politikası", href: "/cerez" },
+            ].map((link) => (
               <Link
-                href="/gizlilik"
-                className="text-gray-400 hover:text-white transition-colors"
+                key={link.href}
+                href={link.href}
+                className="hover:text-gray-300 transition-colors"
               >
-                Gizlilik Politikası
+                {link.label}
               </Link>
-              <Link
-                href="/kvkk"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                KVKK
-              </Link>
-              <Link
-                href="/kullanim-kosullari"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                Kullanım Koşulları
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </div>
