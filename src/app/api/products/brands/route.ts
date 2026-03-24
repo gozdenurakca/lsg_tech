@@ -1,8 +1,9 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/db";
 import Product from "@/models/Product";
-
-export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
   try {
@@ -16,7 +17,6 @@ export async function GET(req: NextRequest) {
     const tier = searchParams.get("tier");
 
     const match: any = {};
-
     if (category) match.category = category;
     if (validation) match.validation = validation;
     if (type) match.productType = type;
