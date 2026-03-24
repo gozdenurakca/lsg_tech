@@ -1,24 +1,21 @@
 import Link from "next/link";
-import {
-  Globe2,
-  ShieldCheck,
-  CheckCircle,
-  Layers,
-  Sparkles,
-  Crown,
-} from "lucide-react";
+import { ICONS } from "@/lib/icons";
 
 export default function WildcardSSLPage() {
+  const SparklesIcon = ICONS.sparkles;
+  const CheckIcon = ICONS.checkCircle;
+  const GlobeIcon = ICONS.globe;
+  const LayersIcon = ICONS.layers;
+  const CrownIcon = ICONS.crown;
   return (
     <main className="bg-[#f5f7fa] min-h-screen">
-      {/* ================= HERO ================= */}
       <section className="relative bg-gradient-to-br from-blue-950 via-indigo-950 to-blue-900 text-white py-28 overflow-hidden">
         <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-indigo-500/20 rounded-full blur-3xl" />
 
         <div className="relative max-w-5xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur px-4 py-2 rounded-full text-sm mb-8">
-            <Sparkles className="w-4 h-4" />
+            <SparklesIcon className="w-4 h-4" />
             Sınırsız Subdomain Koruması
           </div>
 
@@ -33,9 +30,7 @@ export default function WildcardSSLPage() {
         </div>
       </section>
 
-      {/* ================= CONTENT ================= */}
       <section className="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-20 items-start">
-        {/* LEFT */}
         <div>
           <h2 className="text-3xl font-bold mb-6">
             Tüm Alt Domainler Tek Sertifikada
@@ -56,14 +51,13 @@ export default function WildcardSSLPage() {
               "Hızlı issuance (dakikalar içinde)",
             ].map((item) => (
               <div key={item} className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-emerald-600" />
+                <CheckIcon className="w-5 h-5 text-emerald-600" />
                 <span className="text-slate-700">{item}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* RIGHT - PRICE CARD */}
         <div className="bg-white rounded-3xl shadow-2xl border p-12">
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-xl font-semibold">Wildcard SSL Planı</h3>
@@ -104,11 +98,10 @@ export default function WildcardSSLPage() {
         </div>
       </section>
 
-      {/* ================= USE CASE ================= */}
       <section className="bg-white py-24 border-t">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-16 text-center">
           <div>
-            <Globe2 className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <GlobeIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">SaaS Platformları</h3>
             <p className="text-slate-600 text-sm">
               Müşteri alt domain yapılarını güvenle yönetin.
@@ -116,7 +109,7 @@ export default function WildcardSSLPage() {
           </div>
 
           <div>
-            <Layers className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <LayersIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Çoklu Servis Yapıları</h3>
             <p className="text-slate-600 text-sm">
               API, dashboard ve uygulama servislerini koruyun.
@@ -124,7 +117,7 @@ export default function WildcardSSLPage() {
           </div>
 
           <div>
-            <Crown className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <CrownIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Enterprise Kullanım</h3>
             <p className="text-slate-600 text-sm">
               Ölçeklenebilir ve merkezi SSL yönetimi.

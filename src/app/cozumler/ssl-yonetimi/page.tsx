@@ -1,31 +1,23 @@
 import Link from "next/link";
-
-import {
-  TriangleAlert,
-  TrendingDown,
-  ShieldX,
-  CheckCircle,
-} from "lucide-react";
-
+import { ICONS } from "@/lib/icons";
 
 const RISKS = [
   {
     title: "Tarayıcı Güven Uyarısı",
     desc: "Ziyaretçiler sitenizi güvensiz olarak görür ve saniyeler içinde terk eder.",
-    icon: TriangleAlert,
+    icon: "triangleAlert",
   },
   {
     title: "SEO Performans Kaybı",
     desc: "Google, güvenli olmayan siteleri sıralamada geri iter; organik trafik düşer.",
-    icon: TrendingDown,
+    icon: "trendingDown",
   },
   {
     title: "Satış & Güven Kaybı",
     desc: "Ödeme akışları bozulur, dönüşüm oranları ve marka güveni hızla erir.",
-    icon: ShieldX,
+    icon: "shieldX",
   },
 ];
-
 
 const FEATURES = [
   "Otomatik yenileme sistemi",
@@ -42,11 +34,13 @@ const STATS = [
   { kpi: "SLA", label: "Kurumsal destek modeli" },
 ];
 
+const CheckIcon = ICONS.check;
 export default function SSLYonetimiPage() {
   return (
     <main className="bg-[#f4f6f8] text-slate-900">
-      {/* Local premium effects */}
-      <style>{`
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes floaty { 
           0%,100%{ transform: translateY(0px) } 
           50%{ transform: translateY(-10px) } 
@@ -75,11 +69,11 @@ export default function SSLYonetimiPage() {
           transform: translateX(-30%);
           animation: shimmer 3.2s ease-in-out infinite;
         }
-      `}</style>
+      `,
+        }}
+      />
 
-      {/* HERO */}
       <section className="relative overflow-hidden">
-        {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-indigo-950 to-blue-900" />
         <div className="absolute inset-0 noise" />
         <div className="absolute -top-28 -right-28 w-[420px] h-[420px] rounded-full bg-blue-400/20 blur-3xl" />
@@ -97,15 +91,15 @@ export default function SSLYonetimiPage() {
             </div>
 
             <h1 className="mt-8 text-4xl md:text-6xl font-extrabold leading-tight">
-              SSL Sertifikanızın Süresi Dolduğunda <span className="text-blue-200">Ne Olur?</span>
+              SSL Sertifikanızın Süresi Dolduğunda{" "}
+              <span className="text-blue-200">Ne Olur?</span>
             </h1>
 
             <p className="mt-6 text-base md:text-lg text-blue-100/90 leading-relaxed">
-              Güven uyarısı, SEO kaybı ve müşteri güveni erozyonu.
-              LSG SSL Yönetim sistemi ile sertifikalarınızı otomatik kontrol edin.
+              Güven uyarısı, SEO kaybı ve müşteri güveni erozyonu. LSG SSL
+              Yönetim sistemi ile sertifikalarınızı otomatik kontrol edin.
             </p>
 
-            {/* CTA */}
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/#teklif"
@@ -126,7 +120,6 @@ export default function SSLYonetimiPage() {
               </Link>
             </div>
 
-            {/* Stats bar */}
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
               {STATS.map((s) => (
                 <div
@@ -143,9 +136,11 @@ export default function SSLYonetimiPage() {
               ))}
             </div>
 
-            {/* Floating hint */}
             <div className="mt-12 text-blue-200/80 text-sm">
-              <span className="inline-flex items-center gap-2" style={{ animation: "floaty 4s ease-in-out infinite" }}>
+              <span
+                className="inline-flex items-center gap-2"
+                style={{ animation: "floaty 4s ease-in-out infinite" }}
+              >
                 <span className="w-2 h-2 rounded-full bg-blue-200" />
                 Sertifika süresi & uyarılar tek panelde
               </span>
@@ -154,7 +149,6 @@ export default function SSLYonetimiPage() {
         </div>
       </section>
 
-      {/* RISK SECTION */}
       <section className="py-20 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto">
@@ -162,43 +156,51 @@ export default function SSLYonetimiPage() {
               Süre Bitince Riskler Zincirleme Başlar
             </h2>
             <p className="mt-4 text-slate-600">
-              Bir SSL “küçük detay” gibi görünür; fakat bittiği an etkisi satıştan SEO’ya kadar yayılır.
+              Bir SSL “küçük detay” gibi görünür; fakat bittiği an etkisi
+              satıştan SEO’ya kadar yayılır.
             </p>
           </div>
 
           <div className="mt-12 grid md:grid-cols-3 gap-8">
-            {RISKS.map((item) => (
-              <div
-                key={item.title}
-                className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-lg border border-slate-200/70 hover:border-blue-200 hover:shadow-2xl transition-all hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-blue-50 to-indigo-50" />
+            {RISKS.map((item) => {
+              const Icon = ICONS[item.icon];
 
-                <div className="relative">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center">
-  <item.icon className="w-6 h-6 text-blue-900" strokeWidth={2} />
-</div>
+              return (
+                <div
+                  key={item.title}
+                  className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-lg border border-slate-200/70 hover:border-blue-200 hover:shadow-2xl transition-all hover:-translate-y-1"
+                >
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-blue-50 to-indigo-50" />
 
+                  <div className="relative">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center">
+                        <Icon
+                          className="w-6 h-6 text-blue-900"
+                          strokeWidth={2}
+                        />
+                      </div>
 
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700">
-                      Risk
-                    </span>
-                  </div>
+                      <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-700">
+                        Risk
+                      </span>
+                    </div>
 
-                  <h3 className="text-xl font-bold">{item.title}</h3>
-                  <p className="mt-3 text-slate-600 leading-relaxed">{item.desc}</p>
+                    <h3 className="text-xl font-bold">{item.title}</h3>
+                    <p className="mt-3 text-slate-600 leading-relaxed">
+                      {item.desc}
+                    </p>
 
-                  <div className="mt-6 flex items-center gap-2 text-blue-900 font-semibold">
-                    <span className="inline-block w-2 h-2 rounded-full bg-blue-900" />
-                    Otomasyon ile önleyin
+                    <div className="mt-6 flex items-center gap-2 text-blue-900 font-semibold">
+                      <span className="inline-block w-2 h-2 rounded-full bg-blue-900" />
+                      Otomasyon ile önleyin
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Mini CTA */}
           <div className="mt-14 rounded-3xl p-8 md:p-10 bg-white shadow-xl border border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <div className="text-sm font-semibold text-blue-900 uppercase tracking-wider">
@@ -208,7 +210,8 @@ export default function SSLYonetimiPage() {
                 Sertifika bitmeden uyarı + otomatik yenileme
               </div>
               <p className="mt-2 text-slate-600">
-                Tek bir panelden tüm domain’lerinizi takip edin, unutma riskini sıfıra yaklaştırın.
+                Tek bir panelden tüm domain’lerinizi takip edin, unutma riskini
+                sıfıra yaklaştırın.
               </p>
             </div>
 
@@ -222,7 +225,6 @@ export default function SSLYonetimiPage() {
         </div>
       </section>
 
-      {/* SOLUTION SECTION */}
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -239,8 +241,8 @@ export default function SSLYonetimiPage() {
               </h2>
 
               <p className="mt-5 text-slate-600 leading-relaxed">
-                Sertifika sürelerini manuel takip etmeyin. Merkezi yönetim ve otomatik
-                yenileme sistemi ile kesintisiz güvenlik sağlayın.
+                Sertifika sürelerini manuel takip etmeyin. Merkezi yönetim ve
+                otomatik yenileme sistemi ile kesintisiz güvenlik sağlayın.
               </p>
 
               <div className="mt-8 grid sm:grid-cols-2 gap-4">
@@ -250,7 +252,10 @@ export default function SSLYonetimiPage() {
                     className="rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:bg-white hover:shadow-md transition"
                   >
                     <div className="flex items-start gap-3">
-<CheckCircle className="w-5 h-5 text-emerald-600 mt-0.5" strokeWidth={2} />
+                      <CheckIcon
+                        className="w-5 h-5 text-emerald-600 mt-0.5"
+                        strokeWidth={2}
+                      />
                       <span className="text-slate-800 font-semibold">{f}</span>
                     </div>
                   </div>
@@ -273,7 +278,6 @@ export default function SSLYonetimiPage() {
               </div>
             </div>
 
-            {/* Right “premium” panel */}
             <div className="relative">
               <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-blue-100 blur-3xl opacity-80" />
               <div className="absolute -bottom-10 -left-10 w-64 h-64 rounded-full bg-indigo-100 blur-3xl opacity-80" />
@@ -293,7 +297,11 @@ export default function SSLYonetimiPage() {
                   <div className="mt-6 grid gap-4">
                     {[
                       { d: "example.com", s: "Active", c: "bg-green-500" },
-                      { d: "shop.example.com", s: "Expiring (14g)", c: "bg-amber-400" },
+                      {
+                        d: "shop.example.com",
+                        s: "Expiring (14g)",
+                        c: "bg-amber-400",
+                      },
                       { d: "api.example.com", s: "Renewing", c: "bg-blue-400" },
                     ].map((r) => (
                       <div
@@ -315,11 +323,10 @@ export default function SSLYonetimiPage() {
                   </div>
 
                   <div className="mt-8 rounded-2xl bg-white/10 border border-white/15 p-5">
-                    <div className="text-sm text-blue-100/80">
-                      Öneri
-                    </div>
+                    <div className="text-sm text-blue-100/80">Öneri</div>
                     <div className="mt-1 font-semibold">
-                      14 gün kala otomatik yenileme ve e-posta/Slack uyarısı aktif edin.
+                      14 gün kala otomatik yenileme ve e-posta/Slack uyarısı
+                      aktif edin.
                     </div>
                   </div>
 
@@ -336,7 +343,6 @@ export default function SSLYonetimiPage() {
         </div>
       </section>
 
-      {/* Footer CTA */}
       <section className="py-20 bg-[#f4f6f8]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="rounded-3xl bg-gradient-to-r from-blue-900 to-indigo-900 p-10 md:p-12 text-white shadow-2xl">
@@ -349,7 +355,8 @@ export default function SSLYonetimiPage() {
                   Unutmayı bitirin. Süreyi biz yönetelim.
                 </h3>
                 <p className="mt-3 text-blue-100/90 max-w-2xl">
-                  Sertifika bitişleri için merkezi panel, otomatik yenileme ve SLA destekli süreç.
+                  Sertifika bitişleri için merkezi panel, otomatik yenileme ve
+                  SLA destekli süreç.
                 </p>
               </div>
 

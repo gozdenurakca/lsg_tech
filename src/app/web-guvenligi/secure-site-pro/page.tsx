@@ -1,72 +1,170 @@
-import SSLHero from "@/components/ssl/SSLHero";
-import SSLTrustBar from "@/components/ssl/SSLTrustBar";
-import SSLPricingSection from "@/components/ssl/SSLPricingSection";
-import SSLInfoSection from "@/components/ssl/SSLInfoSection";
+import ProductHero from "@/components/marketing/hero/ProductHero";
+import TrustBar from "@/components/marketing/TrustBar";
+import InfoSection from "@/components/marketing/InfoSection";
+import FeatureGrid from "@/components/marketing/FeatureGrid";
+import HowItWorks from "@/components/marketing/HowItWorks";
+import CTASection from "@/components/marketing/CTASection";
+import FaqSection from "@/components/marketing/FaqSection";
+
+import SSLPricingSection from "@/components/ssl/SslPricingSection";
+
+import { ICONS } from "@/lib/icons";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 
 export default async function SecureSiteProPage() {
-  const [products, brands] = await Promise.all([
+  const [products] = await Promise.all([
     getProducts("WEB_SECURITY", "SecureSitePro"),
-    getBrands("WEB_SECURITY"),
   ]);
 
   const sortedProducts = sortByBrand(products);
 
   return (
     <main className="bg-white text-slate-900">
-      <SSLHero
-        badge="Advanced Website Security"
-        title="Secure Site Pro"
-        description="Secure Site Pro, web sitenizi zararlı yazılımlar, güvenlik açıkları ve siber tehditlere karşı koruyan gelişmiş bir güvenlik platformudur. Web siteniz sürekli izlenir, potansiyel riskler erken aşamada tespit edilir."
-        cardTitle="Advanced Threat Protection"
-        cardDescription="Malware detection • Vulnerability scanning • Continuous monitoring"
-        stats={[
-          { k: "Malware Tarama", v: "Günlük Otomatik" },
-          { k: "Zafiyet Analizi", v: "Gerçek zamanlı" },
-          { k: "Website Monitoring", v: "7/24 Aktif" },
-          { k: "Tehdit Tespiti", v: "Anında Bildirim" },
+      <ProductHero
+        badge={{
+          icon: "shield",
+          label: "Advanced Website Security",
+        }}
+        title={
+          <>
+            Secure Site Pro ile
+            <br />
+            <span className="text-blue-600">Web Sitenizi Koruyun</span>
+          </>
+        }
+        subtitle="Web sitenizi zararlı yazılımlar, güvenlik açıkları ve siber tehditlere karşı 7/24 koruyun."
+        imageSrc="/images/security-hero.png"
+        primaryButton={{
+          label: "Paketleri İncele",
+          href: "#pricing",
+        }}
+        secondaryButton={{
+          label: "Daha Fazla Bilgi",
+          href: "/kaynaklar/web-guvenligi",
+        }}
+        items={[
+          {
+            icon: "shield",
+            title: "Gerçek zamanlı koruma",
+            desc: "Siteniz sürekli izlenir ve tehditler anında engellenir.",
+          },
+          {
+            icon: "lock",
+            title: "Zararlı yazılım temizleme",
+            desc: "Tespit edilen malware otomatik olarak kaldırılır.",
+          },
+          {
+            icon: "zap",
+            title: "Anında bildirim",
+            desc: "Tüm tehditler size anlık olarak bildirilir.",
+          },
         ]}
-        note="* Secure Site Pro web sitenizi sürekli analiz eder ve güvenlik tehditlerini erken aşamada tespit ederek koruma sağlar."
       />
 
-      <SSLTrustBar
-        items={[
-          { icon: "shield", text: "Gelişmiş Web Site Koruması" },
-          { icon: "lock", text: "Zararlı Yazılım Tespiti" },
-          { icon: "badge", text: "Zafiyet Tarama" },
-          { icon: "zap", text: "Gerçek Zamanlı Güvenlik İzleme" },
+      <TrustBar
+        title="Binlerce web sitesi Secure Site Pro ile korunuyor"
+        description="Güvenlik açıklarını tespit edin, saldırıları önleyin ve kullanıcılarınıza güven verin."
+        stats={[
+          { value: "500K+", label: "Korunan Website" },
+          { value: "200K+", label: "Engellenen Tehdit" },
+          { value: "7/24", label: "Aktif İzleme" },
+          { value: "%99.9", label: "Uptime" },
+        ]}
+        imageSrc="/images/security-trust.jpg"
+      />
+
+      <FeatureGrid
+        title="Secure Site Pro Özellikleri"
+        subtitle="Web sitenizi uçtan uca koruyan gelişmiş güvenlik katmanları"
+        products={[
+          {
+            type: "Security",
+            name: "Malware Detection",
+            desc: "Zararlı yazılımları tespit eder ve temizler",
+            icon: "alert",
+            color: "bg-red-50 text-red-600 border-red-100",
+            href: "#",
+          },
+          {
+            type: "Monitoring",
+            name: "Real-time Monitoring",
+            desc: "Sitenizi 7/24 izler",
+            icon: "globe",
+            color: "bg-blue-50 text-blue-600 border-blue-100",
+            href: "#",
+          },
+          {
+            type: "Infrastructure",
+            name: "Server Protection",
+            desc: "Sunucu seviyesinde güvenlik sağlar",
+            icon: "server",
+            color: "bg-indigo-50 text-indigo-600 border-indigo-100",
+            href: "#",
+          },
+        ]}
+      />
+
+      <HowItWorks
+        title="Nasıl Çalışır?"
+        subtitle="3 adımda web sitenizi güvence altına alın"
+        visual="number"
+        steps={[
+          {
+            title: "Tarama",
+            desc: "Web siteniz sürekli olarak güvenlik taramasından geçer.",
+          },
+          {
+            title: "Tespit",
+            desc: "Zararlı yazılımlar ve açıklar belirlenir.",
+          },
+          {
+            title: "Koruma",
+            desc: "Tehditler otomatik olarak engellenir.",
+          },
         ]}
       />
 
       <SSLPricingSection
         title="Secure Site Pro Paketleri"
-        description="Web sitenizi zararlı yazılımlara ve saldırılara karşı koruyan güvenlik paketleri."
+        description="Web sitenizi korumak için en uygun planı seçin."
         products={sortedProducts}
       />
 
-      <SSLInfoSection
+      <InfoSection
         title="Secure Site Pro ile Neler Sağlanır?"
-        description="Secure Site Pro web sitenizi sürekli analiz eder, potansiyel güvenlik açıklarını tespit eder ve zararlı yazılım saldırılarına karşı gelişmiş koruma sağlar. Böylece web siteniz hem ziyaretçileriniz hem de arama motorları için güvenli kalır."
-        features={[
-          "E-ticaret siteleri için gelişmiş güvenlik",
-          "Finans ve ödeme platformları için veri koruması",
-          "Kurumsal web sitelerinde marka güveni",
-          "SaaS ve web uygulamalarında güvenli veri iletişimi",
-          "Hassas veri işleyen platformlar için güçlü şifreleme",
-        ]}
-        stats={[
+        items={[
           {
-            title: "Korunan Website",
-            desc: "500K+",
+            title: "Zararlı Yazılım Koruması",
+            desc: "Web siteniz sürekli taranır ve zararlı içerikler anında temizlenir.",
           },
           {
-            title: "Tespit Edilen Tehdit",
-            desc: "200K+",
+            title: "Zafiyet Analizi",
+            desc: "Güvenlik açıkları tespit edilir ve önlem alınır.",
+          },
+          {
+            title: "SEO Güvenliği",
+            desc: "Google blacklist riskini azaltır.",
           },
         ]}
       />
+
+      <FaqSection
+        title="Sık Sorulan Sorular"
+        faqs={[
+          {
+            q: "Secure Site Pro ne işe yarar?",
+            a: "Web sitenizi zararlı yazılımlar ve saldırılara karşı korur.",
+          },
+          {
+            q: "Kurulumu zor mu?",
+            a: "Hayır, birkaç dakika içinde aktif hale gelir.",
+          },
+        ]}
+      />
+
+      <CTASection />
     </main>
   );
 }

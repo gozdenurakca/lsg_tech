@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import "./globals.css";
+import "./styles/globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 
 import Providers from "@/components/providers";

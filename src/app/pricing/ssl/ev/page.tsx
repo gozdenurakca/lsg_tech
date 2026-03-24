@@ -1,32 +1,30 @@
-import connectDB from "@/lib/db"
-import Product from "@/models/Product"
-import Link from "next/link"
-import { Check, Crown, Shield } from "lucide-react"
+import connectDB from "@/lib/db";
+import Product from "@/models/Product";
+import Link from "next/link";
+import { ICONS } from "@/lib/icons";
+
+const { check: CheckIcon, crown: CrownIcon, shield: ShieldIcon } = ICONS;
 
 export default async function EVPage() {
-  await connectDB()
+  await connectDB();
 
   const products = await Product.find({
     validation: "EV",
     category: "SSL",
   })
     .sort({ "price.oneYear": 1 })
-    .lean()
+    .lean();
 
   return (
     <main className="bg-[#f5f7fa] min-h-screen">
-
       <section className="bg-gradient-to-r from-blue-950 to-indigo-900 text-white py-24">
         <div className="max-w-6xl mx-auto px-6 text-center">
-
           <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm mb-6">
-            <Crown className="w-4 h-4" />
+            <CrownIcon className="w-4 h-4" />
             Extended Validation
           </div>
 
-          <h1 className="text-5xl font-bold mb-6">
-            EV SSL Sertifikaları
-          </h1>
+          <h1 className="text-5xl font-bold mb-6">EV SSL Sertifikaları</h1>
 
           <p className="text-blue-100 max-w-3xl mx-auto text-lg mb-12">
             En yüksek güven seviyesi. Finans, bankacılık ve büyük ölçekli
@@ -53,7 +51,6 @@ export default async function EVPage() {
               Extended Validation
             </Link>
           </div>
-
         </div>
       </section>
 
@@ -70,28 +67,22 @@ export default async function EVPage() {
               </span>
             )}
 
-            <h3 className="text-2xl font-bold mb-4">
-              {product.name}
-            </h3>
+            <h3 className="text-2xl font-bold mb-4">{product.name}</h3>
 
-            <p className="text-slate-500 mb-8">
-              {product.shortDescription}
-            </p>
+            <p className="text-slate-500 mb-8">{product.shortDescription}</p>
 
             <div className="mb-8">
               <div className="text-4xl font-bold text-blue-900">
                 ₺{product.price.oneYear}
               </div>
-              <div className="text-sm text-slate-500">
-                / yıl
-              </div>
+              <div className="text-sm text-slate-500">/ yıl</div>
             </div>
 
             <div className="space-y-3 mb-10 flex-1">
               {product.specs &&
                 Object.entries(product.specs).map(([key, value]) => (
                   <div key={key} className="flex items-start gap-3 text-sm">
-                    <Check className="w-4 h-4 text-green-600 mt-1" />
+                    <CheckIcon className="w-4 h-4 text-green-600 mt-1" />
                     <span>
                       <strong>{key}:</strong> {value as string}
                     </span>
@@ -112,7 +103,7 @@ export default async function EVPage() {
       <section className="bg-white py-24 border-t">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
           <div>
-            <Shield className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <ShieldIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Maksimum Marka Güveni</h3>
             <p className="text-slate-600 text-sm">
               Kurumsal kimliğinizi güçlendiren en üst seviye doğrulama.
@@ -120,7 +111,7 @@ export default async function EVPage() {
           </div>
 
           <div>
-            <Shield className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <ShieldIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Yüksek Finansal Garanti</h3>
             <p className="text-slate-600 text-sm">
               1M$+ garanti seçenekleri ile risk minimizasyonu.
@@ -128,7 +119,7 @@ export default async function EVPage() {
           </div>
 
           <div>
-            <Shield className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <ShieldIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Enterprise SLA</h3>
             <p className="text-slate-600 text-sm">
               Öncelikli doğrulama ve hızlandırılmış issuance süreci.
@@ -136,7 +127,6 @@ export default async function EVPage() {
           </div>
         </div>
       </section>
-
     </main>
-  )
+  );
 }

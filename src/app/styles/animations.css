@@ -1,0 +1,70 @@
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes heroGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes floatBlob {
+  0% {
+    transform: translate(0px,0px);
+  }
+  50% {
+    transform: translate(40px,-30px);
+  }
+  100% {
+    transform: translate(0px,0px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.hero-gradient {
+  background: linear-gradient(
+    120deg,
+    #020617,
+    #0f172a,
+    #1e40af,
+    #0ea5e9,
+    #1d4ed8
+  );
+  background-size: 300% 300%;
+  animation: heroGradient 20s ease infinite;
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    120deg,
+    #020617,
+    #0f172a,
+    #1e3a8a,
+    #0ea5e9,
+    #1e40af
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
+}
+
+.blob {
+  animation: floatBlob 18s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}

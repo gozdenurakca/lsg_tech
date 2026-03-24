@@ -1,7 +1,7 @@
-import SSLHero from "@/components/ssl/SSLHero";
-import SSLTrustBar from "@/components/ssl/SSLTrustBar";
-import SSLPricingSection from "@/components/ssl/SSLPricingSection";
-import SSLInfoSection from "@/components/ssl/SSLInfoSection";
+import SslHero from "@/components/ssl/SslHero";
+import SslTrustBar from "@/components/ssl/SslTrustBar";
+import SslPricingSection from "@/components/ssl/SslPricingSection";
+import SslInfoSection from "@/components/ssl/SslinfoSection";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
@@ -18,7 +18,7 @@ export default async function DVMarketingPage() {
 
   return (
     <main className="bg-white text-slate-900">
-      <SSLHero
+      <SslHero
         badge="Domain Validation SSL"
         title="DV SSL Sertifikaları"
         description="Dakikalar içinde aktif olan HTTPS koruması. Bloglar, kişisel siteler ve küçük işletmeler için ideal."
@@ -28,28 +28,27 @@ export default async function DVMarketingPage() {
           { k: "Uyumluluk", v: "Modern tarayıcılar" },
           { k: "Garanti", v: "Temel güvence" },
         ]}
-        featuredSlug="sectigo-basic-dv"
         note="* DV SSL sertifikaları yalnızca alan adının sahipliğini doğrular ve en hızlı kurulan SSL türüdür."
       />
 
-      <SSLTrustBar
+      <SslTrustBar
         items={[
           { icon: "zap", text: "Dakikalar içinde aktivasyon" },
-          { icon: "lock", text: "256-bit Şifreleme" },
+          { icon: "lock", text: "256-bit şifreleme" },
           { icon: "shield", text: "HTTPS güven kilidi" },
           { icon: "badge", text: "SEO avantajı" },
         ]}
       />
 
-      <SSLPricingSection
+      <SslPricingSection
         title="DV SSL Paketleri"
         description="Hızlı aktivasyon ve bütçe dostu HTTPS güvenliği."
-        products={sortedStandard}
-        wildcardProducts={sortedWildcard}
-        brands={brands}
+        products={standardProducts}
+        wildcardProducts={[]}
+        brands={[]}
       />
 
-      <SSLInfoSection
+      <SslInfoSection
         title="DV SSL Nedir?"
         description="DV SSL (Domain Validation), SSL sertifikaları arasında en hızlı ve en kolay kurulan seçenektir. Sertifika yalnızca alan adının kontrolünü doğrular ve kimlik veya şirket belgeleri gerektirmez."
         stats={[

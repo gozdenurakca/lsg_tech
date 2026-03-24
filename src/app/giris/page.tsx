@@ -1,70 +1,64 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { getSession } from 'next-auth/react'
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
 
-
-
-type Tab = 'bireysel' | 'bayi'
+type Tab = "bireysel" | "bayi";
 
 export default function GirisPage() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [tab, setTab] = useState<Tab>('bireysel')
-  const [showPass, setShowPass] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [tab, setTab] = useState<Tab>("bireysel");
+  const [showPass, setShowPass] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
-    email: '',
-    password: '',
-    bayiKodu: '',
-  })
+    email: "",
+    password: "",
+    bayiKodu: "",
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-    setError('')
-  }
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");
+  };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setIsLoading(true)
-  setError('')
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
-  const result = await signIn('credentials', {
-    email: form.email,
-    password: form.password,
-    redirect: false,
-  })
+    const result = await signIn("credentials", {
+      email: form.email,
+      password: form.password,
+      redirect: false,
+    });
 
-  if (result?.error) {
-    setIsLoading(false)
-    setError(result.error)
-    return
-  }
+    if (result?.error) {
+      setIsLoading(false);
+      setError(result.error);
+      return;
+    }
 
-  const session = await getSession()
+    const session = await getSession();
 
-  setIsLoading(false)
+    setIsLoading(false);
 
-  if (session?.user?.role === 'admin') {
-    router.push('/admin')
-  } else {
-    router.push('/panel')
-  }
-}
-
-
-
+    if (session?.user?.role === "admin") {
+      router.push("/admin");
+    } else {
+      router.push("/panel");
+    }
+  };
 
   return (
     <div className="flex min-h-[calc(100vh-80px)] bg-gray-50">
-
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-[#060f1e] via-[#0a1a35] to-[#0f2550] p-16 flex-col justify-center
-">
-
-        {/* Grid Background */}
+      <div
+        className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-gradient-to-br from-[#060f1e] via-[#0a1a35] to-[#0f2550] p-16 flex-col justify-center
+"
+      >
         <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(148,189,255,.2)_1px,transparent_1px),linear-gradient(90deg,rgba(148,189,255,.2)_1px,transparent_1px)] bg-[size:48px_48px]" />
 
         <div className="relative z-10">
@@ -106,7 +100,6 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-1">
               Hoş Geldiniz
@@ -117,27 +110,24 @@ const handleSubmit = async (e: React.FormEvent) => {
           </div>
 
           <div className="flex bg-slate-200 rounded-xl p-1 mb-6">
-            {['bireysel', 'bayi'].map((t) => (
+            {["bireysel", "bayi"].map((t) => (
               <button
                 key={t}
                 onClick={() => {
-                  setTab(t as Tab)
-                  setError('')
+                  setTab(t as Tab);
+                  setError("");
                 }}
                 className={`flex-1 py-2 rounded-lg text-sm font-semibold transition ${
-                  tab === t
-                    ? 'bg-white shadow text-blue-600'
-                    : 'text-slate-500'
+                  tab === t ? "bg-white shadow text-blue-600" : "text-slate-500"
                 }`}
               >
-                {t === 'bireysel' ? '👤 Bireysel' : '🏢 Bayi'}
+                {t === "bireysel" ? "👤 Bireysel" : "🏢 Bayi"}
               </button>
             ))}
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-
-            {tab === 'bayi' && (
+            {tab === "bayi" && (
               <input
                 name="bayiKodu"
                 value={form.bayiKodu}
@@ -160,7 +150,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
             <div className="relative">
               <input
-                type={showPass ? 'text' : 'password'}
+                type={showPass ? "text" : "password"}
                 name="password"
                 value={form.password}
                 onChange={handleChange}
@@ -173,7 +163,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 onClick={() => setShowPass(!showPass)}
                 className="absolute right-3 top-3 text-slate-400 text-sm"
               >
-                {showPass ? 'Gizle' : 'Göster'}
+                {showPass ? "Gizle" : "Göster"}
               </button>
             </div>
 
@@ -187,17 +177,17 @@ const handleSubmit = async (e: React.FormEvent) => {
               type="submit"
               disabled={isLoading}
               className={`w-full py-3 rounded-lg font-semibold text-white transition ${
-                tab === 'bayi'
-                  ? 'bg-purple-600 hover:bg-purple-700'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                tab === "bayi"
+                  ? "bg-purple-600 hover:bg-purple-700"
+                  : "bg-blue-600 hover:bg-blue-700"
               }`}
             >
-              {isLoading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
+              {isLoading ? "Giriş Yapılıyor..." : "Giriş Yap"}
             </button>
           </form>
 
           <div className="mt-6 text-center text-sm text-slate-500">
-            Hesabınız yok mu?{' '}
+            Hesabınız yok mu?{" "}
             <a href="/kayit" className="text-blue-600 font-semibold">
               Ücretsiz Kayıt Olun
             </a>
@@ -205,5 +195,5 @@ const handleSubmit = async (e: React.FormEvent) => {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import SSLHero from "@/components/ssl/SSLHero";
-import SSLTrustBar from "@/components/ssl/SSLTrustBar";
-import SSLPricingSection from "@/components/ssl/SSLPricingSection";
-import SSLInfoSection from "@/components/ssl/SSLInfoSection";
+import ProductHero from "@/components/marketing/hero/ProductHero";
+import TrustBar from "@/components/marketing/TrustBar";
+import PricingSection from "@/components/pricing/PricingSection";
+import InfoSection from "@/components/marketing/InfoSection";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 
 export default async function SiteLockPage() {
-  const [products, brands] = await Promise.all([
+  const [products] = await Promise.all([
     getProducts("WEB_SECURITY", "SiteLock"),
     getBrands("WEB_SECURITY"),
   ]);
@@ -16,55 +16,80 @@ export default async function SiteLockPage() {
 
   return (
     <main className="bg-white text-slate-900">
-      <SSLHero
-        badge="Website Protection"
+      <ProductHero
+        badge={{
+          icon: "shield",
+          label: "Website Protection",
+        }}
         title="SiteLock"
-        description="SiteLock ile web sitenizi zararlı yazılım saldırılarına, veri ihlallerine ve güvenlik tehditlerine karşı koruyun."
-        cardTitle="Website Security Platform"
-        cardDescription="Malware scanning + blacklist monitoring + website protection"
-        stats={[
-          { k: "Güvenlik Tarama", v: "Günlük" },
-          { k: "Zararlı Yazılım Temizleme", v: "Otomatik" },
-          { k: "Blacklist Monitoring", v: "Google Safe Browsing vb." },
-          { k: "Web Uygulama Güvenlik Duvarı", v: "Opsiyonel" },
-        ]}
-        note="* SiteLock web sitenizi zararlı yazılımlara ve güvenlik tehditlerine karşı korur."
-      />
-
-      <SSLTrustBar
+        subtitle="SiteLock ile web sitenizi zararlı yazılım saldırılarına, veri ihlallerine ve güvenlik tehditlerine karşı koruyun."
+        imageSrc="/images/sitelock-hero.png"
+        primaryButton={{
+          label: "Hemen Başla",
+          href: "#pricing",
+        }}
         items={[
-          { icon: "shield", text: "Gelişmiş Malware Koruması" },
-          { icon: "lock", text: "Otomatik Zararlı Yazılım Temizleme" },
-          { icon: "badge", text: "Blacklist ve Reputation Monitoring" },
-          { icon: "zap", text: "24/7 Website Security Monitoring" },
+          {
+            icon: "shield",
+            title: "Gelişmiş Malware Koruması",
+            desc: "Web sitenizi zararlı yazılımlara karşı sürekli korur",
+          },
+          {
+            icon: "lock",
+            title: "Otomatik Temizleme",
+            desc: "Tespit edilen malware’leri otomatik temizler",
+          },
+          {
+            icon: "zap",
+            title: "Gerçek Zamanlı İzleme",
+            desc: "7/24 aktif güvenlik kontrolü sağlar",
+          },
         ]}
       />
 
-      <SSLPricingSection
+      <TrustBar
+        title="Web siteniz her zaman güvende"
+        description="SiteLock, sürekli tarama ve gelişmiş güvenlik katmanları ile sitenizi korur."
+        imageSrc="/images/sitelock-visual.jpg"
+        stats={[
+          { value: "1M+", label: "Korunan Website" },
+          { value: "250K+", label: "Temizlenen Malware" },
+        ]}
+      />
+
+      <PricingSection
+        id="pricing"
         title="SiteLock Paketleri"
-        description="SiteLock web sitenizi zararlı yazılımlara, saldırılara ve güvenlik açıklarına karşı koruyan güçlü bir güvenlik çözümüdür."
+        subtitle="Web sitenizi zararlı yazılımlara ve saldırılara karşı koruyan güçlü güvenlik paketleri."
         products={sortedProducts}
       />
 
-      <SSLInfoSection
+      <InfoSection
         title="SiteLock ile Neler Sağlanır?"
-        description="SiteLock, web sitenizi zararlı yazılımlar, güvenlik açıkları ve siber saldırılara karşı koruyan kapsamlı bir web güvenliği çözümüdür. Otomatik tarama ve sürekli izleme sayesinde potansiyel tehditler erken aşamada tespit edilir ve web siteniz güvenli kalır."
-        features={[
-          "Günlük malware ve güvenlik taraması",
-          "Otomatik malware temizleme",
-          "Google blacklist ve itibar izleme",
-          "Web Application Firewall (WAF) koruması",
-          "Zafiyet taraması ve tehdit uyarıları",
-          "7/24 gerçek zamanlı web site izleme",
-        ]}
-        stats={[
+        items={[
           {
-            title: "Korunan Website",
-            desc: "1M+",
+            title: "Günlük Malware Taraması",
+            desc: "Web siteniz düzenli olarak zararlı yazılımlara karşı taranır.",
           },
           {
-            title: "Temizlenen Malware",
-            desc: "250K+",
+            title: "Otomatik Temizleme",
+            desc: "Tespit edilen zararlı içerikler otomatik olarak kaldırılır.",
+          },
+          {
+            title: "Blacklist Monitoring",
+            desc: "Google blacklist ve itibar durumunuz sürekli kontrol edilir.",
+          },
+          {
+            title: "WAF Koruması",
+            desc: "Web Application Firewall ile saldırılar engellenir.",
+          },
+          {
+            title: "Zafiyet Taraması",
+            desc: "Güvenlik açıkları erken tespit edilir.",
+          },
+          {
+            title: "7/24 İzleme",
+            desc: "Siteniz sürekli olarak izlenir ve tehditler anında tespit edilir.",
           },
         ]}
       />

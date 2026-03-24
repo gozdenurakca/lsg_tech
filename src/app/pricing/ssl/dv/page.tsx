@@ -1,36 +1,34 @@
-import connectDB from "@/lib/db"
-import Product from "@/models/Product"
-import Link from "next/link"
-import { Check, Zap } from "lucide-react"
+import connectDB from "@/lib/db";
+import Product from "@/models/Product";
+import Link from "next/link";
+import { ICONS } from "@/lib/icons";
+
+const { check: CheckIcon, zap: ZapIcon } = ICONS;
 
 export default async function DVPage() {
-  await connectDB()
+  await connectDB();
 
   const products = await Product.find({
     validation: "DV",
     category: "SSL",
   })
     .sort({ "price.oneYear": 1 })
-    .lean()
+    .lean();
 
   return (
     <main className="bg-[#f5f7fa] min-h-screen">
-
       <section className="bg-gradient-to-r from-blue-950 to-indigo-900 text-white py-24">
         <div className="max-w-6xl mx-auto px-6 text-center">
-
           <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm mb-6">
-            <Zap className="w-4 h-4" />
+            <ZapIcon className="w-4 h-4" />
             Domain Validation
           </div>
 
-          <h1 className="text-5xl font-bold mb-6">
-            DV SSL Sertifikaları
-          </h1>
+          <h1 className="text-5xl font-bold mb-6">DV SSL Sertifikaları</h1>
 
           <p className="text-blue-100 max-w-3xl mx-auto text-lg mb-12">
-            Hızlı kurulum, uygun maliyet ve temel HTTPS koruması.
-            Bloglar ve küçük işletmeler için idealdir.
+            Hızlı kurulum, uygun maliyet ve temel HTTPS koruması. Bloglar ve
+            küçük işletmeler için idealdir.
           </p>
 
           <div className="inline-flex bg-white/10 backdrop-blur border border-white/20 rounded-lg p-1">
@@ -53,7 +51,6 @@ export default async function DVPage() {
               Extended Validation
             </Link>
           </div>
-
         </div>
       </section>
 
@@ -70,28 +67,22 @@ export default async function DVPage() {
               </span>
             )}
 
-            <h3 className="text-2xl font-bold mb-4">
-              {product.name}
-            </h3>
+            <h3 className="text-2xl font-bold mb-4">{product.name}</h3>
 
-            <p className="text-slate-500 mb-8">
-              {product.shortDescription}
-            </p>
+            <p className="text-slate-500 mb-8">{product.shortDescription}</p>
 
             <div className="mb-8">
               <div className="text-4xl font-bold text-blue-900">
                 ₺{product.price.oneYear}
               </div>
-              <div className="text-sm text-slate-500">
-                / yıl
-              </div>
+              <div className="text-sm text-slate-500">/ yıl</div>
             </div>
 
             <div className="space-y-3 mb-10 flex-1">
               {product.specs &&
                 Object.entries(product.specs).map(([key, value]) => (
                   <div key={key} className="flex items-start gap-3 text-sm">
-                    <Check className="w-4 h-4 text-green-600 mt-1" />
+                    <CheckIcon className="w-4 h-4 text-green-600 mt-1" />
                     <span>
                       <strong>{key}:</strong> {value as string}
                     </span>
@@ -108,7 +99,6 @@ export default async function DVPage() {
           </div>
         ))}
       </section>
-
     </main>
-  )
+  );
 }

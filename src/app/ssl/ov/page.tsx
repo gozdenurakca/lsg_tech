@@ -1,7 +1,7 @@
-import SSLHero from "@/components/ssl/SSLHero";
-import SSLTrustBar from "@/components/ssl/SSLTrustBar";
-import SSLPricingSection from "@/components/ssl/SSLPricingSection";
-import SSLInfoSection from "@/components/ssl/SSLInfoSection";
+import SslHero from "@/components/ssl/SslHero";
+import SslTrustBar from "@/components/ssl/SslTrustBar";
+import SslPricingSection from "@/components/ssl/SslPricingSection";
+import SslInfoSection from "@/components/ssl/SslinfoSection";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
@@ -18,31 +18,29 @@ export default async function OVMarketingPage() {
 
   return (
     <main className="bg-white text-slate-900">
-      <SSLHero
+      <SslHero
         badge="Organization Validation SSL"
         title="OV SSL Sertifikaları"
-        description="Şirket doğrulaması ile daha güçlü güven sinyali."
-        cardTitle="Kurumsal Doğrulama"
-        cardDescription="Şirket doğrulaması + güçlü güven sinyali"
+        description="Şirket doğrulaması ile daha güçlü güven sinyali. Kurumsal web siteleri ve e-ticaret platformları için ideal SSL çözümü."
         stats={[
           { k: "Aktivasyon", v: "1–3 gün" },
           { k: "Şifreleme", v: "256-bit" },
           { k: "Doğrulama", v: "Şirket / kurum" },
           { k: "Güven", v: "Kurumsal seviye" },
         ]}
-        featuredSlug="sectigo-ov-ssl"
+        note="* OV SSL sertifikaları alan adı sahipliğine ek olarak şirketin yasal varlığını doğrular ve ziyaretçilere daha güçlü güven sinyali sağlar."
       />
 
-      <SSLTrustBar
+      <SslTrustBar
         items={[
           { icon: "shield", text: "Şirket doğrulaması" },
-          { icon: "lock", text: "256-bit Şifreleme" },
+          { icon: "lock", text: "256-bit şifreleme" },
           { icon: "badge", text: "Marka güveni" },
           { icon: "zap", text: "E-ticaret için ideal" },
         ]}
       />
 
-      <SSLPricingSection
+      <SslPricingSection
         title="OV SSL Paketleri"
         description="Kurumsal güven için şirket doğrulamalı SSL çözümleri."
         products={sortedStandard}
@@ -50,11 +48,11 @@ export default async function OVMarketingPage() {
         brands={brands}
       />
 
-      <SSLInfoSection
+      <SslInfoSection
         title="OV SSL Nedir?"
         description="OV (Organization Validation) SSL, alan adı doğrulamasına ek olarak başvuran şirketin yasal varlığını doğrulayan SSL sertifikasıdır. Bu sayede ziyaretçiler web sitesinin gerçek bir işletmeye ait olduğunu görebilir."
         stats={[
-          { title: "1–3 gün", desc: "Aktivasyon" },
+          { title: "1–3 gün", desc: "Aktivasyon süresi" },
           { title: "OV", desc: "Şirket doğrulaması" },
           { title: "256-bit", desc: "Güvenli şifreleme" },
           { title: "Güven", desc: "Kurumsal itibar" },

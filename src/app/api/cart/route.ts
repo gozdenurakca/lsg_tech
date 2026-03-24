@@ -1,92 +1,82 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getProductBySlug } from '@/src/lib/data/products'
-import { ApiResponse, Cart, CartItem } from '@/src/types'
+import connectDB from '@/lib/db'
+import ProductModel from '@/models/Product'
+import { ApiResponse, Cart, CartItem } from '@/types'
 
-// Mock cart storage (in production, use database or session)
-// In real app, this would be stored per user in database
 let cart: CartItem[] = []
 
-// GET /api/cart - Get cart contents
+// GET
 export async function GET() {
   try {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
     const totalPrice = cart.reduce((sum, item) => sum + item.totalPrice, 0)
 
-    const response: ApiResponse<Cart> = {
+    return NextResponse.json({
       success: true,
       data: {
         items: cart,
         totalItems,
         totalPrice
       }
-    }
-
-    return NextResponse.json(response, { status: 200 })
-
+    })
   } catch (error) {
-    console.error('API Error:', error)
-    
-    const response: ApiResponse<null> = {
+    return NextResponse.json({
       success: false,
       error: 'Sepet yüklenirken bir hata oluştu'
-    }
-
-    return NextResponse.json(response, { status: 500 })
+    }, { status: 500 })
   }
 }
 
-// POST /api/cart - Add item to cart
+// POST
 export async function POST(request: NextRequest) {
   try {
+    await connectDB()
+
     const body = await request.json()
     const { productSlug, years = 1, quantity = 1 } = body
 
-    // Validate
     if (!productSlug) {
-      const response: ApiResponse<null> = {
+      return NextResponse.json({
         success: false,
         error: 'Ürün slug gerekli'
-      }
-      return NextResponse.json(response, { status: 400 })
+      }, { status: 400 })
     }
 
-    // Get product
-    const product = getProductBySlug(productSlug)
-    
+    // ✅ DB’den çekiyoruz
+    const product = await ProductModel.findOne({ slug: productSlug }).lean()
+
     if (!product) {
-      const response: ApiResponse<null> = {
+      return NextResponse.json({
         success: false,
         error: 'Ürün bulunamadı'
-      }
-      return NextResponse.json(response, { status: 404 })
+      }, { status: 404 })
     }
 
-    // Check if already in cart
     const existingItemIndex = cart.findIndex(
       item => item.productSlug === productSlug && item.years === years
     )
 
     if (existingItemIndex > -1) {
-      // Update quantity
       cart[existingItemIndex].quantity += quantity
-      cart[existingItemIndex].totalPrice = 
-        cart[existingItemIndex].pricePerUnit * cart[existingItemIndex].quantity
+      cart[existingItemIndex].totalPrice =
+        cart[existingItemIndex].pricePerUnit *
+        cart[existingItemIndex].quantity
     } else {
-      // Add new item
       const cartItem: CartItem = {
         id: Date.now().toString(),
-        productId: product.id,
+        productId: product._id.toString(),
         productName: product.name,
         productSlug: product.slug,
-        years: years as 1 | 2 | 3,
+        years,
         quantity,
-        pricePerUnit: product.price[years as 1 | 2 | 3],
-        totalPrice: product.price[years as 1 | 2 | 3] * quantity
+        pricePerUnit: product.price[years],
+        totalPrice: product.price[years] * quantity
       }
+
       cart.push(cartItem)
     }
 
-    const response: ApiResponse<Cart> = {
+    return NextResponse.json({
       success: true,
       data: {
         items: cart,
@@ -94,21 +84,16 @@ export async function POST(request: NextRequest) {
         totalPrice: cart.reduce((sum, item) => sum + item.totalPrice, 0)
       },
       message: 'Ürün sepete eklendi'
-    }
-
-    return NextResponse.json(response, { status: 200 })
+    })
 
   } catch (error) {
-    console.error('API Error:', error)
-    
-    const response: ApiResponse<null> = {
+    return NextResponse.json({
       success: false,
       error: 'Ürün eklenirken bir hata oluştu'
-    }
-
-    return NextResponse.json(response, { status: 500 })
+    }, { status: 500 })
   }
 }
+
 
 // DELETE /api/cart - Clear cart or remove item
 export async function DELETE(request: NextRequest) {

@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getProductBySlug } from '@/src/lib/data/products'
-import { ApiResponse, Product } from '@/src/types'
+import connectDB from '@/lib/db'
+import ProductModel from '@/models/Product'
+import { ApiResponse, Product } from '@/types'
 
-// GET /api/products/[slug]
 export async function GET(
   request: NextRequest,
   { params }: { params: { slug: string } }
 ) {
   try {
-    const { slug } = params
+    await connectDB()
 
-    const product = getProductBySlug(slug)
+    const product = await ProductModel.findOne({ slug: params.slug }).lean()
 
     if (!product) {
       const response: ApiResponse<null> = {
@@ -29,7 +29,7 @@ export async function GET(
 
   } catch (error) {
     console.error('API Error:', error)
-    
+
     const response: ApiResponse<null> = {
       success: false,
       error: 'Ürün yüklenirken bir hata oluştu'

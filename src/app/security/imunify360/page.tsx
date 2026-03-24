@@ -1,16 +1,22 @@
-import Link from "next/link"
-import { Shield, Server, Activity, Lock, CheckCircle } from "lucide-react"
+import Link from "next/link";
+
+import { ICONS } from "@/lib/icons";
+
+const {
+  shield: ShieldIcon,
+  check: CheckIcon,
+  server: ServerIcon,
+  activity: ActivityIcon,
+  lock: LockIcon,
+} = ICONS;
 
 export default function Imunify360Page() {
   return (
     <main className="bg-[#f5f7fa] min-h-screen">
-
-      {/* ================= HERO ================= */}
       <section className="bg-gradient-to-r from-blue-950 to-indigo-900 text-white py-24">
         <div className="max-w-6xl mx-auto px-6 text-center">
-
           <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm mb-6">
-            <Shield className="w-4 h-4" />
+            <ShieldIcon className="w-4 h-4" />
             POPÜLER Güvenlik Çözümü
           </div>
 
@@ -19,16 +25,13 @@ export default function Imunify360Page() {
           </h1>
 
           <p className="text-blue-100 max-w-3xl mx-auto text-lg">
-            Linux sunucular için gelişmiş malware koruma, WAF ve
-            otomatik tehdit engelleme sistemi.
+            Linux sunucular için gelişmiş malware koruma, WAF ve otomatik tehdit
+            engelleme sistemi.
           </p>
-
         </div>
       </section>
 
-      {/* ================= OVERVIEW ================= */}
       <section className="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
-
         <div>
           <h2 className="text-3xl font-bold mb-6">
             Sunucunuzu Proaktif Olarak Koruyun
@@ -36,8 +39,8 @@ export default function Imunify360Page() {
 
           <p className="text-slate-600 mb-8 leading-relaxed">
             Imunify360, gerçek zamanlı tehdit algılama, zararlı yazılım
-            temizleme ve saldırı önleme sistemi ile sunucularınızı
-            sürekli olarak izler ve korur.
+            temizleme ve saldırı önleme sistemi ile sunucularınızı sürekli
+            olarak izler ve korur.
           </p>
 
           <div className="space-y-4">
@@ -46,10 +49,10 @@ export default function Imunify360Page() {
               "Akıllı Web Application Firewall",
               "Brute-force koruması",
               "Otomatik zararlı dosya temizleme",
-              "Proaktif saldırı engelleme"
+              "Proaktif saldırı engelleme",
             ].map((item) => (
               <div key={item} className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600" />
+                <CheckIcon className="w-5 h-5 text-green-600" />
                 <span className="text-slate-700">{item}</span>
               </div>
             ))}
@@ -57,17 +60,11 @@ export default function Imunify360Page() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl border p-10">
-          <h3 className="text-2xl font-bold mb-6">
-            Başlangıç Fiyatı
-          </h3>
+          <h3 className="text-2xl font-bold mb-6">Başlangıç Fiyatı</h3>
 
-          <div className="text-4xl font-bold text-blue-900 mb-2">
-            ₺299
-          </div>
+          <div className="text-4xl font-bold text-blue-900 mb-2">₺299</div>
 
-          <div className="text-sm text-slate-500 mb-6">
-            / aylık lisans
-          </div>
+          <div className="text-sm text-slate-500 mb-6">/ aylık lisans</div>
 
           <Link
             href="/giris"
@@ -80,15 +77,12 @@ export default function Imunify360Page() {
             30 gün para iade garantisi
           </p>
         </div>
-
       </section>
 
-      {/* ================= FEATURES GRID ================= */}
       <section className="bg-white py-24 border-t">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
-
           <div>
-            <Server className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <ServerIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Sunucu Seviyesi Koruma</h3>
             <p className="text-slate-600 text-sm">
               Tüm hosting altyapınızı tek noktadan koruyun.
@@ -96,7 +90,7 @@ export default function Imunify360Page() {
           </div>
 
           <div>
-            <Activity className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <ActivityIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Gerçek Zamanlı İzleme</h3>
             <p className="text-slate-600 text-sm">
               Sürekli tehdit analizi ve otomatik müdahale.
@@ -104,17 +98,15 @@ export default function Imunify360Page() {
           </div>
 
           <div>
-            <Lock className="w-10 h-10 text-blue-900 mx-auto mb-4" />
+            <LockIcon className="w-10 h-10 text-blue-900 mx-auto mb-4" />
             <h3 className="font-bold mb-3">Akıllı WAF</h3>
             <p className="text-slate-600 text-sm">
               Zararlı trafiği anında filtreler.
             </p>
           </div>
-
         </div>
       </section>
 
-      {/* ================= CTA ================= */}
       <section className="bg-gradient-to-r from-blue-950 to-indigo-900 text-white py-20 text-center">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-4xl font-bold mb-6">
@@ -133,7 +125,6 @@ export default function Imunify360Page() {
           </Link>
         </div>
       </section>
-
     </main>
-  )
+  );
 }
