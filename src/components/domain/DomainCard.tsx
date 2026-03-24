@@ -1,97 +1,120 @@
 "use client";
 
-interface DomainResult {
-  ext: string;
-  price: number;
-  period: string;
-  available: boolean | null;
-  loading: boolean;
-}
+/*
+  Domain result item:
+  - domain + extension
+  - availability state
+  - price + old price
+  - add/remove cart
+*/
 
-interface DomainCardProps {
-  domain: string;
+import { Heart, ShoppingCart } from "lucide-react";
+import type { DomainResult } from "@/lib/domain/types";
+
+interface Props {
+  base: string;
   result: DomainResult;
   inCart: boolean;
   onToggleCart: () => void;
 }
 
 export default function DomainCard({
-  domain,
+  base,
   result,
   inCart,
   onToggleCart,
-}: DomainCardProps) {
-  const { available, loading, price, period } = result;
+}: Props) {
+  const {
+    ext,
+    price,
+    oldPrice,
+    available,
+    loading,
+    period = "yıl",
+    textColor,
+  } = result;
+
+  const fullDomain = `${base}${ext}`;
 
   return (
     <div
-      className={`group flex items-center justify-between gap-4 rounded-xl border px-5 py-4 transition-all duration-200
-        ${loading ? "bg-white border-gray-200" : ""}
-        ${
-          !loading && available
-            ? "bg-white border-gray-200 hover:border-[#2ecc8f] hover:shadow-md cursor-default"
-            : ""
-        }
-        ${!loading && !available ? "bg-gray-50 border-gray-100 opacity-60" : ""}`}
+      className={`group flex items-center gap-4 px-4 py-3.5 border-b border-slate-100 last:border-0 transition
+      ${!loading && available === false ? "opacity-50" : "hover:bg-slate-50/60"}`}
     >
-      <div className="flex items-center gap-3 min-w-0">
-        <p
-          className={`font-bold text-base truncate transition-colors
-          ${
-            available
-              ? "text-[#1b2a4a] group-hover:text-[#2ecc8f]"
-              : "text-gray-400"
-          }`}
-        >
-          {domain}
-        </p>
+      {/* FAVORITE */}
+      <button className="text-slate-200 hover:text-red-400 transition-colors shrink-0">
+        <Heart size={16} />
+      </button>
 
+      {/* DOMAIN */}
+      <div className="flex-1 min-w-0 flex items-center gap-3">
         {loading ? (
-          <div className="h-5 w-16 bg-gray-200 rounded-full animate-pulse shrink-0" />
-        ) : available ? (
-          <span className="shrink-0 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
-            Müsait
-          </span>
+          <div className="h-5 w-40 bg-slate-100 rounded animate-pulse" />
         ) : (
-          <span className="shrink-0 text-xs font-bold text-red-500 bg-red-50 px-2.5 py-0.5 rounded-full">
-            Alınmış
-          </span>
+          <>
+            <span className="font-bold text-base text-slate-800 truncate">
+              {base}
+              <span className={`ml-0.5 ${textColor}`}>{ext}</span>
+            </span>
+
+            {/* STATUS */}
+            {available === false && (
+              <span className="shrink-0 text-[10px] font-black uppercase tracking-wider text-slate-400 border border-slate-200 rounded px-1.5 py-0.5">
+                Alındı
+              </span>
+            )}
+          </>
         )}
       </div>
 
+      {/* RIGHT SIDE */}
       <div className="flex items-center gap-4 shrink-0">
         {loading ? (
           <>
-            <div className="h-5 w-14 bg-gray-200 rounded animate-pulse" />
-            <div className="h-9 w-28 bg-gray-200 rounded-lg animate-pulse" />
+            <div className="h-5 w-20 bg-slate-100 rounded animate-pulse" />
+            <div className="h-9 w-9 bg-slate-100 rounded-lg animate-pulse" />
           </>
         ) : available ? (
           <>
+            {/* PRICE */}
             <div className="text-right">
-              <span className="font-extrabold text-[#1b2a4a] text-lg">
-                ₺{price}
-              </span>
-              <span className="text-gray-400 text-xs ml-1">/{period}</span>
+              {oldPrice && (
+                <span className="text-slate-300 text-xs line-through block">
+                  ₺{oldPrice}
+                </span>
+              )}
+
+              <div className="flex items-baseline gap-1">
+                <span className="font-bold text-slate-900">₺{price}</span>
+                <span className="text-slate-400 text-xs">/{period}</span>
+              </div>
             </div>
 
+            {/* CART BUTTON */}
             <button
               onClick={onToggleCart}
-              className={`px-5 py-2 rounded-lg text-sm font-bold transition-all active:scale-95
-                ${
-                  inCart
-                    ? "bg-emerald-600 text-white"
-                    : "bg-[#2ecc8f] hover:bg-[#27b87d] text-white"
-                }`}
+              title={inCart ? "Sepetten çıkar" : "Sepete ekle"}
+              className={`w-9 h-9 rounded-lg border flex items-center justify-center transition-all
+              ${
+                inCart
+                  ? "bg-emerald-500 border-emerald-500 text-white"
+                  : "bg-white border-slate-200 text-slate-500 hover:border-slate-900 hover:text-slate-900"
+              }`}
             >
-              {inCart ? "✓ Sepette" : "Sepete Ekle"}
+              {inCart ? (
+                <span className="text-xs font-bold">✓</span>
+              ) : (
+                <ShoppingCart size={14} />
+              )}
             </button>
           </>
         ) : (
+          /* NOT AVAILABLE */
           <button
             disabled
-            className="px-5 py-2 rounded-lg text-sm font-bold bg-gray-200 text-gray-400 cursor-not-allowed"
+            className="w-9 h-9 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center cursor-not-allowed"
           >
-            Müsait Değil
+            <ShoppingCart size={14} className="text-slate-200" />
           </button>
         )}
       </div>
