@@ -18,8 +18,11 @@ const AUTH_PATHS = ["/panel", "/admin", "/sepet/odeme"];
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // --- DEMO ŞİFRE KONTROLÜ ---
-  // Demo modu aktifse (env var set edilmişse) tüm sayfaları koru
+  // API bypass
+  if (pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
   const demoSecret = process.env.DEMO_SECRET;
 
   if (demoSecret && !DEMO_EXEMPT.some((p) => pathname.startsWith(p))) {
@@ -31,7 +34,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // --- NEXT-AUTH KONTROLÜ (panel / admin) ---
   if (AUTH_PATHS.some((p) => pathname.startsWith(p))) {
     const token = await getToken({ req: request });
 
