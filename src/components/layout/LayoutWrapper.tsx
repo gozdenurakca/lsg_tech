@@ -16,11 +16,13 @@ export default function LayoutWrapper({
     pathname.startsWith("/admin") ||
     pathname.startsWith("/domain/results");
 
+  const isDemoPage = pathname === "/demo-giris";
+
   return (
     <>
-      {!isDashboard && <Navbar />}
+      {!isDashboard && !isDemoPage && <Navbar />}
       {children}
-      {!isDashboard && <Footer />}
+      {!isDashboard && !isDemoPage && <Footer />}
     </>
   );
 }
