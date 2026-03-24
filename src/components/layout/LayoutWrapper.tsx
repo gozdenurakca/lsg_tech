@@ -16,7 +16,7 @@ export default function LayoutWrapper({
     pathname.startsWith("/admin") ||
     pathname.startsWith("/domain/results");
 
-  const isDemoPage = pathname === "/demo-giris";
+  const isDemoPage = pathname.startsWith("/demo-giris");
 
   return (
     <>
