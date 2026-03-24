@@ -17,6 +17,7 @@ export async function GET(req: NextRequest) {
     const tier = searchParams.get("tier");
 
     const match: any = {};
+
     if (category) match.category = category;
     if (validation) match.validation = validation;
     if (type) match.productType = type;
