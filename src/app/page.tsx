@@ -9,6 +9,8 @@ import HomeResources from "@/components/home/HomeResources";
 import HomeContact from "@/components/home/HomeContact";
 import HomeTrust from "@/components/home/HomeTrust";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <main className="bg-[#f4f5f7] text-slate-900">
