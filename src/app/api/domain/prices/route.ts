@@ -1,3 +1,5 @@
+export {};
+
 /*
 
 app/api/domain/prices/route.ts

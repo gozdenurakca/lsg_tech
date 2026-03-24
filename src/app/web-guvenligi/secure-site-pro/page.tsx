@@ -6,7 +6,7 @@ import HowItWorks from "@/components/marketing/HowItWorks";
 import CTASection from "@/components/marketing/CTASection";
 import FaqSection from "@/components/marketing/FaqSection";
 
-import SSLPricingSection from "@/components/ssl/SslPricingSection";
+import SSLPricingSection from "@/components/ssl/SSLPricingSection";
 
 import { ICONS } from "@/lib/icons";
 

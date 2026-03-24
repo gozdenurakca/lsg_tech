@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import connectDB from "@/lib/db";
 import Order from "@/models/Order";
 
-import CustomerSidebar from "@/components/customer/CustomerSideBar";
+import CustomerSidebar from "@/components/customer/CustomerSidebar";
 import CustomerTopbar from "@/components/customer/CustomerTopbar";
 
 export default async function PanelLayout({

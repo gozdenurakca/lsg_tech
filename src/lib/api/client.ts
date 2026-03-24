@@ -1,4 +1,8 @@
-import { Product, Cart, ApiResponse } from '@/src/types'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Product = Record<string, any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Cart = Record<string, any>;
+type ApiResponse<T> = { success: boolean; data?: T; error?: string };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
 

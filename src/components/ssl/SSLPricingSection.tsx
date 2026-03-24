@@ -1,4 +1,5 @@
-import PricingRow, { Product } from "@/components/ssl/SslPricingRow";
+import PricingRow from "@/components/ssl/SslPricingRow";
+import type { Product } from "@/lib/ssl/types";
 import Link from "next/link";
 import { ICONS } from "@/lib/icons";
 

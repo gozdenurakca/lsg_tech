@@ -113,7 +113,7 @@ export default function DomainExtensions() {
 
             {/* FEATURES */}
             <ul className="flex flex-col gap-2">
-              {selected.highlights.map((h) => (
+              {(selected.highlights ?? []).map((h) => (
                 <li
                   key={h}
                   className="flex items-center gap-2.5 text-sm text-slate-700"

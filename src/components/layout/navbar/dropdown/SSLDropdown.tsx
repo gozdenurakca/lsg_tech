@@ -73,7 +73,7 @@ export default function SSLDropdown({ closeAll }: { closeAll: () => void }) {
       <div className="p-4">
         <div className="space-y-1">
           {SSL_ITEMS.map((item) => {
-            const Icon = ICONS[item.icon] ?? ICONS.badgeCheck;
+            const Icon = ICONS[item.icon] ?? ICONS.badge;
 
             return (
               <Link

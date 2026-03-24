@@ -6,7 +6,7 @@ const {
   eye: EyeIcon,
   shieldCheck: ShieldCheckIcon,
   globe: GlobeIcon,
-  trendingUp: TrendingUpIcon,
+  trending: TrendingUpIcon,
 } = ICONS;
 export default function MisyonVizyonPage() {
   return (

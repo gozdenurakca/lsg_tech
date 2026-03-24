@@ -58,7 +58,7 @@ const TLD_DATA: Record<
         desc: "Türk kullanıcılar .com.tr’ye güvenir.",
       },
       {
-        icon: "trendingUp",
+        icon: "trending",
         bg: "bg-emerald-50",
         color: "text-emerald-600",
         title: "SEO avantajı",
@@ -106,7 +106,7 @@ const TLD_DATA: Record<
         desc: "Her yerde tanınır.",
       },
       {
-        icon: "badgeCheck",
+        icon: "badge",
         bg: "bg-blue-50",
         color: "text-blue-600",
         title: "Güven",

@@ -1,7 +1,7 @@
-import SslHero from "@/components/ssl/SslHero";
-import SslTrustBar from "@/components/ssl/SslTrustBar";
-import SslPricingSection from "@/components/ssl/SslPricingSection";
-import SslInfoSection from "@/components/ssl/SslinfoSection";
+import SslHero from "@/components/ssl/SSLHero";
+import SslTrustBar from "@/components/ssl/SSLTrustBar";
+import SslPricingSection from "@/components/ssl/SSLPricingSection";
+import SslInfoSection from "@/components/ssl/SSLInfoSection";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";

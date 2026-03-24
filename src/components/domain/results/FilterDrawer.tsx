@@ -11,7 +11,8 @@ interface Props {
   setShowAvailableOnly: (val: boolean) => void;
 
   sortBy: string;
-  setSortBy: (val: string) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setSortBy: (val: any) => void;
 
   clearFilters: () => void;
   total: number;

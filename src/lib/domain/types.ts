@@ -12,18 +12,19 @@ export type DomainResult = Extension & {
 
 export type Extension = {
   ext: string;
-  tagline: string;
+  label?: string;
+  tagline?: string;
   price: number;
   oldPrice?: number | null;
-    period?: string; 
+  period?: string;
 
-  // UI
-  color: string;
-  lightBg: string;
-  textColor: string;
-  borderColor: string;
+  // UI (opsiyonel — bazı kullanım yerlerinde olmayabilir)
+  color?: string;
+  lightBg?: string;
+  textColor?: string;
+  borderColor?: string;
 
-  highlights: string[];
+  highlights?: string[];
   featured?: boolean;
 };
 

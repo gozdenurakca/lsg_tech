@@ -4,6 +4,7 @@ import Link from "next/link";
 import Icon from "@/components/ui/Icon";
 
 interface Props {
+  baseDomain?: string;
   searchInput: string;
   setSearchInput: (val: string) => void;
   onSearch: (e: React.FormEvent) => void;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export default function ResultsHeader({
+  baseDomain,
   searchInput,
   setSearchInput,
   onSearch,

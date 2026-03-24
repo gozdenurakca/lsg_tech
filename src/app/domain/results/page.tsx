@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import DomainResultsPage from "@/components/domain/results/DomainResultsPage";
 
-// Domain arama sonuçları sayfası
-// DomainResultsPage bileşenini render ediyor.
-
 export default function Page() {
-  return <DomainResultsPage />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F7F9FC]" />}>
+      <DomainResultsPage />
+    </Suspense>
+  );
 }
