@@ -1,0 +1,1 @@
+// domain search hook (logic)
