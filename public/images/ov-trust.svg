@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield -->
+  <path d="M16 3L26 7V14C26 21 21.5 26 16 29C10.5 26 6 21 6 14V7L16 3Z" fill="#ECEFF1"/>
+
+  <!-- Check -->
+  <path d="M12.5 16.5L15 19L20 13.5" stroke="#2E7D32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

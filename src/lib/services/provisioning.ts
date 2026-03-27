@@ -12,6 +12,10 @@ export async function startProvisioning(orderId: string, accountId: string) {
     throw new Error("Only paid orders can be provisioned")
   }
 
+  if (!order.csr) {
+    throw new Error("CSR girilmeden provisioning başlatılamaz")
+  }
+
   const result = await digicertMock.createOrder({
     domain: order.domain,
     productSlug: order.productSlug,

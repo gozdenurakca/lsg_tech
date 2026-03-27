@@ -1,10 +1,12 @@
 import ProductHero from "@/components/marketing/hero/ProductHero";
 import TrustBar from "@/components/marketing/TrustBar";
 import PricingSection from "@/components/pricing/PricingSection";
+import SslPricingRow from "@/components/ssl/SslPricingRow";
 import InfoSection from "@/components/marketing/InfoSection";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
+import type { Product } from "@/lib/ssl/types";
 
 export default async function SiteLockPage() {
   const [products] = await Promise.all([
@@ -50,18 +52,27 @@ export default async function SiteLockPage() {
       <TrustBar
         title="Web siteniz her zaman güvende"
         description="SiteLock, sürekli tarama ve gelişmiş güvenlik katmanları ile sitenizi korur."
-        imageSrc="/images/sitelock-trust.svg"
+        imageSrc="/images/sitelock2.png"
         stats={[
           { value: "1M+", label: "Korunan Website" },
           { value: "250K+", label: "Temizlenen Malware" },
         ]}
       />
 
-      <PricingSection
+      <PricingSection<Product>
         id="pricing"
+        layout="list"
         title="SiteLock Paketleri"
         subtitle="Web sitenizi zararlı yazılımlara ve saldırılara karşı koruyan güçlü güvenlik paketleri."
         products={sortedProducts}
+        renderRow={(product: Product, idx: number) => (
+          <SslPricingRow
+            key={product._id ?? product.slug}
+            product={product}
+            defaultYears={1}
+            featured={product.featured || idx === 0}
+          />
+        )}
       />
 
       <InfoSection

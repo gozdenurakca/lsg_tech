@@ -74,12 +74,12 @@ export default function Hero({
               />
 
               <div className="absolute inset-0 flex items-center justify-center p-10">
-                <div className="relative w-full h-full max-w-[860px]">
+                <div className="relative w-full h-full max-w-[860px] rounded-2xl overflow-hidden">
                   <Image
                     src={imageSrc}
                     alt={imageAlt}
                     fill
-                    className="object-contain"
+                    className="object-contain [clip-path:inset(0_round_16px)]"
                     priority
                   />
                 </div>

@@ -1,19 +1,85 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ICONS } from "@/lib/icons";
+
 import Hero from "@/components/marketing/hero/ProductHero";
-import FeatureGrid from "@/components/marketing/FeatureGrid";
 import TrustBar from "@/components/marketing/TrustBar";
 import InfoSection from "@/components/marketing/InfoSection";
 import HowItWorks from "@/components/marketing/HowItWorks";
 import FaqSection from "@/components/marketing/FaqSection";
 import CTASection from "@/components/marketing/CTASection";
-import PricingSection from "@/components/pricing/PricingSection";
-import type { PricingProduct } from "@/components/pricing/PricingRow";
+
+import type { Product } from "@/lib/ssl/types";
+
+/* ── SSL Tip Verileri ─────────────────────────────── */
+const SSL_TYPES = [
+  {
+    type: "DV",
+    name: "Domain Validation",
+    tagline: "Hızlı & Uygun Fiyatlı",
+    desc: "Alan adı sahipliğini doğrular. Blog, kişisel site ve startup landing page'leri için idealdir.",
+    price: "₺149",
+    priceLabel: "/yıldan başlayan",
+    href: "/ssl/dv",
+    icon: "lock" as const,
+    features: ["5–10 dk aktivasyon", "256-bit şifreleme", "HTTPS güven kilidi"],
+    accent: "from-blue-500 to-cyan-500",
+    iconBg: "bg-blue-50",
+    iconColor: "text-blue-600",
+    badgeColor: "bg-blue-100 text-blue-700",
+  },
+  {
+    type: "OV",
+    name: "Organization Validation",
+    tagline: "Kurumsal Güven",
+    desc: "Şirket kimliğini doğrular. Kurumsal web siteleri ve e-ticaret platformları için uygundur.",
+    price: "₺399",
+    priceLabel: "/yıldan başlayan",
+    href: "/ssl/ov",
+    icon: "shieldCheck" as const,
+    features: ["1–3 gün aktivasyon", "Şirket doğrulaması", "Kurumsal güven sinyali"],
+    accent: "from-emerald-500 to-teal-500",
+    iconBg: "bg-emerald-50",
+    iconColor: "text-emerald-600",
+    badgeColor: "bg-emerald-100 text-emerald-700",
+  },
+  {
+    type: "EV",
+    name: "Extended Validation",
+    tagline: "Maksimum Güven",
+    desc: "En kapsamlı doğrulama seviyesi. Bankacılık, finans ve yüksek güven gerektiren platformlar için.",
+    price: "₺799",
+    priceLabel: "/yıldan başlayan",
+    href: "/ssl/ev",
+    icon: "award" as const,
+    features: ["3–7 gün aktivasyon", "Tam şirket doğrulaması", "En yüksek güven seviyesi"],
+    accent: "from-violet-500 to-purple-500",
+    iconBg: "bg-violet-50",
+    iconColor: "text-violet-600",
+    badgeColor: "bg-violet-100 text-violet-700",
+    featured: true,
+  },
+  {
+    type: "Wildcard",
+    name: "Wildcard SSL",
+    tagline: "Tüm Alt Domainler",
+    desc: "*.siteniz.com formatındaki tüm subdomainleri tek sertifika ile korur. Ekstra maliyet yok.",
+    price: "₺599",
+    priceLabel: "/yıldan başlayan",
+    href: "/ssl/wildcard",
+    icon: "layers" as const,
+    features: ["Sınırsız subdomain", "10–30 dk aktivasyon", "Tek sertifika yönetimi"],
+    accent: "from-orange-500 to-amber-500",
+    iconBg: "bg-orange-50",
+    iconColor: "text-orange-600",
+    badgeColor: "bg-orange-100 text-orange-700",
+  },
+];
 
 type Props = {
-  products: PricingProduct[];
+  products?: Product[];
 };
 
 function SslNavbar() {
@@ -47,15 +113,13 @@ function SslNavbar() {
         <button
           onClick={scrollTop}
           className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-blue-900 hover:text-white text-slate-500 flex items-center justify-center transition-all flex-shrink-0"
-          title="Başa dön"
-          aria-label="Başa dön"
         >
           <ICONS.arrowUp size={15} />
         </button>
 
         <div className="w-px h-5 bg-slate-200 flex-shrink-0" />
 
-        <div className="flex items-center gap-1 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex items-center gap-1 overflow-x-auto">
           {links.map((l) => (
             <a
               key={l.href}
@@ -67,10 +131,10 @@ function SslNavbar() {
           ))}
         </div>
 
-        <div className="ml-auto flex-shrink-0">
+        <div className="ml-auto">
           <a
             href="#fiyatlandirma"
-            className="inline-flex items-center gap-1.5 bg-blue-900 hover:bg-blue-800 text-white text-[13px] font-semibold px-4 py-2 rounded-lg transition"
+            className="inline-flex items-center gap-1.5 bg-blue-900 text-white text-[13px] font-semibold px-4 py-2 rounded-lg"
           >
             Hemen Al <ICONS.arrowRight size={13} />
           </a>
@@ -83,7 +147,7 @@ function SslNavbar() {
 export default function SSLPageClient({ products }: Props) {
   return (
     <div className="bg-white font-sans">
-      {/* statik bir şekilde kalabilir.*/}
+      {/* HERO */}
       <Hero
         badge={{
           icon: "ShieldCheck",
@@ -116,55 +180,95 @@ export default function SSLPageClient({ products }: Props) {
 
       <SslNavbar />
 
-      <PricingSection
-        id="fiyatlandirma"
-        eyebrow="DV Sertifikaları"
-        title="Domain Validation — Hızlı Başlangıç"
-        subtitle="Domain sahipliğini doğrulayan, dakikalar içinde aktif olan, uygun fiyatlı SSL sertifikaları."
-        products={products}
-      />
+      {/* SSL TİPLERİ */}
+      <section id="fiyatlandirma" className="py-24 bg-[#f8fafc] scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <p className="text-[11px] uppercase tracking-[0.25em] text-blue-500 font-bold mb-3">
+              Sertifika Türleri
+            </p>
+            <h2 className="text-[clamp(28px,3vw,42px)] font-bold text-slate-900 mb-4">
+              İhtiyacınıza Uygun SSL'i Seçin
+            </h2>
+            <p className="text-slate-500 max-w-xl mx-auto">
+              Her site için doğru doğrulama seviyesi. Hangi sertifikanın size uygun olduğundan emin değilseniz uzmanlarımıza sorun.
+            </p>
+          </div>
 
-      {/* statik bir şekilde kalabilir.*/}
-      <FeatureGrid
-        title="Daha Fazla SSL Sertifikası Seçeneği"
-        subtitle="Her ihtiyaca uygun sertifika türleri. Hangisinin size uygun olduğundan emin değilseniz uzmanlarımıza sorun."
-        ctaHref="/#teklif"
-        products={[
-          {
-            type: "DV",
-            name: "Domain Validation",
-            desc: "Hızlı, uygun maliyetli. Blog ve kişisel siteler için.",
-            icon: "Lock",
-            color: "bg-blue-50 text-blue-600 border-blue-100",
-            href: "/ssl/dv",
-          },
-          {
-            type: "OV",
-            name: "Organization Validation",
-            desc: "Kurumsal kimlik doğrulamalı. KOBİ ve şirketler için.",
-            icon: "ShieldCheck",
-            color: "bg-indigo-50 text-indigo-600 border-indigo-100",
-            href: "/ssl/ov",
-          },
-          {
-            type: "EV",
-            name: "Extended Validation",
-            desc: "En yüksek güven. Finans ve e-ticaret için standart.",
-            icon: "award",
-            color: "bg-emerald-50 text-emerald-600 border-emerald-100",
-            href: "/ssl/ev",
-          },
-          {
-            type: "Wildcard",
-            name: "Wildcard SSL",
-            desc: "Tüm alt domainlerinizi tek sertifikayla koruyun.",
-            icon: "Globe",
-            color: "bg-orange-50 text-orange-600 border-orange-100",
-            href: "/ssl/wildcard",
-          },
-        ]}
-      />
-      {/* statik bir şekilde kalabilir.*/}
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+            {SSL_TYPES.map((ssl) => {
+              const Icon = ICONS[ssl.icon] ?? ICONS.shield;
+              return (
+                <div
+                  key={ssl.type}
+                  className={`relative bg-white rounded-3xl border overflow-hidden flex flex-col transition-all hover:-translate-y-1 hover:shadow-xl ${
+                    ssl.featured
+                      ? "border-violet-200 shadow-lg shadow-violet-100/50"
+                      : "border-slate-200 shadow-sm"
+                  }`}
+                >
+                  {ssl.featured && (
+                    <div className="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-violet-600 text-white text-[10px] font-bold tracking-wide uppercase">
+                      Popüler
+                    </div>
+                  )}
+
+                  {/* Gradient top bar */}
+                  <div className={`h-1.5 w-full bg-gradient-to-r ${ssl.accent}`} />
+
+                  <div className="p-6 flex flex-col flex-1">
+                    {/* Icon + type */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${ssl.iconBg}`}>
+                        <Icon size={18} className={ssl.iconColor} />
+                      </div>
+                      <span className={`text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${ssl.badgeColor}`}>
+                        {ssl.type}
+                      </span>
+                    </div>
+
+                    {/* Name + tagline */}
+                    <h3 className="text-[16px] font-bold text-slate-900 mb-1">{ssl.name}</h3>
+                    <p className="text-[12px] font-semibold text-slate-400 uppercase tracking-wide mb-3">{ssl.tagline}</p>
+                    <p className="text-[13px] text-slate-500 leading-relaxed mb-5">{ssl.desc}</p>
+
+                    {/* Features */}
+                    <ul className="space-y-2 mb-6 flex-1">
+                      {ssl.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5 text-[13px] text-slate-600">
+                          <ICONS.checkCircle size={14} className="text-emerald-500 shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Price + CTA */}
+                    <div className="border-t border-slate-100 pt-5 mt-auto">
+                      <div className="mb-4">
+                        <span className="text-[24px] font-extrabold text-slate-900">{ssl.price}</span>
+                        <span className="text-[12px] text-slate-400 ml-1">{ssl.priceLabel}</span>
+                      </div>
+                      <Link
+                        href={ssl.href}
+                        className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-bold transition-all ${
+                          ssl.featured
+                            ? "bg-violet-600 hover:bg-violet-500 text-white"
+                            : "bg-slate-900 hover:bg-slate-700 text-white"
+                        }`}
+                      >
+                        Sertifika Seç
+                        <ICONS.arrowRight size={13} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST */}
       <TrustBar
         id="guven"
         eyebrow="Güven"
@@ -174,9 +278,8 @@ export default function SSLPageClient({ products }: Props) {
             Güçlü Partner Ekosistemi
           </>
         }
-        description="LSG altyapısı ile çalışan yüzlerce partner ve binlerce aktif sertifika ile müşterilerimize kesintisiz güvenlik sağlıyoruz. Otomatik provizyon, güçlü API altyapısı ve 7/24 teknik destek ile dijital güvenliğinizi garanti altına alıyoruz."
+        description="LSG altyapısı ile çalışan yüzlerce partner ve binlerce aktif sertifika ile müşterilerimize kesintisiz güvenlik sağlıyoruz."
         imageSrc="/images/guven.png"
-        imageAlt="Secure infrastructure"
         stats={[
           { value: "10,000+", label: "Aktif Sertifika" },
           { value: "15+", label: "Yıllık Tecrübe" },
@@ -185,104 +288,86 @@ export default function SSLPageClient({ products }: Props) {
         ]}
       />
 
-      {/* statik bir şekilde kalabilir.*/}
-
+      {/* INFO */}
       <InfoSection
         id="neden-lsg"
         title="LSG SSL Sertifikası almak için nedenler"
         items={[
           {
-            title:
-              "90 günlük yeniden düzenleme ile sektör standartlarının ötesinde",
-            desc: "Yönetilen SSL'lerimiz sitenizi daha iyi korumak için her 90 günde bir yeniden düzenlenir.",
+            title: "90 günlük yeniden düzenleme",
+            desc: "Her 90 günde bir otomatik yenileme.",
           },
           {
             title: "Üstün müşteri hizmetleri",
-            desc: "Güvenlik uzmanlarımızdan 7/24 uygulamalı destek alabilirsiniz.",
+            desc: "7/24 destek.",
           },
           {
-            title: "Gerçek sertifika otoritesi altyapısı",
-            desc: "DigiCert altyapısı ile global güven standartlarını sunuyoruz.",
+            title: "Gerçek CA altyapısı",
+            desc: "DigiCert güveni.",
           },
           {
-            title: "SEO sıralamasını artırın",
-            desc: "HTTPS kullanan siteler arama motorlarında daha üst sıralarda yer alır.",
+            title: "SEO avantajı",
+            desc: "HTTPS ile üst sıralar.",
           },
           {
-            title: "Düzenleme standartlarına uyumluluk",
-            desc: "PCI-DSS, GDPR ve diğer güvenlik standartlarına uyumluluğa yardımcı olur.",
+            title: "Uyumluluk",
+            desc: "PCI-DSS, GDPR.",
           },
           {
-            title: "Güvenli mobil ve online ödeme",
-            desc: "SSL şifreleme müşteri verilerini uçtan uca korur.",
+            title: "Güvenli ödeme",
+            desc: "Veri şifreleme.",
           },
         ]}
       />
 
-      {/* statik bir şekilde kalabilir.*/}
-
+      {/* HOW */}
       <HowItWorks
-        id="nasil"
         title="SSL sertifikaları nasıl çalışır?"
         subtitle="SSL sertifikaları kullanıcı verilerini şifreleyerek güvenli bir bağlantı sağlar."
         steps={[
           {
             title: "SSL sözleşmesi",
-            desc: "Bir ziyaretçi SSL sertifikası olan bir web sitesine eriştiğinde tarayıcı ile şifreli bağlantı kurulur.",
+            desc: "Tarayıcı ile güvenli bağlantı kurulur.",
             imageSrc: "/images/step1.jpg",
           },
           {
-            title: "Güven göstergesi görünür",
-            desc: "HTTPS ve kilit simgesi ziyaretçilere verilerin şifrelendiğini gösterir.",
+            title: "Güven göstergesi",
+            desc: "HTTPS görünür.",
             imageSrc: "/images/step2.jpg",
           },
           {
-            title: "Veriler güvenle iletilir",
-            desc: "SSL sertifikası site ile ziyaretçi arasındaki tüm verileri şifreler.",
+            title: "Veri güvenliği",
+            desc: "Tüm veri şifrelenir.",
             imageSrc: "/images/step3.jpg",
           },
         ]}
       />
 
-      {/* statik bir şekilde kalabilir. - zaman içerisinde güncellenir*/}
-
+      {/* FAQ */}
       <FaqSection
         id="sss"
         eyebrow="SSS"
         title="Sıkça Sorulan Sorular"
         faqs={[
           {
-            q: "SSL sertifikası nedir ve neden gereklidir?",
-            a: "SSL (Secure Sockets Layer) sertifikası, siteniz ile ziyaretçileri arasındaki veri iletişimini şifreleyen dijital bir sertifikadır. HTTPS bağlantısı sağlar, tarayıcıda kilit ikonu gösterir ve Google sıralamalarını olumlu etkiler. Günümüzde tüm web siteleri için zorunlu hale gelmiştir.",
+            q: "SSL nedir?",
+            a: "Veriyi şifreler.",
           },
           {
-            q: "DV, OV ve EV sertifika arasındaki fark nedir?",
-            a: "DV (Domain Validation) sadece domain sahipliğini doğrular, en hızlı ve uygun fiyatlıdır. OV (Organization Validation) şirket kimliğini de doğrular, kurumsal güven sağlar. EV (Extended Validation) en kapsamlı doğrulamayı yapar, tarayıcıda şirket adınızı gösterir ve finans/e-ticaret siteleri için standarttır.",
+            q: "DV / OV / EV farkı?",
+            a: "Doğrulama seviyesi farkı.",
           },
           {
-            q: "Wildcard SSL nedir, ne zaman kullanmalıyım?",
-            a: "Wildcard SSL, *.sirket.com.tr gibi tüm alt domainleri tek sertifikayla korur. blog.sirket.com.tr, shop.sirket.com.tr, panel.sirket.com.tr gibi birden fazla alt domaininiz varsa Wildcard SSL hem ekonomik hem de pratik çözümdür.",
-          },
-          {
-            q: "Sertifika kurulumunda yardım alabilir miyim?",
-            a: "Evet! 7/24 Türkçe teknik destek ekibimiz cPanel, Plesk, Nginx, Apache ve IIS dahil tüm popüler platformlarda kurulum desteği sağlar. Ek ücret talep etmiyoruz.",
-          },
-          {
-            q: "Mevcut sertifikamı LSG'ye taşıyabilir miyim?",
-            a: "Evet, mevcut sertifikanızın kalan süresini yeni sertifikanıza ekleyebilirsiniz. Taşıma sürecinde ekibimiz size adım adım rehberlik eder.",
+            q: "Wildcard nedir?",
+            a: "Tüm subdomainleri kapsar.",
           },
         ]}
       />
 
-      {/* statik bir şekilde kalabilir.*/}
+      {/* CTA */}
       <section className="pb-24 bg-white">
         <div className="max-w-3xl mx-auto px-6">
-          <CTASection
-            title="Aklınızda başka sorular mı var?"
-            subtitle="Uzman ekibimiz 7/24 yanınızda."
-            buttonLabel="Ücretsiz Danışmanlık Al"
-            buttonHref="/#teklif"
-          />
+          <CTASection />
         </div>
       </section>
     </div>

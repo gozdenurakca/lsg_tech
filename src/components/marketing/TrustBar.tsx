@@ -32,23 +32,6 @@ export default function TrustBar({
   return (
     <section id={id} className="py-28 bg-[#f8fafc] scroll-mt-24">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-        {/* IMAGE or VISUAL */}
-        <div className="relative w-full h-[420px] rounded-3xl overflow-hidden shadow-xl">
-          {visual ? (
-            visual
-          ) : imageSrc ? (
-            <>
-              <Image
-                src={imageSrc}
-                alt={imageAlt}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-transparent" />
-            </>
-          ) : null}
-        </div>
-
         {/* CONTENT */}
         <div>
           {eyebrow && (
@@ -88,6 +71,23 @@ export default function TrustBar({
               Henüz istatistik bulunmuyor.
             </div>
           )}
+        </div>
+
+        {/* IMAGE or VISUAL */}
+        <div className="relative w-full h-[420px] rounded-3xl overflow-hidden shadow-xl">
+          {visual ? (
+            visual
+          ) : imageSrc ? (
+            <>
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-transparent to-transparent" />
+            </>
+          ) : null}
         </div>
       </div>
     </section>

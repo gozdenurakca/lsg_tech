@@ -1,10 +1,13 @@
-import SslHero from "@/components/ssl/SSLHero";
-import SslTrustBar from "@/components/ssl/SSLTrustBar";
-import SslPricingSection from "@/components/ssl/SSLPricingSection";
-import SslInfoSection from "@/components/ssl/SSLInfoSection";
+import Hero from "@/components/marketing/hero/ProductHero";
+import TrustBar from "@/components/marketing/TrustBar";
+import InfoSection from "@/components/marketing/InfoSection";
+import PricingSection from "@/components/pricing/PricingSection";
+
+import SslPricingRow from "@/components/ssl/SslPricingRow";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
+import type { Product } from "@/lib/ssl/types";
 
 export default async function EVMarketingPage() {
   const [standardProducts, multiDomainProducts, brands] = await Promise.all([
@@ -18,49 +21,93 @@ export default async function EVMarketingPage() {
 
   return (
     <main className="bg-white text-slate-900">
-      <SslHero
-        badge="Extended Validation SSL"
+      <Hero
+        badge={{
+          icon: "ShieldCheck",
+          label: "Extended Validation SSL",
+        }}
         title="EV SSL Sertifikaları"
-        description="En kapsamlı doğrulama ile maksimum güven. Bankacılık, finans ve yüksek güven gerektiren platformlar için ideal."
+        subtitle="En kapsamlı doğrulama ile maksimum güven. Bankacılık, finans ve yüksek güven gerektiren platformlar için ideal."
+        imageSrc="/images/ev.png"
+        primaryButton={{
+          label: "Sertifika Seç",
+          href: "#pricing",
+        }}
+      />
+
+      <TrustBar
+        id="guven"
+        title="En güçlü güven sinyali"
+        description="256-bit şifreleme, kurumsal doğrulama ve yüksek güven gerektiren platformlar için ideal SSL altyapısı."
+        imageSrc="/images/ev2.png"
         stats={[
-          { k: "Aktivasyon", v: "3–7 gün" },
-          { k: "Şifreleme", v: "256-bit" },
-          { k: "Doğrulama", v: "EV doğrulama" },
-          { k: "Prestij", v: "En yüksek seviye" },
-        ]}
-        note="* EV SSL sertifikaları en kapsamlı doğrulama sürecinden geçer ve yüksek güven gerektiren platformlar için önerilir."
-      />
-
-      <SslTrustBar
-        items={[
-          { icon: "shield", text: "En güçlü güven sinyali" },
-          { icon: "lock", text: "256-bit şifreleme" },
-          { icon: "badge", text: "Kurumsal doğrulama" },
-          { icon: "zap", text: "Yüksek güven gerektiren platformlar" },
+          { value: "3–7 gün", label: "Aktivasyon" },
+          { value: "256-bit", label: "Şifreleme" },
+          { value: "EV", label: "Doğrulama" },
+          { value: "Prestij", label: "En yüksek seviye" },
         ]}
       />
 
-      <SslPricingSection
+      <PricingSection<Product>
+        id="pricing"
+        layout="list"
         title="EV SSL Paketleri"
-        description="En kapsamlı doğrulama ile maksimum kurumsal güven."
+        subtitle="En kapsamlı doğrulama ile maksimum kurumsal güven."
         products={sortedStandard}
-        wildcardProducts={sortedMultiDomain}
-        brands={brands}
+        renderRow={(product: Product, idx: number) => (
+          <SslPricingRow
+            key={product._id ?? product.slug}
+            product={product}
+            defaultYears={3}
+            featured={product.featured || idx === 0}
+          />
+        )}
       />
 
-      <SslInfoSection
+      {sortedMultiDomain.length > 0 && (
+        <PricingSection<Product>
+          title="Multi Domain EV SSL Paketleri"
+          subtitle="Birden fazla domain için tek sertifika ile güvenlik sağlayın."
+          products={sortedMultiDomain}
+          renderRow={(product: Product, idx: number) => (
+            <SslPricingRow
+              key={product._id ?? product.slug}
+              product={product}
+              defaultYears={3}
+              featured={product.featured || idx === 0}
+            />
+          )}
+        />
+      )}
+
+      <InfoSection
         title="EV SSL Nedir?"
-        description="Genişletilmiş Doğrulama (EV) SSL sertifikaları, bir web sitesinin arkasındaki kuruluşun kimliğini doğrulamak için en kapsamlı inceleme süreçlerinden geçen en üst düzey SSL türüdür. Bu doğrulama sayesinde kullanıcılar web sitesinin güvenilir bir kuruluşa ait olduğunu kolayca anlayabilir."
-        stats={[
-          { title: "3–7 gün", desc: "Aktivasyon süresi" },
-          { title: "EV", desc: "En kapsamlı doğrulama" },
-          { title: "256-bit", desc: "Güvenli şifreleme" },
-          { title: "Prestij", desc: "Kurumsal güven" },
-        ]}
-        features={[
-          "Bankacılık ve finans uygulamaları",
-          "Ödeme sistemleri ve fintech platformları",
-          "Kurumsal marka web siteleri",
+        items={[
+          {
+            title:
+              "Genişletilmiş Doğrulama (EV) SSL sertifikaları, bir web sitesinin arkasındaki kuruluşun kimliğini doğrulamak için en kapsamlı inceleme süreçlerinden geçen en üst düzey SSL türüdür.",
+            desc: "Bu doğrulama sayesinde kullanıcılar web sitesinin güvenilir bir kuruluşa ait olduğunu kolayca anlayabilir.",
+          },
+          {
+            title: "3–7 gün",
+            desc: "Aktivasyon süresi",
+          },
+          {
+            title: "EV",
+            desc: "En kapsamlı doğrulama",
+          },
+          {
+            title: "256-bit",
+            desc: "Güvenli şifreleme",
+          },
+          {
+            title: "Prestij",
+            desc: "Kurumsal güven",
+          },
+          {
+            title: "Kullanım alanı",
+            desc: "Bankacılık ve finans uygulamaları, Ödeme sistemleri ve fintech platformları, Kurumsal marka web siteleri",
+          },
         ]}
       />
     </main>

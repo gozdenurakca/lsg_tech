@@ -60,7 +60,8 @@ export default function SslPricingRow({
     <div
       className={[
         "group relative overflow-hidden rounded-3xl border bg-white shadow-sm transition",
-        "hover:-translate-y-0.5 hover:shadow-xl",
+        "hover:-translate-y-1 hover:shadow-2xl",
+        "w-full", // full width
         featured ? "border-blue-200 shadow-lg" : "border-slate-200",
       ].join(" ")}
     >
@@ -120,6 +121,7 @@ export default function SslPricingRow({
           </div>
 
           <div className="w-full lg:w-[420px]">
+            {" "}
             <div className="rounded-2xl border p-5 md:p-6 bg-slate-50/40">
               <div className="inline-flex rounded-xl border bg-white p-1">
                 {[1, 2, 3].map((y) => (

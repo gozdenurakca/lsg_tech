@@ -6,12 +6,15 @@ export default async function Page() {
 
   const products = (raw as any[]).map((p) => ({
     name: p.name ?? "",
+    slug: p.slug ?? "", // 🔥 ZORUNLU (hata buradan geliyordu)
     brand: p.brand ?? "",
+
     price: {
-      oneYear: typeof p.price === "object" ? p.price?.oneYear : p.price,
+      oneYear: typeof p.price === "object" ? p.price?.oneYear : (p.price ?? 0),
       twoYear: typeof p.price === "object" ? p.price?.twoYear : undefined,
       threeYear: typeof p.price === "object" ? p.price?.threeYear : undefined,
     },
+
     period: p.period ?? "/yıl",
     tag: p.tag ?? null,
     featured: p.featured ?? false,
@@ -19,7 +22,9 @@ export default async function Page() {
     features: p.features ?? [],
     warranty: p.warranty ?? "",
     issuance: p.issuance ?? "",
-    href: (p.href ?? p.slug) ? `/ssl/${p.slug}` : `/ssl/${p._id}`,
+
+    // 🔥 daha güvenli href
+    href: p.slug ? `/ssl/${p.slug}` : p._id ? `/ssl/${p._id}` : "#",
   }));
 
   return <SSLPageClient products={products} />;

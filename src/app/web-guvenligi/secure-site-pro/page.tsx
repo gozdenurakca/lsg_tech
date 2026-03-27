@@ -6,9 +6,9 @@ import HowItWorks from "@/components/marketing/HowItWorks";
 import CTASection from "@/components/marketing/CTASection";
 import FaqSection from "@/components/marketing/FaqSection";
 
-import SSLPricingSection from "@/components/ssl/SSLPricingSection";
-
-import { ICONS } from "@/lib/icons";
+import PricingSection from "@/components/pricing/PricingSection";
+import SslPricingRow from "@/components/ssl/SslPricingRow";
+import type { Product } from "@/lib/ssl/types";
 
 import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
@@ -126,10 +126,20 @@ export default async function SecureSiteProPage() {
         ]}
       />
 
-      <SSLPricingSection
+      <PricingSection<Product>
+        id="pricing"
+        layout="list"
         title="Secure Site Pro Paketleri"
-        description="Web sitenizi korumak için en uygun planı seçin."
+        subtitle="Web sitenizi korumak için en uygun planı seçin."
         products={sortedProducts}
+        renderRow={(product: Product, idx: number) => (
+          <SslPricingRow
+            key={product._id ?? product.slug}
+            product={product}
+            defaultYears={1}
+            featured={product.featured || idx === 0}
+          />
+        )}
       />
 
       <InfoSection

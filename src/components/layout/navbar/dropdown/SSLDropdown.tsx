@@ -31,6 +31,15 @@ const SSL_ITEMS = [
     color: "#8B5CF6",
     bg: "rgba(139,92,246,0.08)",
   },
+  {
+    title: "Wildcard SSL",
+    desc: "Tüm alt domainler tek sertifikayla",
+    href: "/ssl/wildcard",
+    icon: "layers",
+    badge: "Çoklu Domain",
+    color: "#0891B2", // cyan-600
+    bg: "rgba(8,145,178,0.08)", // cyan çok hafif
+  },
 ] as const;
 
 const ArrowIcon = ICONS.arrowUpRight;

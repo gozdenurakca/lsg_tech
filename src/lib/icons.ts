@@ -1,11 +1,7 @@
 import {
-  // layout & admin
   LayoutDashboard,
   BarChart3,
   Settings,
-
-
-  // arrows
   ArrowRight,
   ArrowUp,
   ArrowUpRight,
@@ -13,8 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
-
-  // status
   Check,
   CheckCircle,
   CheckCircle2,
@@ -41,30 +35,20 @@ import {
   ShoppingCart,
   CreditCard,
   Package,
-
-  // people
   Users,
   Building2,
   Landmark,
   Handshake,
-
-  // content
   BookOpen,
   FileText,
   Code,
   Code2,
-
-  // support
   HelpCircle,
   LifeBuoy,
   MessageCircle,
   Phone,
   Mail,
-
-  // media
   Video,
-
-  // misc
   Tag,
   ExternalLink,
   Search,
@@ -117,15 +101,32 @@ import {
   Zap,
   Link,
   SlidersHorizontal,
+  Hash,
+  FileCode2,
+  ClipboardCopy,
+  Info,
+  Terminal,
+  Monitor,
+  Download,
+  Wrench,
+  HardDrive,
+  Cloud,
+  RotateCw,
+  Brain,
+  Ban,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
 export type IconType = keyof typeof ICONS;
-
 export const ICONS: Record<string, LucideIcon> = {
   bot : Bot,
   link:Link,
-
+  mfa: ShieldCheck,
+  adaptive: Brain,
+  integration: Link,
+  cloud: Cloud,
+  passwordless: Ban,
+  scale: TrendingUp,
   wand2 : Wand2,
   zap : Zap,
   triangleAlert : TriangleAlert,
@@ -228,4 +229,24 @@ export const ICONS: Record<string, LucideIcon> = {
   youtube: Youtube,
   mapPin: MapPin,
   headphones: Headphones,
+  hash: Hash,
+  fileCode: FileCode2,
+  clipboardCopy: ClipboardCopy,
+  info: Info,
+  terminal: Terminal,
+  tenant: Building2,
+  report: BarChart3,
+  monitor: Monitor,
+  download: Download,
+  wrench: Wrench,
+  hardDrive: HardDrive,
+  rotateCw: RotateCw,
+  protection: Shield,
+  encryption: Lock,
+  files: Package,
+  disclaimer: FileText,
+  discovery: Search,
+  visibility: BarChart3,
+  automation: Settings,
+  governance: Landmark,
 };
