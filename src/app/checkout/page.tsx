@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Script from "next/script";
 
 export default function CheckoutPage() {
   const [token, setToken] = useState("");
@@ -52,13 +53,25 @@ export default function CheckoutPage() {
     initPayment();
   }, []);
 
-  if (loading) return <div>Ödeme hazırlanıyor...</div>;
-  if (!token) return <div>Ödeme başlatılamadı ❌</div>;
+  if (loading) return <div className="flex items-center justify-center min-h-[400px] text-slate-500">Ödeme hazırlanıyor...</div>;
+  if (!token) return <div className="flex items-center justify-center min-h-[400px] text-red-500">Ödeme başlatılamadı ❌</div>;
 
   return (
-    <iframe
-      src={`https://www.paytr.com/odeme/guvenli/${token}`}
-      style={{ width: "100%", height: "600px", border: "none" }}
-    />
+    <>
+      {/* PayTR resmi iframeResizer — iframe'i içeriğe göre otomatik boyutlandırır */}
+      <Script
+        src="https://www.paytr.com/js/iframeResizer.min.js"
+        onLoad={() => {
+          // @ts-ignore
+          if (typeof iFrameResize !== "undefined") iFrameResize({}, "#paytriframe");
+        }}
+      />
+      <iframe
+        id="paytriframe"
+        src={`https://www.paytr.com/odeme/guvenli/${token}`}
+        scrolling="no"
+        style={{ width: "100%", border: "none" }}
+      />
+    </>
   );
 }

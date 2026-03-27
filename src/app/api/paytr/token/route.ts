@@ -17,8 +17,7 @@ export async function POST(req: NextRequest) {
 
     const merchant_oid = body.orderId;
     const email = body.email;
-    const payment_amount = String(body.amount); 
-    // ileride şunu koyacağız buraya const payment_amount = body.amount.toString();
+    const payment_amount = String(body.amount);
     const user_name = body.userName || "Müşteri";
     const user_address = body.userAddress || "Türkiye";
     const user_phone = body.userPhone || "05000000000";
@@ -74,7 +73,7 @@ export async function POST(req: NextRequest) {
         user_phone,
         merchant_ok_url,
         merchant_fail_url,
-        debug_on: "1",
+        debug_on: process.env.NODE_ENV === "development" ? "1" : "0",
         no_installment,
         max_installment,
         currency,
@@ -85,21 +84,6 @@ export async function POST(req: NextRequest) {
     });
 
     const data = await response.json();
-
-    // GEÇİCİ DEBUG
-    console.log("=== PAYTR DEBUG ===");
-    console.log("merchant_id:", JSON.stringify(merchant_id));
-    console.log("merchant_key:", JSON.stringify(merchant_key));
-    console.log("merchant_salt:", JSON.stringify(merchant_salt));
-    console.log("user_ip:", user_ip);
-    console.log("merchant_oid:", merchant_oid);
-    console.log("payment_amount:", JSON.stringify(payment_amount));
-    console.log("basket:", basket);
-    console.log("test_mode:", test_mode);
-    console.log("hash_str:", hash_str);
-    console.log("paytr_token:", paytr_token);
-    console.log("PayTR response:", JSON.stringify(data, null, 2));
-    console.log("==================");
 
     return NextResponse.json(data);
   } catch (err) {

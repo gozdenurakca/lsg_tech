@@ -18,11 +18,13 @@ export default function LayoutWrapper({
 
   const isDemoPage = pathname.startsWith("/demo-giris");
 
+  const isCheckout = pathname.startsWith("/checkout");
+
   return (
     <>
       {!isDashboard && !isDemoPage && <Navbar />}
       {children}
-      {!isDashboard && !isDemoPage && <Footer />}
+      {!isDashboard && !isDemoPage && <Footer hideCTA={isCheckout} />}
     </>
   );
 }
