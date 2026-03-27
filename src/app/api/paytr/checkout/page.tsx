@@ -14,8 +14,6 @@ export default function CheckoutPage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // şimdilik gerekiyorsa API key koy
-            "x-api-key": "demo-key",
           },
           body: JSON.stringify({
             productSlug: "rapid-dv",

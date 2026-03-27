@@ -6,13 +6,21 @@ import { requireApiKey } from "@/lib/auth/api-key"
 import SslOrder from "@/models/SslOrder"
 
 export async function POST(req: NextRequest) {
-  const auth = await requireApiKey(req)
+  /*const auth = await requireApiKey(req)
   if (!auth.ok) {
     return NextResponse.json(
       { ok: false, error: auth.error },
       { status: auth.status }
     )
   }
+    */
+   // geçici olarak bunu ekliyorum: 
+   const auth = {
+  ok: true,
+  principal: {
+    accountId: "demo-account",
+  },
+}
 
   await connectDB()
 
