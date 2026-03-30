@@ -78,39 +78,54 @@ export default function CustomerSidebar({
 
   return (
     <aside
-      className="relative flex flex-col bg-[#0f172a] border-r border-white/5 transition-all duration-300 ease-in-out"
-      style={{ width: collapsed ? 72 : 260, minHeight: "100vh" }}
+      className="relative flex flex-col bg-gradient-to-b from-[#060f1e] to-[#0a152e] border-r border-[#1a2b4b] transition-all duration-300 ease-in-out sticky top-0 self-start"
+      style={{ width: collapsed ? 72 : 260, height: "calc(100vh - 80px)" }}
     >
-      <div className="flex items-center justify-between h-[72px] px-4 border-b border-white/5 shrink-0">
+      <div className="flex items-center justify-between h-[72px] px-4 border-b border-[#1a2b4b] shrink-0">
         {!collapsed && (
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-lg shadow-blue-500/20">
               L
             </div>
             <div className="leading-none">
-              <p className="text-white font-semibold text-sm">LSG Panel</p>
-              <p className="text-slate-400 text-xs mt-0.5">Müşteri Alanı</p>
+              <p className="text-white font-bold text-[15px] tracking-wide">
+                LSG Panel
+              </p>
+              <p className="text-blue-300/70 text-[11px] font-medium mt-1 uppercase tracking-wider">
+                Müşteri Alanı
+              </p>
             </div>
           </div>
         )}
 
         {collapsed && (
-          <div className="mx-auto w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
+          <div className="mx-auto w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/20">
             L
           </div>
         )}
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-4 space-y-5 px-2">
+      {/* Greeting */}
+      {!collapsed && (
+        <div className="mx-3 mt-4 mb-1 px-3 py-3 rounded-xl bg-white/5 border border-white/8">
+          <p className="text-[11px] text-blue-300/70 font-semibold uppercase tracking-widest mb-0.5">
+            Hoş geldiniz 👋
+          </p>
+          <p className="text-white font-bold text-[14px] truncate">{userName}</p>
+          <p className="text-slate-500 text-[11px] truncate mt-0.5">{userEmail}</p>
+        </div>
+      )}
+
+      <nav className="flex-1 overflow-y-auto py-3 space-y-6 px-3 custom-scrollbar">
         {NAV.map(({ group, items }) => (
           <div key={group}>
             {!collapsed && (
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 pl-3 mb-1.5">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 pl-3 mb-2.5">
                 {group}
               </p>
             )}
 
-            <div className="space-y-0.5">
+            <div className="space-y-1">
               {items.map(({ label, href, icon, badgeKey }) => {
                 const Icon = ICONS[icon] || ICONS.box;
                 const isActive =
@@ -123,15 +138,18 @@ export default function CustomerSidebar({
                     key={href}
                     href={href}
                     title={collapsed ? label : undefined}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition
+                    className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl text-[14px] font-semibold transition-all duration-200
                       ${
                         isActive
-                          ? "bg-blue-600 text-white"
-                          : "text-slate-400 hover:text-white hover:bg-white/5"
+                          ? "bg-blue-600/10 text-blue-400 border border-blue-500/20 shadow-inner"
+                          : "text-slate-400 hover:text-white hover:bg-white/5 border border-transparent"
                       }
                     `}
                   >
-                    <Icon size={18} className="shrink-0" />
+                    <Icon
+                      size={18}
+                      className={`shrink-0 transition-transform ${isActive ? "text-blue-400 rotate-0" : "group-hover:scale-110"}`}
+                    />
 
                     {!collapsed && (
                       <>

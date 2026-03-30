@@ -8,7 +8,7 @@ const SUPPORT_ITEMS = [
     icon: "lifeBuoy",
     name: "Destek Talebi Oluştur",
     desc: "Teknik ekibimize ulaşın",
-    href: "/destek/talep",
+    href: "/support",
   },
   {
     icon: "message",

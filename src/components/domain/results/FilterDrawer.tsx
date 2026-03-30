@@ -36,12 +36,9 @@ export default function FilterDrawer({
 
   return (
     <>
-      {/* OVERLAY */}
       <div className="fixed inset-0 bg-black/40 z-40" onClick={onClose} />
 
-      {/* DRAWER */}
       <div className="fixed right-0 top-0 w-80 h-full bg-white z-50 shadow-2xl flex flex-col">
-        {/* HEADER */}
         <div className="flex items-center justify-between px-5 py-4 border-b">
           <h2 className="font-bold text-lg">Filtreler</h2>
           <button
@@ -52,9 +49,7 @@ export default function FilterDrawer({
           </button>
         </div>
 
-        {/* CONTENT */}
         <div className="flex-1 overflow-y-auto px-5 py-4 flex flex-col gap-6">
-          {/* EXTENSIONS */}
           <div>
             <p className="text-sm font-semibold mb-2">Uzantılar</p>
             <div className="flex flex-wrap gap-2">
@@ -79,7 +74,6 @@ export default function FilterDrawer({
             </div>
           </div>
 
-          {/* AVAILABLE */}
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold">Sadece müsait olanlar</span>
             <input
@@ -89,7 +83,6 @@ export default function FilterDrawer({
             />
           </div>
 
-          {/* SORT */}
           <div>
             <p className="text-sm font-semibold mb-2">Sıralama</p>
             <select
@@ -104,7 +97,6 @@ export default function FilterDrawer({
           </div>
         </div>
 
-        {/* FOOTER */}
         <div className="border-t px-5 py-4 flex items-center gap-3">
           <button
             onClick={clearFilters}

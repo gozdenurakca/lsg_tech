@@ -22,6 +22,7 @@ import {
   FileCheck,
   Zap,
 } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 type NavbarMobileProps = {
   isMobileMenuOpen: boolean;
@@ -246,6 +247,7 @@ export default function NavbarMobile({
   setActiveDropdown,
   showOnAllScreens = false,
 }: NavbarMobileProps) {
+  const { data: session } = useSession();
   const vis = showOnAllScreens ? "" : "lg:hidden";
   const [openKey, setOpenKey] = useState<string | null>(null);
 
@@ -318,14 +320,25 @@ export default function NavbarMobile({
 
         {/* Hızlı Aksiyonlar */}
         <div className="flex gap-2 px-4 pt-4 pb-3 shrink-0">
-          <Link
-            href="/giris"
-            onClick={close}
-            className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition-all"
-          >
-            <User size={13} />
-            Giriş Yap
-          </Link>
+          {session ? (
+            <Link
+              href={session.user.role === "admin" ? "/admin" : "/panel"}
+              onClick={close}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-xs font-bold text-blue-400 hover:text-white transition-all"
+            >
+              <User size={13} />
+              Panele Dön
+            </Link>
+          ) : (
+            <Link
+              href="/giris"
+              onClick={close}
+              className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-gray-300 hover:text-white transition-all"
+            >
+              <User size={13} />
+              Giriş Yap
+            </Link>
+          )}
           <Link
             href="/sepet"
             onClick={close}

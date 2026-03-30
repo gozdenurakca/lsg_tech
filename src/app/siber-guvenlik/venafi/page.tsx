@@ -188,7 +188,7 @@ export default function VenafiPage() {
           },
         ]}
         primaryButton={{ label: "Demo Talep Et", href: "/#teklif" }}
-        secondaryButton={{ label: "Teknik Doküman", href: "/#teklif" }}
+        secondaryButton={{ label: "Teknik Doküman", href: "#", modal: true, productName: "Venafi" }}
       />
 
       <TrustBar
@@ -360,8 +360,9 @@ export default function VenafiPage() {
         id="nasil-calisir"
         title="Nasıl Çalışır?"
         subtitle="Sertifika yaşam döngüsünün tamamı otomatikleşir"
-        accentColor="blue"
+        accentColor="amber"
         visual="number"
+        visualBg="from-[#0f0500] via-[#92400e] to-[#431407]"
         steps={[
           {
             title: "Ağdaki tüm kimlikler keşfedilir",

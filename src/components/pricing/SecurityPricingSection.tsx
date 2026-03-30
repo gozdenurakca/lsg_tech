@@ -7,84 +7,66 @@ type PricingCard = {
   name: string;
   tag: string | null;
   featured?: boolean;
-  price: string;
-  period: string;
   desc: string;
   features: string[];
   scanFreq: string;
   support: string;
   cleanup: string;
   href: string;
+  detailHref: string;
 };
 
 const PRICING_CARDS: PricingCard[] = [
   {
-    name: "Web Sitesi Güvenliği Temel",
+    name: "SiteLock",
     tag: null,
-    price: "₺299",
-    period: "/ay",
-    desc: "Kişisel site ve bloglar için günlük tarama ve temel koruma.",
+    desc: "Kişisel site ve bloglar için günlük tarama, blacklist izleme ve temel koruma.",
     features: [
       "Günlük malware tarama",
       "Blacklist izleme",
       "5 sayfa derinlik taraması",
       "E-posta uyarıları",
+      "Google Safe Browsing izleme",
     ],
     scanFreq: "Günlük",
     support: "E-posta",
     cleanup: "Manuel",
-    href: "/guvenlik/web/temel",
+    href: "/#teklif",
+    detailHref: "/web-guvenligi/sitelock",
   },
   {
-    name: "Web Sitesi Güvenliği Pro",
-    tag: "En Popüler",
+    name: "Secure Site Pro",
+    tag: "Önerilen",
     featured: true,
-    price: "₺599",
-    period: "/ay",
-    desc: "E-ticaret ve kurumsal siteler için WAF + otomatik temizlik.",
+    desc: "E-ticaret ve kurumsal siteler için WAF, otomatik temizlik ve 7/24 izleme.",
     features: [
       "Sürekli malware tarama",
       "WAF koruması dahil",
       "Sınırsız sayfa taraması",
       "Otomatik zararlı temizlik",
       "Blacklist kaldırma yardımı",
+      "DDoS koruması",
     ],
     scanFreq: "Sürekli",
     support: "7/24",
     cleanup: "Otomatik",
-    href: "/guvenlik/web/pro",
-  },
-  {
-    name: "Web Sitesi Güvenliği Enterprise",
-    tag: "Kurumsal",
-    price: "Teklif Al",
-    period: "",
-    desc: "Yüksek trafik platformlar için özel SLA ve öncelikli müdahale.",
-    features: [
-      "Gelişmiş WAF kuralları",
-      "DDoS koruması",
-      "CDN entegrasyonu",
-      "Öncelikli olay müdahalesi",
-      "Özel güvenlik danışmanı",
-    ],
-    scanFreq: "Gerçek zamanlı",
-    support: "Öncelikli",
-    cleanup: "Garantili SLA",
-    href: "/guvenlik/web/enterprise",
+    href: "/#teklif",
+    detailHref: "/web-guvenligi/secure-site-pro",
   },
 ];
 
 const StarIcon = ICONS.star;
 const CheckIcon = ICONS.checkCircle;
 const ArrowIcon = ICONS.arrowRight;
+const ExternalIcon = ICONS.externalLink;
 
 export default function SecurityPricingSection() {
   return (
     <section id="planlar" className="py-24 bg-[#f8fafc] scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-600/60 font-bold mb-3">
-            Planlar & Fiyatlandırma
+            Güvenlik Planları
           </p>
           <h2 className="text-[clamp(28px,3.5vw,44px)] font-bold text-slate-900 mb-4">
             Sitenize özel güvenlik planı
@@ -94,7 +76,7 @@ export default function SecurityPricingSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {PRICING_CARDS.map((p) => (
             <div
               key={p.name}
@@ -124,24 +106,13 @@ export default function SecurityPricingSection() {
               <div
                 className={`flex flex-col flex-1 p-7 ${p.tag ? "pt-12" : ""}`}
               >
-                <h3 className="text-[17px] font-bold text-slate-900 mb-2">
+                <h3 className="text-[20px] font-bold text-slate-900 mb-2">
                   {p.name}
                 </h3>
 
-                <p className="text-[13px] text-slate-400 leading-relaxed mb-5">
+                <p className="text-[13px] text-slate-400 leading-relaxed mb-6">
                   {p.desc}
                 </p>
-
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className="text-[32px] font-extrabold text-slate-900">
-                    {p.price}
-                  </span>
-                  {p.period && (
-                    <span className="text-[13px] text-slate-400">
-                      {p.period}
-                    </span>
-                  )}
-                </div>
 
                 <ul className="space-y-2 mb-6">
                   {p.features.map((f) => (
@@ -170,7 +141,6 @@ export default function SecurityPricingSection() {
                     { icon: "clock", label: "Destek", val: p.support },
                   ].map((s) => {
                     const Icon = ICONS[s.icon];
-
                     return (
                       <div
                         key={s.label}
@@ -188,17 +158,28 @@ export default function SecurityPricingSection() {
                   })}
                 </dl>
 
-                <Link
-                  href={p.href}
-                  className={`mt-auto flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-[14px] font-bold transition-all hover:-translate-y-0.5 ${
-                    p.featured
-                      ? "bg-emerald-700 hover:bg-emerald-600 text-white shadow-md shadow-emerald-700/20"
-                      : "bg-slate-900 hover:bg-slate-800 text-white"
-                  }`}
-                >
-                  {p.price === "Teklif Al" ? "Teklif İste" : "Hemen Başla"}{" "}
-                  <ArrowIcon size={14} />
-                </Link>
+                <div className="mt-auto flex flex-col gap-2">
+                  {/* Detayları Gör */}
+                  <Link
+                    href={p.detailHref}
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-[13px] font-semibold border border-slate-200 text-slate-600 hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50 transition-all"
+                  >
+                    <ExternalIcon size={13} />
+                    Detayları Gör
+                  </Link>
+
+                  {/* Teklif / Başla */}
+                  <Link
+                    href={p.href}
+                    className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-[14px] font-bold transition-all hover:-translate-y-0.5 ${
+                      p.featured
+                        ? "bg-emerald-700 hover:bg-emerald-600 text-white shadow-md shadow-emerald-700/20"
+                        : "bg-slate-900 hover:bg-slate-800 text-white"
+                    }`}
+                  >
+                    Teklif Al <ArrowIcon size={14} />
+                  </Link>
+                </div>
               </div>
             </div>
           ))}

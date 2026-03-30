@@ -54,12 +54,28 @@ export default function HostingDropdown({
       <div className="h-[2px] w-full bg-gradient-to-r from-indigo-500 to-blue-500" />
 
       <div className="px-5 pt-4 pb-3 border-b border-gray-100">
-        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gray-400">
-          Hosting
-        </p>
-        <p className="text-sm font-semibold text-gray-800 mt-0.5">
-          İş ortaklığı programları
-        </p>
+        <div className="flex items-start justify-between">
+          <Link href="/hosting" onClick={closeAll} className="group flex-1">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-gray-400">
+              Hosting
+            </p>
+
+            <p className="text-sm font-semibold text-gray-800 mt-0.5 group-hover:text-blue-600 transition">
+              İş ortaklığı programları
+            </p>
+          </Link>
+
+          <Link
+            href="/hosting"
+            onClick={closeAll}
+            className="group w-8 h-8 rounded-lg flex items-center justify-center text-gray-500 hover:text-blue-600 hover:bg-blue-50 transition"
+          >
+            <ICONS.arrowUpRight
+              size={16}
+              className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </Link>
+        </div>
       </div>
 
       <div className="p-4">

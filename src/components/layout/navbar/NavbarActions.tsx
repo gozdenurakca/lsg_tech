@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { ICONS } from "@/lib/icons";
+import NavbarProfile from "./NavbarProfile";
 
 export default function NavbarActions({
   setIsSearchOpen,
@@ -10,10 +12,13 @@ export default function NavbarActions({
   setIsSearchOpen: (v: boolean) => void;
   cartCount: number;
 }) {
+  const { data: session } = useSession();
+
   const SearchIcon = ICONS.search;
   const CartIcon = ICONS.cart;
   const UserIcon = ICONS.users;
   const ArrowIcon = ICONS.arrowUpRight;
+  const BellIcon = ICONS.bell;
 
   return (
     <div className="hidden lg:flex items-center gap-3">
@@ -40,21 +45,23 @@ export default function NavbarActions({
         className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-primary hover:text-white transition-all flex items-center justify-center relative"
       >
         <CartIcon size={18} />
-
-        {/* 
-        {cartCount > 0 && (
-          <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold animate-pulse">
-            {cartCount}
-          </span>
-        )}*/}
       </Link>
 
-      <Link
-        href="/giris"
-        className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-primary hover:text-white transition-all flex items-center justify-center"
-      >
-        <UserIcon size={18} />
-      </Link>
+      {session ? (
+        <>
+          <button className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-primary hover:text-white transition-all flex items-center justify-center relative">
+            <BellIcon size={18} />
+          </button>
+          <NavbarProfile />
+        </>
+      ) : (
+        <Link
+          href="/giris"
+          className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-primary hover:text-white transition-all flex items-center justify-center"
+        >
+          <UserIcon size={18} />
+        </Link>
+      )}
     </div>
   );
 }

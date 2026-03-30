@@ -1,15 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Script from "next/script";
 
 export default function CheckoutPage() {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     async function initPayment() {
       try {
+        // Query param'lardan veya fallback değerlerden al
+        const productSlug = searchParams.get("slug") || "rapid-dv";
+        const period = Number(searchParams.get("period") || "1");
+        const amount = searchParams.get("amount") || "1000";
+
         const orderRes = await fetch("/api/lsg/orders", {
           method: "POST",
           headers: {
@@ -17,10 +24,10 @@ export default function CheckoutPage() {
             "x-api-key": "demo-key",
           },
           body: JSON.stringify({
-            productSlug: "rapid-dv",
-            domain: "test.com",
-            period: 1,
-            email: "test@test.com",
+            productSlug,
+            domain: "test.com", // TODO: kullanıcıdan al
+            period,
+            email: "test@test.com", // TODO: oturum açmış kullanıcının emaili
           }),
         });
 
@@ -33,8 +40,8 @@ export default function CheckoutPage() {
           },
           body: JSON.stringify({
             orderId: orderData.id,
-            email: "test@test.com",
-            amount: "1000",
+            email: "test@test.com", // TODO: oturum açmış kullanıcının emaili
+            amount,
           }),
         });
 
@@ -51,7 +58,7 @@ export default function CheckoutPage() {
     }
 
     initPayment();
-  }, []);
+  }, [searchParams]);
 
   if (loading) return <div className="flex items-center justify-center min-h-[400px] text-slate-500">Ödeme hazırlanıyor...</div>;
   if (!token) return <div className="flex items-center justify-center min-h-[400px] text-red-500">Ödeme başlatılamadı ❌</div>;

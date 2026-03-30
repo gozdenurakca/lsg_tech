@@ -146,7 +146,7 @@ export default function KeeperPage() {
           },
         ]}
         primaryButton={{ label: "Demo Talep Et", href: "/#teklif" }}
-        secondaryButton={{ label: "Teknik Doküman", href: "/#teklif" }}
+        secondaryButton={{ label: "Teknik Doküman", href: "#", modal: true, productName: "Keeper" }}
       />
 
       <TrustBar
@@ -330,8 +330,9 @@ export default function KeeperPage() {
         id="nasil-calisir"
         title="Nasıl Çalışır?"
         subtitle="Şifre kaosundan güvenli ve kontrollü erişime"
-        accentColor="blue"
+        accentColor="violet"
         visual="number"
+        visualBg="from-[#0f0520] via-[#3b0764] to-[#0f0520]"
         steps={[
           {
             title: "Tüm hassas bilgiler kasaya taşınır",

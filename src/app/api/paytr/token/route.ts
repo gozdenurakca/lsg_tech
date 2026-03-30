@@ -37,7 +37,6 @@ export async function POST(req: NextRequest) {
     const test_mode = "1"; // Canlıya geçince "0" yapın
     const non_3d = "0";
 
-    // non_3d hash'e DAHİL DEĞİL — sadece URLSearchParams'a gider
     const hash_str =
       merchant_id +
       user_ip +

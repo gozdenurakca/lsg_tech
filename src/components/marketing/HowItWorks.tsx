@@ -20,7 +20,7 @@ type Props = {
   title: string;
   subtitle?: string;
   steps: HowStep[];
-  accentColor?: "blue" | "emerald";
+  accentColor?: "blue" | "emerald" | "violet" | "amber" | "indigo" | "slate";
   visual?: "images" | "number";
   visualBg?: string;
   extraSteps?: ExtraStep[];
@@ -36,6 +36,26 @@ const ACCENT = {
     active: "border-emerald-300",
     num: "text-emerald-600",
     circle: "bg-emerald-700",
+  },
+  violet: {
+    active: "border-violet-300",
+    num: "text-violet-600",
+    circle: "bg-violet-700",
+  },
+  amber: {
+    active: "border-amber-300",
+    num: "text-amber-600",
+    circle: "bg-amber-700",
+  },
+  indigo: {
+    active: "border-indigo-300",
+    num: "text-indigo-600",
+    circle: "bg-indigo-700",
+  },
+  slate: {
+    active: "border-slate-400",
+    num: "text-slate-600",
+    circle: "bg-slate-700",
   },
 };
 

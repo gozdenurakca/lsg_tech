@@ -175,7 +175,7 @@ export default function NoSpamProxyPage() {
           },
         ]}
         primaryButton={{ label: "Demo Talep Et", href: "/#teklif" }}
-        secondaryButton={{ label: "Teknik Doküman", href: "/#teklif" }}
+        secondaryButton={{ label: "Teknik Doküman", href: "#", modal: true, productName: "NoSpamProxy" }}
       />
 
       <TrustBar
@@ -352,8 +352,9 @@ export default function NoSpamProxyPage() {
         id="nasil-calisir-adimlar"
         title="Nasıl Çalışır?"
         subtitle="E-posta trafiğinizin önüne konulan akıllı güvenlik katmanı"
-        accentColor="blue"
+        accentColor="slate"
         visual="number"
+        visualBg="from-[#0d0f12] via-[#1e2530] to-[#111418]"
         steps={[
           {
             title: "İnternet'ten gelen e-posta NoSpamProxy'e ulaşır",

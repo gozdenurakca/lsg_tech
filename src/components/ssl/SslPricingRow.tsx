@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ICONS } from "@/lib/icons";
+import { useCart } from "@/components/context/CartContext";
 
 import BrandBadge from "@/components/ssl/BrandBadge";
 import TierPill from "@/components/ssl/TierPill";
@@ -29,6 +31,8 @@ export default function SslPricingRow({
   featured = false,
 }: Props) {
   const [years, setYears] = useState<Years>(defaultYears);
+  const { addItem } = useCart();
+  const router = useRouter();
 
   const total = useMemo(() => getTotal(product, years), [product, years]);
   const monthly = total > 0 ? total / (years * 12) : 0;
@@ -55,6 +59,20 @@ export default function SslPricingRow({
 
   const hasPrice = total > 0;
   const detailHref = safeSlug ? `/ssl/${safeSlug}` : "/ssl";
+
+  const handleAddToCart = () => {
+    if (!hasPrice) return;
+
+    addItem({
+      type: "ssl",
+      plan: safeName,
+      price: total / years, // Kayıtlı fiyat genellikle yıllık birim fiyattır.
+      period: years,
+    });
+
+    // Doğrudan sepete gidiyoruz
+    router.push("/sepet");
+  };
 
   return (
     <div
@@ -170,6 +188,7 @@ export default function SslPricingRow({
                 <button
                   type="button"
                   disabled={!hasPrice}
+                  onClick={handleAddToCart}
                   className={[
                     "inline-flex items-center justify-center gap-2 rounded-2xl py-3 font-semibold transition",
                     hasPrice

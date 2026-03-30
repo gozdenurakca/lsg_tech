@@ -48,33 +48,63 @@ export default function SepetPage() {
   const TrashIcon = ICONS.trash2;
 
   const handleCheckout = () => {
+    // Toplam tutarı (KDV dahil) PayTR'a miktar olarak gönderiyoruz. PayTR genelde kuruş cinsinden (tutar * 100) isteyebilir ama /checkout sayfasındaki implementasyonunuza göre parametre ekliyoruz.
+    const checkoutUrl = `/checkout?amount=${genelToplam}`;
+
     if (!session) {
-      router.push("/giris?redirect=/sepet/odeme");
+      // Giriş yapmamışsa login sayfasına git, başarılı girişte checkout'a geri dön
+      router.push(`/giris?redirect=${encodeURIComponent(checkoutUrl)}`);
     } else {
-      router.push("/sepet/odeme");
+      // Giriş yapmışsa direkt yeni paytr ödeme sayfasına git
+      router.push(checkoutUrl);
     }
   };
 
   if (count === 0) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
-        <div className="text-center max-w-sm">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-5">
-            <ShoppingCartIcon size={32} className="text-slate-400" />
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-20">
+        <div className="text-center w-full max-w-2xl mx-auto">
+          <div className="w-24 h-24 bg-white shadow-sm border border-slate-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
+            <ShoppingCartIcon size={40} className="text-slate-300" />
           </div>
-          <h2 className="text-xl font-extrabold text-slate-800 mb-2">
-            Sepetiniz boş
+          <h2 className="text-2xl font-extrabold text-slate-800 mb-3">
+            Sepetiniz şu an boş
           </h2>
-          <p className="text-sm text-slate-400 mb-6">
-            Henüz herhangi bir ürün eklemediniz.
+          <p className="text-slate-500 mb-10 max-w-md mx-auto">
+            İhtiyacınız olan ürünleri sepetinize ekleyerek dijital yolculuğunuza hemen başlayabilirsiniz.
           </p>
-          <Link
-            href="/domain"
-            className="inline-flex items-center gap-2 text-sm font-bold text-white px-6 py-3 rounded-xl shadow-md"
-            style={{ background: "linear-gradient(135deg, #1d4ed8, #4f46e5)" }}
-          >
-            Alan Adı Ara <ArrowRightIcon size={15} />
-          </Link>
+          
+          <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            <Link
+              href="/domain"
+              className="flex flex-col items-center gap-3 p-6 bg-white border border-slate-200 rounded-2xl hover:border-blue-300 hover:shadow-lg hover:-translate-y-1 transition-all group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                <ICONS.globe size={20} className="text-blue-600 group-hover:text-white transition-colors" />
+              </div>
+              <div className="text-sm font-bold text-slate-700">Alan Adı Ara</div>
+            </Link>
+
+            <Link
+              href="/hosting"
+              className="flex flex-col items-center gap-3 p-6 bg-white border border-slate-200 rounded-2xl hover:border-purple-300 hover:shadow-lg hover:-translate-y-1 transition-all group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center group-hover:bg-purple-600 transition-colors">
+                <ICONS.server size={20} className="text-purple-600 group-hover:text-white transition-colors" />
+              </div>
+              <div className="text-sm font-bold text-slate-700">Hosting Seç</div>
+            </Link>
+
+            <Link
+              href="/pricing/ssl"
+              className="flex flex-col items-center gap-3 p-6 bg-white border border-slate-200 rounded-2xl hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-600 transition-colors">
+                <ICONS.shield size={20} className="text-emerald-600 group-hover:text-white transition-colors" />
+              </div>
+              <div className="text-sm font-bold text-slate-700">SSL Sertifikası Al</div>
+            </Link>
+          </div>
         </div>
       </div>
     );

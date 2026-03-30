@@ -229,7 +229,6 @@ export default function WebsiteSecurityPageClient() {
         title="Diğer Güvenlik Çözümleri"
         subtitle="Web güvenliğini SSL ve sunucu güvenliğiyle birleştirerek tam koruma sağlayın."
         ctaHref="/#teklif"
-        ctaLabel="Uzmanla Konuşun"
         products={[
           {
             type: "SSL",
@@ -245,7 +244,7 @@ export default function WebsiteSecurityPageClient() {
             desc: "Imunify360 ile sunucu genelinde DDoS ve saldırı koruması.",
             icon: "shieldAlert",
             color: "bg-orange-50 text-orange-600 border-orange-100",
-            href: "/guvenlik/sunucu",
+            href: "/hosting",
           },
           {
             type: "Paket",

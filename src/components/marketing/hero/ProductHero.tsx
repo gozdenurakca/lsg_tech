@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { ICONS } from "@/lib/icons";
+import TeknikDokumanModal from "@/components/marketing/TeknikDokumanModal";
 
 type FloatingCard = {
   icon: keyof typeof ICONS;
@@ -39,6 +41,8 @@ type Props = {
   secondaryButton?: {
     label: string;
     href: string;
+    modal?: boolean;   // true → link yerine lead capture modal açar
+    productName?: string;
   };
 };
 
@@ -54,6 +58,7 @@ export default function Hero({
   primaryButton,
   secondaryButton,
 }: Props) {
+  const [modalOpen, setModalOpen] = useState(false);
   const BadgeIcon = ICONS[badge.icon] || ICONS.shieldRaw;
 
   const FloatingIcon = floatingCard
@@ -168,17 +173,32 @@ export default function Hero({
               </a>
 
               {secondaryButton && (
-                <a
-                  href={secondaryButton.href}
-                  className="inline-flex items-center gap-2 border border-slate-200 hover:border-slate-400 text-slate-700 px-7 py-3.5 rounded-xl font-semibold text-[15px] transition hover:-translate-y-0.5"
-                >
-                  {secondaryButton.label}
-                </a>
+                secondaryButton.modal ? (
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="inline-flex items-center gap-2 border border-slate-200 hover:border-slate-400 text-slate-700 px-7 py-3.5 rounded-xl font-semibold text-[15px] transition hover:-translate-y-0.5"
+                  >
+                    {secondaryButton.label}
+                  </button>
+                ) : (
+                  <a
+                    href={secondaryButton.href}
+                    className="inline-flex items-center gap-2 border border-slate-200 hover:border-slate-400 text-slate-700 px-7 py-3.5 rounded-xl font-semibold text-[15px] transition hover:-translate-y-0.5"
+                  >
+                    {secondaryButton.label}
+                  </a>
+                )
               )}
             </div>
           </div>
         </div>
       </div>
+
+      <TeknikDokumanModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        productName={secondaryButton?.productName ?? "Ürün"}
+      />
     </section>
   );
 }

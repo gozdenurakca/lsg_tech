@@ -4,6 +4,7 @@ import HowItWorks from "@/components/marketing/HowItWorks";
 import InfoSection from "@/components/marketing/InfoSection";
 import FaqSection from "@/components/marketing/FaqSection";
 import CTASection from "@/components/marketing/CTASection";
+import { ICONS } from "@/lib/icons";
 
 export const metadata = {
   title: "KeyTalk | Sertifika Dağıtım & PKI Otomasyonu | LSG Teknoloji",
@@ -11,129 +12,220 @@ export const metadata = {
     "Cihazlara ve kullanıcılara sertifikaları otomatik dağıtın. VPN, WiFi ve uygulama erişiminde şifre yerine sertifika ile Zero Trust device authentication. Tam PKI yaşam döngüsü otomasyonu.",
 };
 
-/* ── TrustBar visual — auto-enrollment flow ──────────────────── */
+const THEME = {
+  primary: "#065f46",
+  dark: "#021a0e",
+  glow: "rgba(16,185,129,0.25)",
+};
 const KeyTalkVisual = (
   <div className="relative w-full h-full min-h-[260px] flex items-center justify-center rounded-2xl overflow-hidden">
-    {/* Gradient bg — KeyTalk'ın yeşil marka rengi */}
-    <div className="absolute inset-0 bg-gradient-to-br from-[#021a0e] via-[#04331a] to-[#021a0e]" />
-    {/* Glow */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full bg-emerald-600/20 blur-3xl" />
-
+    <div
+      className="absolute inset-0"
+      style={{
+        background: `linear-gradient(135deg, ${THEME.dark}, ${THEME.primary}, ${THEME.dark})`,
+      }}
+    />
+    <div
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full blur-3xl"
+      style={{ backgroundColor: THEME.glow }}
+    />
     <div className="relative z-10 flex flex-col items-center gap-3 px-6 py-6 w-full max-w-sm">
-
-      {/* Header */}
       <div className="flex items-center gap-2 mb-1">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logos/keytalk.png" alt="KeyTalk" className="w-6 h-6 object-contain brightness-0 invert opacity-80" />
-        <span className="text-white/70 text-xs font-semibold tracking-wide">Certificate Key Management System</span>
+        <img
+          src="/logos/keytalk.png"
+          alt="KeyTalk"
+          className="w-6 h-6 object-contain brightness-0 invert opacity-80"
+        />
+        <span className="text-white/70 text-xs font-semibold tracking-wide">
+          Certificate Key Management System
+        </span>
       </div>
 
-      {/* Device requests access */}
       <div className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 flex items-center gap-3">
         <div className="w-6 h-6 rounded-full bg-slate-500/20 border border-slate-500/30 flex items-center justify-center shrink-0">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-            <rect x="1" y="2" width="9" height="6.5" rx="1.2" stroke="#94a3b8" strokeWidth="1.2"/>
-            <path d="M3.5 8.5h4M5.5 8.5v1" stroke="#94a3b8" strokeWidth="1.2" strokeLinecap="round"/>
+            <rect
+              x="1"
+              y="2"
+              width="9"
+              height="6.5"
+              rx="1.2"
+              stroke="#94a3b8"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M3.5 8.5h4M5.5 8.5v1"
+              stroke="#94a3b8"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
           </svg>
         </div>
         <div>
-          <p className="text-white/40 text-[9px] uppercase tracking-wider font-bold">Cihaz</p>
-          <p className="text-white text-xs font-semibold">VPN / WiFi / Uygulama erişimi talep eder</p>
+          <p className="text-white/40 text-[9px] uppercase tracking-wider font-bold">
+            Cihaz
+          </p>
+          <p className="text-white text-xs font-semibold">
+            VPN / WiFi / Uygulama erişimi talep eder
+          </p>
         </div>
       </div>
 
-      {/* Arrow */}
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-emerald-400 opacity-60">
-        <path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        className="text-emerald-400 opacity-60"
+      >
+        <path
+          d="M7 2v10M3 8l4 4 4-4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
 
-      {/* CKMS auto-enrollment */}
       <div className="w-full bg-emerald-600/20 border border-emerald-500/40 rounded-xl px-4 py-3 flex flex-col gap-2">
         <div className="flex items-center gap-3">
           <div className="w-6 h-6 rounded-full bg-emerald-500/30 border border-emerald-400/60 flex items-center justify-center shrink-0 animate-pulse">
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-              <path d="M5.5 1L1.5 3v3c0 2 2 3 4 4 2-1 4-2 4-4V3L5.5 1z" stroke="#6ee7b7" strokeWidth="1.2" strokeLinejoin="round"/>
+              <path
+                d="M5.5 1L1.5 3v3c0 2 2 3 4 4 2-1 4-2 4-4V3L5.5 1z"
+                stroke="#6ee7b7"
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
           <div>
-            <p className="text-emerald-300/70 text-[9px] uppercase tracking-wider font-bold">KeyTalk CKMS</p>
-            <p className="text-white text-xs font-semibold">Auto-enrollment · Dağıt · Yenile</p>
+            <p className="text-emerald-300/70 text-[9px] uppercase tracking-wider font-bold">
+              KeyTalk CKMS
+            </p>
+            <p className="text-white text-xs font-semibold">
+              Auto-enrollment · Dağıt · Yenile
+            </p>
           </div>
         </div>
         <div className="flex gap-1.5 flex-wrap">
           {["Device Auth", "TLS/CLM", "S/MIME", "HSM"].map((m) => (
-            <span key={m} className="px-2 py-0.5 rounded-full bg-white/6 border border-white/10 text-white/50 text-[9px] font-semibold">
+            <span
+              key={m}
+              className="px-2 py-0.5 rounded-full bg-white/6 border border-white/10 text-white/50 text-[9px] font-semibold"
+            >
               {m}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Arrow */}
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-emerald-400 opacity-60">
-        <path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        className="text-emerald-400 opacity-60"
+      >
+        <path
+          d="M7 2v10M3 8l4 4 4-4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
 
-      {/* Certified access */}
       <div className="w-full bg-emerald-600/15 border border-emerald-500/30 rounded-xl px-4 py-2.5 flex items-center gap-3">
         <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M2 6.5L4.5 9L10 3" stroke="#34d399" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M2 6.5L4.5 9L10 3"
+              stroke="#34d399"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </div>
         <div>
-          <p className="text-emerald-400/70 text-[9px] uppercase tracking-wider font-bold">Erişim Onaylandı</p>
-          <p className="text-white text-xs font-semibold">Şifresiz · Sertifika ile · Zero Trust</p>
+          <p className="text-emerald-400/70 text-[9px] uppercase tracking-wider font-bold">
+            Erişim Onaylandı
+          </p>
+          <p className="text-white text-xs font-semibold">
+            Şifresiz · Sertifika ile · Zero Trust
+          </p>
         </div>
       </div>
 
-      {/* Zero Touch */}
       <div className="w-full bg-gradient-to-r from-emerald-600/15 to-teal-600/10 border border-emerald-500/20 rounded-xl px-3 py-2 flex items-center gap-2">
         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-        <p className="text-emerald-300/80 text-[10px] font-semibold">Auto-enrollment — IT müdahalesi olmadan tam otomasyon</p>
+        <p className="text-emerald-300/80 text-[10px] font-semibold">
+          Auto-enrollment — IT müdahalesi olmadan tam otomasyon
+        </p>
       </div>
-
     </div>
   </div>
 );
 
-/* ── Page ─────────────────────────────────────────────────────── */
 export default function KeyTalkPage() {
   return (
-    <main className="bg-white text-slate-900">
-
-      {/* HERO */}
+    <main className="bg-[#f0f2f5] text-slate-900">
       <Hero
         badge={{ icon: "check", label: "Certificate Key Management System" }}
         title="KeyTalk"
         subtitle="Sertifikaları cihazlara manuel yükleme devri bitti. VPN, WiFi ve uygulama erişimlerinde şifre yerine sertifika ile Zero Trust kimlik doğrulama — tamamen otomatik."
-        imageSrc="/images/security.png"
+        imageSrc="/images/keytalk.png"
         imageAlt="KeyTalk sertifika dağıtım platformu görseli"
         imageGradient="from-[#021a0e] via-[#065f46] to-[#021a0e]"
         items={[
-          { icon: "zap",         title: "Auto-Enrollment",       desc: "Kullanıcı login olur, sertifika otomatik yüklenir — IT müdahalesi sıfır" },
-          { icon: "shieldCheck", title: "Zero Trust Device Auth", desc: "VPN ve WiFi erişiminde şifre yerine sertifika ile cihaz doğrulama" },
-          { icon: "layers",      title: "Tam PKI Otomasyonu",     desc: "Dağıtım, yenileme ve geri çekme tamamen otomatikleşir" },
+          {
+            icon: "zap",
+            title: "Auto-Enrollment",
+            desc: "Kullanıcı login olur, sertifika otomatik yüklenir — IT müdahalesi sıfır",
+          },
+          {
+            icon: "shieldCheck",
+            title: "Zero Trust Device Auth",
+            desc: "VPN ve WiFi erişiminde şifre yerine sertifika ile cihaz doğrulama",
+          },
+          {
+            icon: "layers",
+            title: "Tam PKI Otomasyonu",
+            desc: "Dağıtım, yenileme ve geri çekme tamamen otomatikleşir",
+          },
         ]}
         primaryButton={{ label: "Demo Talep Et", href: "/#teklif" }}
         secondaryButton={{ label: "Teknik Doküman", href: "/#teklif" }}
       />
 
-      {/* TRUSTBAR */}
       <TrustBar
         id="platform"
         title="Sertifikayı cihaza kullanan sistem"
         description="Venafi sertifikaları görür ve yönetir; KeyTalk ise sertifikaları gerçekten cihazlara dağıtır ve kullanılır hale getirir. PKI'nin operasyonel ayağıdır — auto-enrollment ile kullanıcı login olduğunda sertifika otomatik gelir."
         visual={KeyTalkVisual}
         stats={[
-          { value: "Auto",      label: "Enrollment — kullanıcı login olur, sertifika otomatik yüklenir" },
-          { value: "802.1X",    label: "WiFi & VPN erişiminde sertifika tabanlı kimlik doğrulama" },
-          { value: "HSM",       label: "Anahtarlar donanımsal güvenlik modülünde saklanır — bankacılık seviyesi" },
-          { value: "0 Şifre",   label: "Cihaz erişimlerinde şifre tamamen kaldırılabilir" },
+          {
+            value: "Auto",
+            label:
+              "Enrollment — kullanıcı login olur, sertifika otomatik yüklenir",
+          },
+          {
+            value: "802.1X",
+            label: "WiFi & VPN erişiminde sertifika tabanlı kimlik doğrulama",
+          },
+          {
+            value: "HSM",
+            label:
+              "Anahtarlar donanımsal güvenlik modülünde saklanır — bankacılık seviyesi",
+          },
+          {
+            value: "0 Şifre",
+            label: "Cihaz erişimlerinde şifre tamamen kaldırılabilir",
+          },
         ]}
       />
 
-      {/* 3 USE CASES + FEATURES */}
       <section id="kullanim-alanlari" className="bg-slate-50 py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -144,15 +236,17 @@ export default function KeyTalkPage() {
               PKI&apos;yi operasyona taşıyan platform
             </h2>
             <p className="text-slate-500 text-base max-w-xl mx-auto">
-              KeyTalk, sertifika yaşam döngüsünün üç kritik alanında tam otomasyon sağlar.
+              KeyTalk, sertifika yaşam döngüsünün üç kritik alanında tam
+              otomasyon sağlar.
             </p>
           </div>
 
-          {/* 3 core use cases */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5">
             {[
               {
-                icon: "🖥️",
+                icon: "monitor",
+                iconColor: "text-emerald-600",
+                iconBg: "bg-emerald-100",
                 title: "Device Authentication (DA)",
                 desc: "En güçlü kullanım alanı. VPN, WiFi (802.1X) ve kurumsal uygulamalara şifre yerine sertifika ile erişim. Her cihaz kendi kimliğini sertifika ile kanıtlar — Zero Trust device access.",
                 tag: "En Kritik Use-Case",
@@ -160,7 +254,9 @@ export default function KeyTalkPage() {
                 badgeClass: "bg-emerald-100 text-emerald-700",
               },
               {
-                icon: "🔄",
+                icon: "refresh",
+                iconColor: "text-teal-600",
+                iconBg: "bg-teal-100",
                 title: "TLS/SSL Lifecycle (CLM)",
                 desc: "Sertifika dağıtımı, yenileme ve geri çekme otomasyonu. Venafi'nin yönetim perspektifini tamamlayan operasyonel katman — sertifikayı sunuculara gerçekten deploy eden sistem.",
                 tag: "PKI Operasyonu",
@@ -168,28 +264,45 @@ export default function KeyTalkPage() {
                 badgeClass: "bg-teal-100 text-teal-700",
               },
               {
-                icon: "📧",
+                icon: "mail",
+                iconColor: "text-cyan-600",
+                iconBg: "bg-cyan-100",
                 title: "Secure Email (SES)",
                 desc: "S/MIME sertifikası ile kurumsal mail imzalama ve şifreleme. Gönderen kimliği doğrulanır, içerik şifrelenir. NoSpamProxy ile birlikte tam e-posta güvenlik katmanı oluşturur.",
                 tag: "S/MIME & İmzalama",
                 accent: "border-cyan-200 bg-cyan-50/40",
                 badgeClass: "bg-cyan-100 text-cyan-700",
               },
-            ].map((u) => (
-              <div key={u.title} className={`border rounded-2xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow ${u.accent}`}>
-                <div className="flex items-start justify-between gap-2">
-                  <span className="text-2xl">{u.icon}</span>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${u.badgeClass}`}>
-                    {u.tag}
-                  </span>
+            ].map((u) => {
+              const Icon = ICONS[u.icon];
+              return (
+                <div
+                  key={u.title}
+                  className={`border rounded-2xl p-6 flex flex-col gap-3 hover:shadow-md transition-shadow ${u.accent}`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div
+                      className={`w-9 h-9 rounded-xl ${u.iconBg} flex items-center justify-center shrink-0`}
+                    >
+                      <Icon size={18} className={u.iconColor} />
+                    </div>
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${u.badgeClass}`}
+                    >
+                      {u.tag}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-slate-900 text-[15px]">
+                    {u.title}
+                  </h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">
+                    {u.desc}
+                  </p>
                 </div>
-                <h3 className="font-bold text-slate-900 text-[15px]">{u.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{u.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Extra capabilities */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
             {[
               {
@@ -214,36 +327,91 @@ export default function KeyTalkPage() {
                 badgeClass: "bg-blue-100 text-blue-700",
               },
             ].map((c) => (
-              <div key={c.title} className="border border-slate-200 bg-white rounded-2xl p-5 flex flex-col gap-2 hover:shadow-sm transition-shadow">
+              <div
+                key={c.title}
+                className="border border-slate-200 bg-white rounded-2xl p-5 flex flex-col gap-2 hover:shadow-sm transition-shadow"
+              >
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-xl">{c.icon}</span>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${c.badgeClass}`}>{c.badge}</span>
+                  <span
+                    className={`text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap ${c.badgeClass}`}
+                  >
+                    {c.badge}
+                  </span>
                 </div>
-                <h3 className="font-bold text-slate-900 text-[14px]">{c.title}</h3>
-                <p className="text-slate-500 text-xs leading-relaxed">{c.desc}</p>
+                <h3 className="font-bold text-slate-900 text-[14px]">
+                  {c.title}
+                </h3>
+                <p className="text-slate-500 text-xs leading-relaxed">
+                  {c.desc}
+                </p>
               </div>
             ))}
           </div>
 
-          {/* Venafi + KeyTalk bundle + full LSG stack */}
           <div className="border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6">
-            <p className="text-xs font-bold uppercase tracking-wider text-emerald-500 mb-1">LSG Stratejik Öneri</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-emerald-500 mb-1">
+              LSG Stratejik Öneri
+            </p>
             <p className="text-slate-700 font-semibold text-sm mb-4">
-              Venafi + KeyTalk = <span className="text-emerald-700 font-bold">Full PKI Lifecycle</span> — Venafi yönetir, KeyTalk dağıtır ve kullandırır.
+              Venafi + KeyTalk ={" "}
+              <span className="text-emerald-700 font-bold">
+                Full PKI Lifecycle
+              </span>{" "}
+              — Venafi yönetir, KeyTalk dağıtır ve kullandırır.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
               {[
-                { logo: "/logos/digicert.svg",   name: "DigiCert",    role: "Üretir",       accent: "border-blue-200 bg-white"    },
-                { logo: "/logos/venafi.png",      name: "Venafi",      role: "Yönetir",      accent: "border-cyan-200 bg-white"    },
-                { logo: "/logos/keytalk.png",     name: "KeyTalk",     role: "Dağıtır",      accent: "border-emerald-200 bg-white ring-2 ring-emerald-400/30" },
-                { logo: "/logos/securenvoy.png",  name: "SecurEnvoy",  role: "Doğrular",     accent: "border-indigo-200 bg-white"  },
-                { logo: "/logos/keeper.png",      name: "Keeper",      role: "Saklar",       accent: "border-violet-200 bg-white"  },
-                { logo: "/logos/nospamproxy.png", name: "NoSpamProxy", role: "Mail korur",   accent: "border-slate-200 bg-white"   },
+                {
+                  logo: "/logos/digicert.svg",
+                  name: "DigiCert",
+                  role: "Üretir",
+                  accent: "border-blue-200 bg-white",
+                },
+                {
+                  logo: "/logos/venafi.png",
+                  name: "Venafi",
+                  role: "Yönetir",
+                  accent: "border-cyan-200 bg-white",
+                },
+                {
+                  logo: "/logos/keytalk.png",
+                  name: "KeyTalk",
+                  role: "Dağıtır",
+                  accent:
+                    "border-emerald-200 bg-white ring-2 ring-emerald-400/30",
+                },
+                {
+                  logo: "/logos/securenvoy.png",
+                  name: "SecurEnvoy",
+                  role: "Doğrular",
+                  accent: "border-indigo-200 bg-white",
+                },
+                {
+                  logo: "/logos/keeper.png",
+                  name: "Keeper",
+                  role: "Saklar",
+                  accent: "border-violet-200 bg-white",
+                },
+                {
+                  logo: "/logos/nospamproxy.png",
+                  name: "NoSpamProxy",
+                  role: "Mail korur",
+                  accent: "border-slate-200 bg-white",
+                },
               ].map((s) => (
-                <div key={s.name} className={`border rounded-xl p-2.5 flex flex-col items-center gap-1.5 text-center ${s.accent}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.logo} alt={s.name} className="w-7 h-7 object-contain" />
-                  <p className="text-slate-800 text-[11px] font-bold leading-tight">{s.name}</p>
+                <div
+                  key={s.name}
+                  className={`border rounded-xl p-2.5 flex flex-col items-center gap-1.5 text-center ${s.accent}`}
+                >
+                  <img
+                    src={s.logo}
+                    alt={s.name}
+                    className="w-7 h-7 object-contain"
+                  />
+                  <p className="text-slate-800 text-[11px] font-bold leading-tight">
+                    {s.name}
+                  </p>
                   <p className="text-slate-500 text-[9px]">{s.role}</p>
                 </div>
               ))}
@@ -252,7 +420,6 @@ export default function KeyTalkPage() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
       <HowItWorks
         id="nasil-calisir"
         title="Nasıl Çalışır?"
@@ -275,18 +442,26 @@ export default function KeyTalkPage() {
         ]}
       />
 
-      {/* INFO */}
       <InfoSection
         title="KeyTalk Nedir?"
         items={[
           {
-            title: "KeyTalk, cihazlara ve kullanıcılara sertifikaların otomatik olarak dağıtılmasını ve yönetilmesini sağlayan, PKI süreçlerini tamamen otomatikleştiren bir sertifika anahtar yönetim platformudur.",
+            title:
+              "KeyTalk, cihazlara ve kullanıcılara sertifikaların otomatik olarak dağıtılmasını ve yönetilmesini sağlayan, PKI süreçlerini tamamen otomatikleştiren bir sertifika anahtar yönetim platformudur.",
             desc: "Venafi sertifikaların nerede olduğunu görmemizi sağlarken, KeyTalk o sertifikaları gerçekten cihazlara ulaştırır ve kullanılır hale getirir. Auto-enrollment sayesinde çalışan sisteme login olduğunda sertifika otomatik gelir; IT birimi tek tek cihaza sertifika yüklemek zorunda kalmaz. 802.1X WiFi, VPN erişimi ve S/MIME mail imzalama için şifreye olan bağımlılığı ortadan kaldırır. DigiCert ve diğer CA'larla doğrudan entegrasyon ile mevcut PKI altyapısı güçlendirilir.",
           },
-          { title: "Auto",     desc: "Enrollment otomasyonu",      icon: "zap"        },
-          { title: "802.1X",   desc: "WiFi & VPN device auth",     icon: "shieldCheck" },
-          { title: "HSM",      desc: "Donanımsal anahtar güvenliği", icon: "lock"      },
-          { title: "0 Şifre",  desc: "Cihaz erişiminde passwordless", icon: "trending" },
+          { title: "Auto", desc: "Enrollment otomasyonu", icon: "zap" },
+          {
+            title: "802.1X",
+            desc: "WiFi & VPN device auth",
+            icon: "shieldCheck",
+          },
+          { title: "HSM", desc: "Donanımsal anahtar güvenliği", icon: "lock" },
+          {
+            title: "0 Şifre",
+            desc: "Cihaz erişiminde passwordless",
+            icon: "trending",
+          },
           {
             title: "Kullanım Alanları",
             desc: "Kurumsal VPN ve WiFi cihaz kimlik doğrulama, S/MIME mail imzalama ve şifreleme, Büyük ölçekli sertifika deployment otomasyonu, Zero Trust altyapısı kuran enterprise'lar, Bankalar ve finans kurumları (HSM desteği)",
@@ -294,7 +469,6 @@ export default function KeyTalkPage() {
         ]}
       />
 
-      {/* FAQ */}
       <FaqSection
         eyebrow="Sık Sorulan Sorular"
         title="KeyTalk Hakkında"
@@ -322,7 +496,6 @@ export default function KeyTalkPage() {
         ]}
       />
 
-      {/* CTA */}
       <div className="px-6 pb-20 max-w-4xl mx-auto">
         <CTASection
           title="PKI dağıtımını otomatikleştirmek ister misiniz?"
@@ -331,7 +504,6 @@ export default function KeyTalkPage() {
           buttonHref="/#teklif"
         />
       </div>
-
     </main>
   );
 }

@@ -9,6 +9,18 @@ export interface IUser extends Document {
   companyName?: string
   role: "admin" | "customer"
   status: "active" | "suspended"
+  address?: {
+    line1?: string
+    city?: string
+    state?: string
+    zip?: string
+    country?: string
+  }
+  billing?: {
+    type?: "bireysel" | "kurumsal"
+    taxNumber?: string // T.C. Kimlik No veya Vergi No
+    taxOffice?: string
+  }
 }
 
 const UserSchema = new Schema<IUser>(
@@ -28,6 +40,18 @@ const UserSchema = new Schema<IUser>(
       type: String,
       enum: ["active", "suspended"],
       default: "active",
+    },
+    address: {
+      line1: { type: String },
+      city: { type: String },
+      state: { type: String },
+      zip: { type: String },
+      country: { type: String, default: "Türkiye" },
+    },
+    billing: {
+      type: { type: String, enum: ["bireysel", "kurumsal"], default: "bireysel" },
+      taxNumber: { type: String },
+      taxOffice: { type: String },
     },
   },
   { timestamps: true }

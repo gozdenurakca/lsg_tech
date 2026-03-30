@@ -66,18 +66,19 @@ const CSS = `
 export default function Logos() {
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: CSS }} />
       {sections.map((section, si) => {
         const isDark = si % 2 === 1;
+
         return (
           <section
             key={si}
             className="relative py-24 overflow-hidden"
             style={{ background: isDark ? "#F7F9FF" : "#FFFFFF" }}
           >
+            {/* subtle pattern */}
             {isDark && (
               <div
-                className="absolute inset-0 pointer-events-none opacity-35"
+                className="absolute inset-0 opacity-[0.25]"
                 style={{
                   backgroundImage:
                     "radial-gradient(circle, #CBD5E1 1px, transparent 1px)",
@@ -87,47 +88,49 @@ export default function Logos() {
             )}
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-12">
+              {/* HEADER */}
               <div className="flex items-center gap-5 mb-14">
-                <div className="flex-shrink-0">
-                  <p
-                    className="text-[10px] uppercase tracking-widest font-medium mb-1"
-                    style={{
-                      color: section.accent,
-                      fontFamily: "'DM Sans',sans-serif",
-                    }}
-                  >
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest font-medium mb-1 text-sky-500">
                     {section.tag}
                   </p>
-                  <h2
-                    className="text-2xl font-bold text-slate-900"
-                    style={{ fontFamily: "'Syne',sans-serif" }}
-                  >
+
+                  <h2 className="font-display text-2xl font-bold text-slate-900 tracking-tight">
                     {section.title}
                   </h2>
                 </div>
+
                 <div
                   className="flex-1 h-[1px]"
                   style={{
                     background: `linear-gradient(90deg,${section.accent}40,transparent)`,
                   }}
                 />
-                <span
-                  className="text-xs text-slate-400"
-                  style={{ fontFamily: "'DM Sans',sans-serif" }}
-                >
+
+                <span className="text-xs text-slate-400">
                   {section.logos.length} referans
                 </span>
               </div>
 
+              {/* LOGO GRID */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
                 {section.logos.map((logo, li) => (
                   <div
                     key={li}
-                    className="logo-card relative bg-white rounded-2xl border border-slate-100 p-7 flex items-center justify-center group overflow-hidden"
+                    className="group relative bg-white rounded-2xl border border-slate-200 p-7 flex items-center justify-center overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
                     style={{ minHeight: 96 }}
                   >
+                    {/* hover glow */}
                     <div
-                      className="absolute top-0 left-4 right-4 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300"
+                      style={{
+                        background: `radial-gradient(circle at center, ${section.accent}15, transparent 70%)`,
+                      }}
+                    />
+
+                    {/* top line */}
+                    <div
+                      className="absolute top-0 left-6 right-6 h-[2px] opacity-0 group-hover:opacity-100 transition rounded-full"
                       style={{
                         background: `linear-gradient(90deg,transparent,${section.accent},transparent)`,
                       }}
@@ -138,7 +141,7 @@ export default function Logos() {
                       alt={logo.name}
                       width={130}
                       height={55}
-                      className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
+                      className="relative object-contain grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
                 ))}

@@ -16,15 +16,20 @@ export default function LayoutWrapper({
     pathname.startsWith("/admin") ||
     pathname.startsWith("/domain/results");
 
+  const isDomain = pathname.startsWith("/domain");
   const isDemoPage = pathname.startsWith("/demo-giris");
-
   const isCheckout = pathname.startsWith("/checkout");
+
+  // Admin veya Demo sayfalarında ana site NavBar gizlenir (özel layoutları vardır).
+  const hideNavbar = pathname.startsWith("/admin") || isDemoPage;
 
   return (
     <>
-      {!isDashboard && !isDemoPage && <Navbar />}
+      {!hideNavbar && <Navbar />}
       {children}
-      {!isDashboard && !isDemoPage && <Footer hideCTA={isCheckout} />}
+      {!isDashboard && !isDemoPage && (
+        <Footer hideCTA={isCheckout || isDomain} />
+      )}
     </>
   );
 }

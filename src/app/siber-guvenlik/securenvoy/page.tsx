@@ -187,7 +187,7 @@ export default function SecurEnvoyPage() {
           },
         ]}
         primaryButton={{ label: "Demo Talep Et", href: "/#teklif" }}
-        secondaryButton={{ label: "Teknik Doküman", href: "/#teklif" }}
+        secondaryButton={{ label: "Teknik Doküman", href: "#", modal: true, productName: "SecurEnvoy" }}
       />
 
       {/* TRUSTBAR – MFA flow visual */}
@@ -317,8 +317,9 @@ export default function SecurEnvoyPage() {
         id="nasil-calisir-adimlar"
         title="Nasıl Çalışır?"
         subtitle="3 basit adımda kurumsal güvenlik"
-        accentColor="blue"
+        accentColor="indigo"
         visual="number"
+        visualBg="from-[#0f172a] via-[#1e3a8a] to-[#0f172a]"
         steps={[
           {
             title: "Kullanıcı adı ve şifre gir",

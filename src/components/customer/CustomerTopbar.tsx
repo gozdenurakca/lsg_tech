@@ -32,7 +32,6 @@ const PAGE_TITLES: Record<string, string> = {
 
 export default function CustomerTopbar({ user, notifications = [] }: Props) {
   const pathname = usePathname();
-
   const [notifOpen, setNotifOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
@@ -92,15 +91,7 @@ export default function CustomerTopbar({ user, notifications = [] }: Props) {
   };
 
   return (
-    <header className="h-[72px] bg-white border-b border-slate-200 flex items-center justify-between px-8 sticky top-0 z-40 shrink-0">
-      {/* SOL */}
-      <div>
-        <h1 className="text-xl font-bold text-slate-900 leading-none">
-          {pageTitle}
-        </h1>
-        <p className="text-xs text-slate-400 mt-1">Hoş geldiniz, {userName}</p>
-      </div>
-
+    <header className="h-[72px] bg-white border-b border-slate-200 flex items-center justify-end px-8 sticky top-0 z-40 shrink-0">
       <div className="flex items-center gap-2">
         <div className="relative" ref={notifRef}>
           <button

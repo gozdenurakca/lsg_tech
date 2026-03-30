@@ -18,30 +18,13 @@ function MetricGrid() {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {metrics.map((m, i) => (
         <div key={i} className="ph-stat rounded-2xl p-6">
-          <div
-            className="text-3xl font-bold mb-1"
-            style={{ color: "#E2EFFF", fontFamily: "'Syne',sans-serif" }}
-          >
+          <div className="text-3xl font-display font-bold mb-1 text-[#E2EFFF]">
             {m.value}
           </div>
-          <div
-            className="text-xs font-semibold uppercase tracking-widest mb-1"
-            style={{
-              color: "rgba(125,211,252,0.7)",
-              fontFamily: "'DM Sans',sans-serif",
-            }}
-          >
+          <div className="text-xs font-semibold uppercase tracking-widest mb-1 text-sky-300/80">
             {m.label}
           </div>
-          <div
-            className="text-xs"
-            style={{
-              color: "rgba(186,214,255,0.4)",
-              fontFamily: "'DM Sans',sans-serif",
-            }}
-          >
-            {m.sub}
-          </div>
+          <div className="text-xs text-blue-200/40">{m.sub}</div>
         </div>
       ))}
     </div>

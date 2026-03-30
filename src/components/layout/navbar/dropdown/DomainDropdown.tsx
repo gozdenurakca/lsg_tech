@@ -7,14 +7,8 @@ const OPERATIONS = [
   {
     name: "Alan Adı Sorgula",
     desc: "Uygun domain bulun ve hemen kaydedin",
-    href: "/domain",
+    href: "/domain/search",
     icon: "search",
-  },
-  {
-    name: "Alan Adı Tescil",
-    desc: "Yeni domain kaydı oluşturun",
-    href: "/domain/tescil",
-    icon: "add",
   },
   {
     name: "Alan Adı Transfer",
@@ -25,7 +19,7 @@ const OPERATIONS = [
   {
     name: "Alan Adı Yenileme",
     desc: "Süre uzatma ve yönetim",
-    href: "/domain/yenileme",
+    href: "/domain/renew",
     icon: "refresh",
   },
 ] as const;

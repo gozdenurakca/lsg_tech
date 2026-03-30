@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getSession } from "next-auth/react";
 
 type Tab = "bireysel" | "bayi";
 
 export default function GirisPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect");
 
   const [tab, setTab] = useState<Tab>("bireysel");
   const [showPass, setShowPass] = useState(false);
@@ -46,7 +48,9 @@ export default function GirisPage() {
 
     setIsLoading(false);
 
-    if (session?.user?.role === "admin") {
+    if (redirectUrl) {
+      router.push(redirectUrl);
+    } else if (session?.user?.role === "admin") {
       router.push("/admin");
     } else {
       router.push("/panel");
