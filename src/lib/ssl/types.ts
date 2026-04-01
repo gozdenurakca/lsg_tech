@@ -19,10 +19,16 @@ export type Product = {
     oneYear?: number;
     twoYear?: number;
     threeYear?: number;
+    pricePerDomain?: number; // Multi-Domain: her ekstra domain için yıllık ek ücret
   };
   specs?: {
     Warranty?: string;
     Encryption?: string;
     Issuance?: string;
+  };
+  domainSupport?: {
+    standard?: boolean;
+    wildcard?: boolean;
+    multiDomainLimit?: number;
   };
 };

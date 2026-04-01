@@ -46,7 +46,6 @@ export default function PricingSection<T>({
           )}
         </div>
 
-        {/* 🔥 SLIDER MODE */}
         {layout === "slider" ? (
           <div className="relative">
             <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#f8fafc] to-transparent z-10" />
@@ -57,7 +56,6 @@ export default function PricingSection<T>({
             </div>
           </div>
         ) : (
-          /* 🔥 LIST MODE (DV / OV / EV) */
           <div className="flex flex-col gap-6">
             {products.map((p, idx) => renderRow(p, idx))}
           </div>

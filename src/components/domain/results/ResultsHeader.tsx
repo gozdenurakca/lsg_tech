@@ -29,7 +29,7 @@ export default function ResultsHeader({
   availableCount,
 }: Props) {
   return (
-    <div className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div className="sticky top-16 z-40 bg-white/90 backdrop-blur border-b border-slate-200">
       <div className="max-w-5xl mx-auto px-4 py-3 flex flex-col gap-3">
         {/* BREADCRUMB / NAVIGATION */}
         <div className="flex items-center gap-2 text-xs text-slate-500">

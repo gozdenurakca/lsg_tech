@@ -8,7 +8,7 @@ const BRAND_LOGOS: Record<string, string> = {
   Sectigo: "/logos/sectigo.png",
   GeoTrust: "/logos/geotrust.png",
   Thawte: "/logos/thawte.png",
-  DigiCert: "/logos/digicert.png",
+  DigiCert: "/logos/digicert.svg",
 };
 
 export default function BrandBadge({ brand }: Props) {

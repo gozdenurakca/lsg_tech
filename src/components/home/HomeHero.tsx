@@ -112,7 +112,7 @@ export default function HomeHero() {
 
             <div className="flex flex-wrap gap-3 mb-12">
               <Link
-                href="/ssl"
+                href="#products"
                 className="group inline-flex items-center gap-2 text-white px-7 py-3.5 rounded-xl font-semibold text-[15px] transition-all hover:-translate-y-0.5"
                 style={{
                   background: "linear-gradient(135deg, #2563eb, #4f46e5)",
@@ -211,7 +211,6 @@ export default function HomeHero() {
                   border: "1px solid rgba(52,211,153,0.2)",
                 }}
               >
-                {/* SSL */}
                 <ShieldIcon size={17} className="text-emerald-400" />{" "}
               </div>
               <div>
@@ -242,7 +241,6 @@ export default function HomeHero() {
                   border: "1px solid rgba(99,102,241,0.22)",
                 }}
               >
-                {/* hosting */}
                 <ServerIcon size={17} className="text-indigo-400" />{" "}
               </div>
               <div>

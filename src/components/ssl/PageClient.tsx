@@ -13,7 +13,6 @@ import CTASection from "@/components/marketing/CTASection";
 
 import type { Product } from "@/lib/ssl/types";
 
-/* ── SSL Tip Verileri ─────────────────────────────── */
 const SSL_TYPES = [
   {
     type: "DV",
@@ -39,7 +38,11 @@ const SSL_TYPES = [
     priceLabel: "/yıldan başlayan",
     href: "/ssl/ov",
     icon: "shieldCheck" as const,
-    features: ["1–3 gün aktivasyon", "Şirket doğrulaması", "Kurumsal güven sinyali"],
+    features: [
+      "1–3 gün aktivasyon",
+      "Şirket doğrulaması",
+      "Kurumsal güven sinyali",
+    ],
     accent: "from-emerald-500 to-teal-500",
     iconBg: "bg-emerald-50",
     iconColor: "text-emerald-600",
@@ -54,7 +57,11 @@ const SSL_TYPES = [
     priceLabel: "/yıldan başlayan",
     href: "/ssl/ev",
     icon: "award" as const,
-    features: ["3–7 gün aktivasyon", "Tam şirket doğrulaması", "En yüksek güven seviyesi"],
+    features: [
+      "3–7 gün aktivasyon",
+      "Tam şirket doğrulaması",
+      "En yüksek güven seviyesi",
+    ],
     accent: "from-violet-500 to-purple-500",
     iconBg: "bg-violet-50",
     iconColor: "text-violet-600",
@@ -70,7 +77,11 @@ const SSL_TYPES = [
     priceLabel: "/yıldan başlayan",
     href: "/ssl/wildcard",
     icon: "layers" as const,
-    features: ["Sınırsız subdomain", "10–30 dk aktivasyon", "Tek sertifika yönetimi"],
+    features: [
+      "Sınırsız subdomain",
+      "10–30 dk aktivasyon",
+      "Tek sertifika yönetimi",
+    ],
     accent: "from-orange-500 to-amber-500",
     iconBg: "bg-orange-50",
     iconColor: "text-orange-600",
@@ -147,7 +158,6 @@ function SslNavbar() {
 export default function SSLPageClient({ products }: Props) {
   return (
     <div className="bg-white font-sans">
-      {/* HERO */}
       <Hero
         badge={{
           icon: "ShieldCheck",
@@ -180,7 +190,6 @@ export default function SSLPageClient({ products }: Props) {
 
       <SslNavbar />
 
-      {/* SSL TİPLERİ */}
       <section id="fiyatlandirma" className="py-24 bg-[#f8fafc] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -191,7 +200,8 @@ export default function SSLPageClient({ products }: Props) {
               İhtiyacınıza Uygun SSL'i Seçin
             </h2>
             <p className="text-slate-500 max-w-xl mx-auto">
-              Her site için doğru doğrulama seviyesi. Hangi sertifikanın size uygun olduğundan emin değilseniz uzmanlarımıza sorun.
+              Her site için doğru doğrulama seviyesi. Hangi sertifikanın size
+              uygun olduğundan emin değilseniz uzmanlarımıza sorun.
             </p>
           </div>
 
@@ -213,40 +223,59 @@ export default function SSLPageClient({ products }: Props) {
                     </div>
                   )}
 
-                  {/* Gradient top bar */}
-                  <div className={`h-1.5 w-full bg-gradient-to-r ${ssl.accent}`} />
+                  <div
+                    className={`h-1.5 w-full bg-gradient-to-r ${ssl.accent}`}
+                  />
 
                   <div className="p-6 flex flex-col flex-1">
-                    {/* Icon + type */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${ssl.iconBg}`}>
+                      <div
+                        className={`w-10 h-10 rounded-xl flex items-center justify-center ${ssl.iconBg}`}
+                      >
                         <Icon size={18} className={ssl.iconColor} />
                       </div>
-                      <span className={`text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${ssl.badgeColor}`}>
+                      <span
+                        className={`text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${ssl.badgeColor}`}
+                      >
                         {ssl.type}
                       </span>
                     </div>
 
-                    {/* Name + tagline */}
-                    <h3 className="text-[16px] font-bold text-slate-900 mb-1">{ssl.name}</h3>
-                    <p className="text-[12px] font-semibold text-slate-400 uppercase tracking-wide mb-3">{ssl.tagline}</p>
-                    <p className="text-[13px] text-slate-500 leading-relaxed mb-5">{ssl.desc}</p>
+                    <h3 className="text-[16px] font-bold text-slate-900 mb-1">
+                      {ssl.name}
+                    </h3>
+                    <p className="text-[12px] font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                      {ssl.tagline}
+                    </p>
+                    <p className="text-[13px] text-slate-500 leading-relaxed mb-5">
+                      {ssl.desc}
+                    </p>
 
-                    {/* Features */}
                     <ul className="space-y-2 mb-6 flex-1">
                       {ssl.features.map((f) => (
-                        <li key={f} className="flex items-center gap-2.5 text-[13px] text-slate-600">
-                          <ICONS.checkCircle size={14} className="text-emerald-500 shrink-0" />
+                        <li
+                          key={f}
+                          className="flex items-center gap-2.5 text-[13px] text-slate-600"
+                        >
+                          <ICONS.checkCircle
+                            size={14}
+                            className="text-emerald-500 shrink-0"
+                          />
                           {f}
                         </li>
                       ))}
                     </ul>
 
-                    {/* Price + CTA */}
-                    <div className="border-t border-slate-100 pt-5 mt-auto">
+                    <div className="relative overflow-hidden border-t border-slate-100 pt-5 mt-auto">
+                      <div className="pointer-events-none absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 opacity-10 blur-2xl" />
+                      <div className="pointer-events-none absolute -bottom-2 -right-2 w-16 h-16 rounded-xl bg-gradient-to-br from-primary via-blue-600 to-indigo-700 opacity-20 blur-lg" />
                       <div className="mb-4">
-                        <span className="text-[24px] font-extrabold text-slate-900">{ssl.price}</span>
-                        <span className="text-[12px] text-slate-400 ml-1">{ssl.priceLabel}</span>
+                        <span className="text-[24px] font-extrabold text-slate-900">
+                          {ssl.price}
+                        </span>
+                        <span className="text-[12px] text-slate-400 ml-1">
+                          {ssl.priceLabel}
+                        </span>
                       </div>
                       <Link
                         href={ssl.href}
@@ -268,7 +297,6 @@ export default function SSLPageClient({ products }: Props) {
         </div>
       </section>
 
-      {/* TRUST */}
       <TrustBar
         id="guven"
         eyebrow="Güven"
@@ -288,7 +316,6 @@ export default function SSLPageClient({ products }: Props) {
         ]}
       />
 
-      {/* INFO */}
       <InfoSection
         id="neden-lsg"
         title="LSG SSL Sertifikası almak için nedenler"
@@ -320,7 +347,6 @@ export default function SSLPageClient({ products }: Props) {
         ]}
       />
 
-      {/* HOW */}
       <HowItWorks
         title="SSL sertifikaları nasıl çalışır?"
         subtitle="SSL sertifikaları kullanıcı verilerini şifreleyerek güvenli bir bağlantı sağlar."
@@ -343,7 +369,6 @@ export default function SSLPageClient({ products }: Props) {
         ]}
       />
 
-      {/* FAQ */}
       <FaqSection
         id="sss"
         eyebrow="SSS"
@@ -364,7 +389,6 @@ export default function SSLPageClient({ products }: Props) {
         ]}
       />
 
-      {/* CTA */}
       <section className="pb-24 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <CTASection />

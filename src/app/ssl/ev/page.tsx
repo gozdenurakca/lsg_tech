@@ -1,26 +1,31 @@
+import type { Product } from "@/lib/ssl/types";
 import Hero from "@/components/marketing/hero/ProductHero";
 import TrustBar from "@/components/marketing/TrustBar";
 import InfoSection from "@/components/marketing/InfoSection";
-import PricingSection from "@/components/pricing/PricingSection";
+import SslFilteredPricing from "@/components/ssl/SslFilteredPricing";
 
-import SslPricingRow from "@/components/ssl/SslPricingRow";
-
-import { getProducts, getBrands } from "@/lib/api/products";
+import { getProducts } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
-import type { Product } from "@/lib/ssl/types";
 
 export default async function EVMarketingPage() {
-  const [standardProducts, multiDomainProducts, brands] = await Promise.all([
-    getProducts("EV", "Standard"),
-    getProducts("EV", "Multi Domain"),
-    getBrands("EV"),
-  ]);
+  const products: Product[] = await getProducts("EV");
 
-  const sortedStandard = sortByBrand(standardProducts);
-  const sortedMultiDomain = sortByBrand(multiDomainProducts);
+  // 🔥 TAB mantığı (UI = productType)
+  const standardProducts = products.filter(
+    (p) => p?.productType === "Standard",
+  );
+
+  const multiDomainProducts = products.filter(
+    (p) => p?.productType === "Multi-Domain",
+  );
+
+  // 🔥 Marka sıralaması (DigiCert üstte)
+  const sortedStandard = sortByBrand(standardProducts ?? []);
+  const sortedMultiDomain = sortByBrand(multiDomainProducts ?? []);
 
   return (
     <main className="bg-white text-slate-900">
+      {/* HERO */}
       <Hero
         badge={{
           icon: "ShieldCheck",
@@ -35,6 +40,7 @@ export default async function EVMarketingPage() {
         }}
       />
 
+      {/* TRUST BAR */}
       <TrustBar
         id="guven"
         title="En güçlü güven sinyali"
@@ -48,38 +54,17 @@ export default async function EVMarketingPage() {
         ]}
       />
 
-      <PricingSection<Product>
-        id="pricing"
-        layout="list"
+      {/* 🔥 TAB'LI PRICING (Single | Multi) */}
+      <SslFilteredPricing
+        singleDomainProducts={sortedStandard}
+        multiDomainProducts={sortedMultiDomain}
         title="EV SSL Paketleri"
         subtitle="En kapsamlı doğrulama ile maksimum kurumsal güven."
-        products={sortedStandard}
-        renderRow={(product: Product, idx: number) => (
-          <SslPricingRow
-            key={product._id ?? product.slug}
-            product={product}
-            defaultYears={3}
-            featured={product.featured || idx === 0}
-          />
-        )}
+        eyebrow="Extended Validation"
+        eyebrowColor="text-violet-500"
       />
 
-      {sortedMultiDomain.length > 0 && (
-        <PricingSection<Product>
-          title="Multi Domain EV SSL Paketleri"
-          subtitle="Birden fazla domain için tek sertifika ile güvenlik sağlayın."
-          products={sortedMultiDomain}
-          renderRow={(product: Product, idx: number) => (
-            <SslPricingRow
-              key={product._id ?? product.slug}
-              product={product}
-              defaultYears={3}
-              featured={product.featured || idx === 0}
-            />
-          )}
-        />
-      )}
-
+      {/* INFO */}
       <InfoSection
         title="EV SSL Nedir?"
         items={[
@@ -106,7 +91,7 @@ export default async function EVMarketingPage() {
           },
           {
             title: "Kullanım alanı",
-            desc: "Bankacılık ve finans uygulamaları, Ödeme sistemleri ve fintech platformları, Kurumsal marka web siteleri",
+            desc: "Bankacılık ve finans uygulamaları, ödeme sistemleri, fintech platformları ve kurumsal marka web siteleri",
           },
         ]}
       />

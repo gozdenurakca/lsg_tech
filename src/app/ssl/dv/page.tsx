@@ -1,26 +1,32 @@
 import Hero from "@/components/marketing/hero/ProductHero";
 import TrustBar from "@/components/marketing/TrustBar";
 import InfoSection from "@/components/marketing/InfoSection";
-import PricingSection from "@/components/pricing/PricingSection";
+import SslFilteredPricing from "@/components/ssl/SslFilteredPricing";
 
-import SslPricingRow from "@/components/ssl/SslPricingRow";
-
-import { getProducts, getBrands } from "@/lib/api/products";
+import { getProducts } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 import type { Product } from "@/lib/ssl/types";
 
 export default async function DVMarketingPage() {
-  const [standardProducts, wildcardProducts, brands] = await Promise.all([
-    getProducts("DV", "Standard"),
-    getProducts("DV", "Wildcard"),
-    getBrands("DV"),
-  ]);
+  // 🔥 TEK API CALL
+  const products: Product[] = await getProducts("DV");
 
-  const sortedStandard = sortByBrand(standardProducts);
-  const sortedWildcard = sortByBrand(wildcardProducts);
+  // 🔥 TAB MANTIĞI
+  const singleDomainProducts = products.filter(
+    (p) => p?.productType === "Standard" || p?.productType === "Wildcard",
+  );
+
+  const multiDomainProducts = products.filter(
+    (p) => p?.productType === "Multi-Domain",
+  );
+
+  // 🔥 SORT
+  const sortedSingle = sortByBrand(singleDomainProducts);
+  const sortedMultiDomain = sortByBrand(multiDomainProducts);
 
   return (
     <main className="bg-white text-slate-900">
+      {/* HERO */}
       <Hero
         badge={{
           icon: "ShieldCheck",
@@ -35,6 +41,7 @@ export default async function DVMarketingPage() {
         }}
       />
 
+      {/* TRUST BAR */}
       <TrustBar
         id="guven"
         title="Dakikalar içinde aktivasyon"
@@ -49,22 +56,17 @@ export default async function DVMarketingPage() {
         ]}
       />
 
-      <PricingSection<Product>
-        id="pricing"
-        layout="list"
+      {/* 🔥 TAB'LI PRICING */}
+      <SslFilteredPricing
+        singleDomainProducts={sortedSingle}
+        multiDomainProducts={sortedMultiDomain}
         title="DV SSL Paketleri"
         subtitle="Hızlı aktivasyon ve bütçe dostu HTTPS güvenliği."
-        products={sortedStandard}
-        renderRow={(product: Product, idx: number) => (
-          <SslPricingRow
-            key={product._id ?? product.slug}
-            product={product}
-            defaultYears={3}
-            featured={product.featured || idx === 0}
-          />
-        )}
+        eyebrow="Domain Validation"
+        eyebrowColor="text-blue-500"
       />
 
+      {/* INFO */}
       <InfoSection
         title="DV SSL Nedir?"
         items={[
@@ -95,7 +97,7 @@ export default async function DVMarketingPage() {
           },
           {
             title: "Kullanım alanı",
-            desc: "Blog ve kişisel web siteleri, Startup landing page'leri, Küçük işletme siteleri",
+            desc: "Blog ve kişisel web siteleri, startup landing page'leri, küçük işletme siteleri",
           },
         ]}
       />

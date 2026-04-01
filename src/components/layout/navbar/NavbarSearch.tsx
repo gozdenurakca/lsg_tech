@@ -35,7 +35,6 @@ export default function NavbarSearch({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6">
-          {/* 🔥 FORM EKLEDİK */}
           <form onSubmit={handleSubmit}>
             <div className="relative">
               <input
@@ -63,7 +62,6 @@ export default function NavbarSearch({
             </div>
           </form>
 
-          {/* POPÜLER */}
           <div className="mt-4 text-sm text-gray-500">
             Popüler:{" "}
             <span
@@ -77,7 +75,7 @@ export default function NavbarSearch({
               onClick={() => router.push("/search?q=multi domain ssl")}
               className="text-primary cursor-pointer hover:underline"
             >
-              Multi-Domain SSL
+              SSL
             </span>
             ,{" "}
             <span

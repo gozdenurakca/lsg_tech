@@ -1,24 +1,36 @@
 import Hero from "@/components/marketing/hero/ProductHero";
 import TrustBar from "@/components/marketing/TrustBar";
 import InfoSection from "@/components/marketing/InfoSection";
-import PricingSection from "@/components/pricing/PricingSection";
+import SslFilteredPricing from "@/components/ssl/SslFilteredPricing";
 
-import SslPricingRow from "@/components/ssl/SslPricingRow";
-
-import { getProducts, getBrands } from "@/lib/api/products";
+import { getProducts } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 import type { Product } from "@/lib/ssl/types";
 
 export default async function WildcardMarketingPage() {
-  const [wildcardProducts, brands] = await Promise.all([
-    getProducts("DV", "Wildcard"),
-    getBrands("DV"),
-  ]);
+  // 🔥 TÜM ürünleri çek (tek source)
+  const products: Product[] = await getProducts();
 
-  const sortedWildcard = sortByBrand(wildcardProducts);
+  // 🔥 SADECE wildcard ürünleri al
+  const wildcardProducts = products.filter(
+    (p) => p?.productType === "Wildcard",
+  );
+
+  // 🔥 İSTEĞE GÖRE VALIDATION AYRIMI (DV / OV / EV)
+  const dvWildcard = wildcardProducts.filter((p) => p.validation === "DV");
+  const ovWildcard = wildcardProducts.filter((p) => p.validation === "OV");
+  const evWildcard = wildcardProducts.filter((p) => p.validation === "EV");
+
+  // 🔥 HEPSİNİ TEK LİSTEDE GÖSTER (senin istediğin UX)
+  const allWildcard = sortByBrand([
+    ...dvWildcard,
+    ...ovWildcard,
+    ...evWildcard,
+  ]);
 
   return (
     <main className="bg-white text-slate-900">
+      {/* HERO */}
       <Hero
         badge={{
           icon: "layers",
@@ -33,6 +45,7 @@ export default async function WildcardMarketingPage() {
         }}
       />
 
+      {/* TRUST */}
       <TrustBar
         id="guven"
         title="Sınırsız subdomain, tek sertifika"
@@ -46,22 +59,17 @@ export default async function WildcardMarketingPage() {
         ]}
       />
 
-      <PricingSection<Product>
-        id="pricing"
-        layout="list"
+      {/* 🔥 PRICING */}
+      <SslFilteredPricing
+        singleDomainProducts={allWildcard}
+        multiDomainProducts={[]} // wildcard'ta multi yok
         title="Wildcard SSL Paketleri"
         subtitle="Tüm alt domainlerinizi tek sertifikayla koruyun — ekstra maliyet yok."
-        products={sortedWildcard}
-        renderRow={(product: Product, idx: number) => (
-          <SslPricingRow
-            key={product._id ?? product.slug}
-            product={product}
-            defaultYears={3}
-            featured={product.featured || idx === 0}
-          />
-        )}
+        eyebrow="Wildcard SSL"
+        eyebrowColor="text-orange-500"
       />
 
+      {/* INFO */}
       <InfoSection
         title="Wildcard SSL Nedir?"
         items={[
@@ -70,22 +78,10 @@ export default async function WildcardMarketingPage() {
               "Wildcard SSL sertifikası, *.siteniz.com formatındaki tüm subdomainleri kapsar.",
             desc: "Tek bir sertifika ile sınırsız sayıda alt domain güvence altına alınır.",
           },
-          {
-            title: "Sınırsız",
-            desc: "Subdomain kapsamı",
-          },
-          {
-            title: "256-bit",
-            desc: "Güçlü şifreleme",
-          },
-          {
-            title: "10–30 dk",
-            desc: "Hızlı aktivasyon",
-          },
-          {
-            title: "Tek sertifika",
-            desc: "Kolay yönetim",
-          },
+          { title: "Sınırsız", desc: "Subdomain kapsamı" },
+          { title: "256-bit", desc: "Güçlü şifreleme" },
+          { title: "10–30 dk", desc: "Hızlı aktivasyon" },
+          { title: "Tek sertifika", desc: "Kolay yönetim" },
           {
             title: "Kullanım alanı",
             desc: "SaaS platformları, API servisleri, çoklu subdomain kullanan projeler",

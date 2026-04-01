@@ -23,7 +23,7 @@ async function safeFetch(url: string) {
   return data.data || [];
 }
 
-export async function getProducts(validation?: string, type?: string) {
+export async function getProducts(validation?: string) {
   const baseUrl = getBaseUrl();
 
   const params = new URLSearchParams({
@@ -32,7 +32,6 @@ export async function getProducts(validation?: string, type?: string) {
   });
 
   if (validation) params.append("validation", validation);
-  if (type) params.append("type", type);
 
   return safeFetch(`${baseUrl}/api/products?${params}`);
 }

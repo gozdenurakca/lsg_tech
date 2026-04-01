@@ -82,7 +82,6 @@ export default function HomeSecurity() {
 
       <section className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-          {/* Sol — metin */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-3">
               Uçtan Uca Koruma
@@ -100,44 +99,63 @@ export default function HomeSecurity() {
 
             <ul className="space-y-4 mb-10">
               {[
-                { text: "SSL sertifikası otomatik yenileme", color: "text-emerald-500" },
-                { text: "Real-time malware tarama ve temizlik", color: "text-emerald-500" },
-                { text: "WAF ile SQL enjeksiyon & XSS koruması", color: "text-emerald-500" },
-                { text: "DDoS saldırılarına karşı anlık engelleme", color: "text-emerald-500" },
-                { text: "Günlük otomatik yedekleme", color: "text-emerald-500" },
+                {
+                  text: "SSL sertifikası otomatik yenileme",
+                  color: "text-emerald-500",
+                },
+                {
+                  text: "Real-time malware tarama ve temizlik",
+                  color: "text-emerald-500",
+                },
+                {
+                  text: "WAF ile SQL enjeksiyon & XSS koruması",
+                  color: "text-emerald-500",
+                },
+                {
+                  text: "DDoS saldırılarına karşı anlık engelleme",
+                  color: "text-emerald-500",
+                },
+                {
+                  text: "Günlük otomatik yedekleme",
+                  color: "text-emerald-500",
+                },
               ].map(({ text, color }) => (
                 <li key={text} className="flex items-center gap-3">
                   <span className={`flex-shrink-0 w-5 h-5 ${color}`}>
                     <CheckIcon className="w-5 h-5" />
                   </span>
-                  <span className="text-slate-700 text-sm font-medium">{text}</span>
+                  <span className="text-slate-700 text-sm font-medium">
+                    {text}
+                  </span>
                 </li>
               ))}
             </ul>
 
             <Link
-              href="/guvenlik"
+              href="/web-guvenligi"
               className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors shadow-md"
             >
-              Güvenlik Çözümlerini Keşfet <ArrowIcon size={15} />
+              Güvenlik Çözümleri
+              <ArrowIcon size={15} />
             </Link>
           </div>
 
-          {/* Sağ — görsel kart */}
           <div className="relative flex items-center justify-center">
             <div className="w-full max-w-md rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 p-8 shadow-2xl">
-              {/* Başlık */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center">
                   <ICONS.shieldCheck size={20} className="text-emerald-400" />
                 </div>
                 <div>
-                  <p className="text-white font-semibold text-sm">Güvenlik Durumu</p>
-                  <p className="text-emerald-400 text-xs font-medium">● Aktif Koruma</p>
+                  <p className="text-white font-semibold text-sm">
+                    Güvenlik Durumu
+                  </p>
+                  <p className="text-emerald-400 text-xs font-medium">
+                    ● Aktif Koruma
+                  </p>
                 </div>
               </div>
 
-              {/* Metrikler */}
               <div className="space-y-3 mb-6">
                 {[
                   { label: "SSL Sertifikası", status: "Geçerli", ok: true },
@@ -163,14 +181,12 @@ export default function HomeSecurity() {
                 ))}
               </div>
 
-              {/* Alt bilgi */}
               <div className="flex items-center gap-2 text-xs text-slate-500 border-t border-white/10 pt-4">
                 <ICONS.clock size={12} />
                 <span>Son tarama: 2 dakika önce</span>
               </div>
             </div>
 
-            {/* Dekoratif arka plan blur */}
             <div className="absolute -z-10 w-64 h-64 bg-emerald-400/10 rounded-full blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
           </div>
         </div>

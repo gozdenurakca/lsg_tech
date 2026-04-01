@@ -1,23 +1,24 @@
 import Hero from "@/components/marketing/hero/ProductHero";
 import TrustBar from "@/components/marketing/TrustBar";
 import InfoSection from "@/components/marketing/InfoSection";
-import PricingSection from "@/components/pricing/PricingSection";
+import SslFilteredPricing from "@/components/ssl/SslFilteredPricing";
 
-import SslPricingRow from "@/components/ssl/SslPricingRow";
-
-import { getProducts, getBrands } from "@/lib/api/products";
+import { getProducts } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 import type { Product } from "@/lib/ssl/types";
 
 export default async function OVMarketingPage() {
-  const [standardProducts, wildcardProducts, brands] = await Promise.all([
-    getProducts("OV", "Standard"),
-    getProducts("OV", "Wildcard"),
-    getBrands("OV"),
-  ]);
+  const products: Product[] = await getProducts("OV");
 
-  const sortedStandard = sortByBrand(standardProducts);
-  const sortedWildcard = sortByBrand(wildcardProducts);
+  const singleDomainProducts = products.filter(
+    (p) => p.productType && ["Standard", "Wildcard"].includes(p.productType),
+  );
+  const multiDomainProducts = products.filter(
+    (p) => p.productType === "Multi-Domain",
+  );
+
+  const sortedSingle = sortByBrand(singleDomainProducts);
+  const sortedMultiDomain = sortByBrand(multiDomainProducts);
 
   return (
     <main className="bg-white text-slate-900">
@@ -72,6 +73,7 @@ export default async function OVMarketingPage() {
                 />
               </svg>
             </div>
+
             <div className="text-center">
               <div className="text-emerald-400 font-bold text-[13px] uppercase tracking-widest mb-1">
                 Organization Validated
@@ -80,47 +82,18 @@ export default async function OVMarketingPage() {
                 Şirket kimliği doğrulandı
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-px bg-emerald-500/40" />
-              <div className="w-2 h-2 rounded-full bg-emerald-500/60" />
-              <div className="w-8 h-px bg-emerald-500/40" />
-            </div>
           </div>
         }
       />
 
-      <PricingSection<Product>
-        id="pricing"
-        layout="list"
+      <SslFilteredPricing
+        singleDomainProducts={sortedSingle}
+        multiDomainProducts={sortedMultiDomain}
         title="OV SSL Paketleri"
         subtitle="Kurumsal güven için şirket doğrulamalı SSL çözümleri."
-        products={sortedStandard}
-        renderRow={(product: Product, idx: number) => (
-          <SslPricingRow
-            key={product._id ?? product.slug}
-            product={product}
-            defaultYears={3}
-            featured={product.featured || idx === 0}
-          />
-        )}
+        eyebrow="Organization Validation"
+        eyebrowColor="text-emerald-500"
       />
-
-      {sortedWildcard.length > 0 && (
-        <PricingSection<Product>
-          layout="list"
-          title="Wildcard OV SSL Paketleri"
-          subtitle="Tüm alt domainler için kurumsal güvenlik sağlayın."
-          products={sortedWildcard}
-          renderRow={(product: Product, idx: number) => (
-            <SslPricingRow
-              key={product._id ?? product.slug}
-              product={product}
-              defaultYears={3}
-              featured={product.featured || idx === 0}
-            />
-          )}
-        />
-      )}
 
       <InfoSection
         title="OV SSL Nedir?"
@@ -148,7 +121,7 @@ export default async function OVMarketingPage() {
           },
           {
             title: "Kullanım alanı",
-            desc: "Kurumsal web siteleri, E-ticaret platformları, müşteri verisi toplayan siteler",
+            desc: "Kurumsal web siteleri, e-ticaret platformları ve müşteri verisi toplayan siteler",
           },
         ]}
       />

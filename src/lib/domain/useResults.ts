@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { EXTENSIONS } from "@/lib/domain/extensions";
-import { checkAvailability } from "@/lib/domain/api";
+import { checkAvailabilityBulk } from "@/lib/domain/api";
 import type { DomainResult } from "@/lib/domain/types";
 
 export type SortMode = "default" | "price-asc" | "price-desc";
@@ -13,12 +13,18 @@ export function useResults(baseDomain: string) {
   const [showAvailableOnly, setShowAvailableOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortMode>("default");
 
+  // 🔥 BULK DOMAIN CHECK
   const runChecks = useCallback(async () => {
     if (!baseDomain) {
       setResults([]);
       return;
     }
 
+    const domains = EXTENSIONS.map(
+      (e) => `${baseDomain}${e.ext}`
+    );
+
+    // loading state
     setResults(
       EXTENSIONS.map((e) => ({
         ...e,
@@ -27,26 +33,39 @@ export function useResults(baseDomain: string) {
       }))
     );
 
-    await Promise.all(
-      EXTENSIONS.map(async (ext, idx) => {
-        const available = await checkAvailability(
-          `${baseDomain}${ext.ext}`
-        );
+    try {
+      const data = await checkAvailabilityBulk(domains);
 
-        setResults((prev) => {
-          const next = [...prev];
-          next[idx] = {
-            ...next[idx],
-            available,
+      setResults((prev) =>
+        prev.map((item) => {
+          const fullDomain = `${baseDomain}${item.ext}`;
+
+          const found = data.find(
+            (d) => d.domain === fullDomain
+          );
+
+          return {
+            ...item,
+            available: found?.available ?? false,
+            premium: found?.premium ?? false,
             loading: false,
           };
-          return next;
-        });
-      })
-    );
+        })
+      );
+    } catch (err) {
+      console.error("CHECK ERROR:", err);
+
+      setResults((prev) =>
+        prev.map((item) => ({
+          ...item,
+          available: false,
+          loading: false,
+        }))
+      );
+    }
   }, [baseDomain]);
 
-  
+  // debounce
   useEffect(() => {
     const t = setTimeout(() => {
       runChecks();
@@ -55,7 +74,7 @@ export function useResults(baseDomain: string) {
     return () => clearTimeout(t);
   }, [runChecks]);
 
-
+  // 🔍 FILTER + SORT
   const filtered = useMemo(() => {
     let list = [...results];
 
@@ -78,7 +97,7 @@ export function useResults(baseDomain: string) {
     return list;
   }, [results, selectedExts, showAvailableOnly, sortBy]);
 
- 
+  // 🎛 FILTER ACTIONS
   const toggleExt = (ext: string) => {
     setSelectedExts((prev) => {
       const next = new Set(prev);

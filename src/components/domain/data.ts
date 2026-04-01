@@ -87,14 +87,13 @@ export function stripExtension(raw: string): string {
 }
 
 /*────────────────────────────────────────────
-  MOCK AVAILABILITY (API READY)
+  AVAILABILITY — Realtime Register API
 ────────────────────────────────────────────*/
 export async function checkAvailability(domain: string): Promise<boolean> {
-  // FUTURE:
-  // const res = await fetch(`/api/domain/check?domain=${domain}`)
-  // return (await res.json()).available
+  const res = await fetch(`/api/domain/check?domain=${encodeURIComponent(domain)}`);
 
-  await new Promise((r) => setTimeout(r, 600 + Math.random() * 500));
+  if (!res.ok) return false;
 
-  return Math.random() > 0.35;
+  const data = await res.json();
+  return data.available === true;
 }

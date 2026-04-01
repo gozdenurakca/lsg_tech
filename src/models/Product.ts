@@ -16,6 +16,7 @@ export interface IProduct extends Document {
     oneYear: number
     twoYear: number
     threeYear: number
+    pricePerDomain?: number  // Multi-Domain: her ekstra domain için yıllık ek ücret
   }
 
   originalPrice?: number
@@ -68,8 +69,9 @@ const ProductSchema = new Schema<IProduct>(
 
     price: {
       oneYear: { type: Number, required: true },
-      twoYear: { type: Number},
-      threeYear: { type: Number},
+      twoYear: { type: Number },
+      threeYear: { type: Number },
+      pricePerDomain: { type: Number }, // Multi-Domain: her ekstra domain için yıllık ek ücret
     },
 
     originalPrice: Number,

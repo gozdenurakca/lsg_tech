@@ -4,14 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { ICONS } from "@/lib/icons";
 
-type TabKey = "ssl" | "hosting" | "domain" | "security" | "bayi";
+type TabKey = "ssl" | "hosting" | "domain" | "security" | "web-security";
 
 type ProductCard = {
   name: string;
   tag?: string;
   featured?: boolean;
-  price: string;
-  period: string;
   desc: string;
   features: string[];
   href: string;
@@ -29,212 +27,196 @@ type TabContent = {
 
 const TABS: { id: TabKey; label: string; icon: keyof typeof ICONS }[] = [
   { id: "ssl", label: "SSL Sertifikaları", icon: "lock" },
-  { id: "hosting", label: "Web Hosting", icon: "server" },
+  { id: "hosting", label: "İş Ortaklığı", icon: "users" },
   { id: "domain", label: "Alan Adı", icon: "globe" },
+  { id: "web-security", label: "Web Güvenliği", icon: "shield" },
   { id: "security", label: "Siber Güvenlik", icon: "shield" },
-  { id: "bayi", label: "Bayilik", icon: "users" },
 ];
 
 const CONTENT: Record<TabKey, TabContent> = {
   ssl: {
     eyebrow: "DigiCert Yetkili Partner",
     title: "Her ihtiyaca uygun SSL",
-    desc: "DV'den EV'ye, Wildcard'dan Multi-Domain'e kadar tüm sertifika türleri.",
+    desc: "DV'den EV'ye, Wildcard ve Multi-Domain çözümlere kadar tüm sertifika türleri.",
     color: "text-blue-400",
     allHref: "/ssl",
     allLabel: "Tüm SSL Sertifikaları",
     cards: [
       {
-        name: "Domain Validation",
+        name: "Domain Validation (DV)",
         tag: "Başlangıç",
-        price: "₺299",
-        period: "/yıl",
-        desc: "Kişisel site ve bloglar için hızlı, uygun fiyatlı DV sertifikası.",
+        desc: "Kişisel siteler için hızlı ve kolay SSL kurulumu.",
         features: [
           "Dakikalar içinde aktif",
           "256-bit şifreleme",
-          "Ücretsiz yeniden düzenleme",
+          "Domain doğrulama",
         ],
         href: "/ssl/dv",
       },
       {
-        name: "Organization Validation",
+        name: "Organization Validation (OV)",
         tag: "En Popüler",
         featured: true,
-        price: "₺799",
-        period: "/yıl",
-        desc: "Kurumsal kimlik doğrulamalı, şirketler için güven standartı.",
-        features: ["Şirket doğrulaması", "Site mühürü dahil", "7/24 destek"],
+        desc: "Şirket doğrulaması ile daha yüksek güven sağlar.",
+        features: ["Şirket doğrulaması", "Site mühürü", "Kurumsal güven"],
         href: "/ssl/ov",
       },
       {
-        name: "Extended Validation",
+        name: "Extended Validation (EV)",
         tag: "Premium",
-        price: "₺1.999",
-        period: "/yıl",
-        desc: "Maksimum güven. Finans ve e-ticaret için EV standartı.",
-        features: [
-          "Tarayıcıda şirket adı",
-          "$1.75M garanti",
-          "En yüksek güven",
-        ],
+        desc: "En yüksek güven seviyesi. Finans ve e-ticaret için ideal.",
+        features: ["Tarayıcıda şirket adı", "Maksimum güven", "Yüksek dönüşüm"],
         href: "/ssl/ev",
+      },
+      {
+        name: "Wildcard SSL",
+        tag: "Esnek",
+        desc: "Tüm alt domainleri tek sertifika ile koruyun.",
+        features: ["Unlimited subdomain", "Kolay yönetim", "Maliyet avantajı"],
+        href: "/ssl/wildcard",
       },
     ],
   },
 
   hosting: {
-    eyebrow: "Yönetilen Hosting",
-    title: "Hızlı, güvenli hosting",
-    desc: "cPanel, SSD NVMe diskler ve otomatik yedekleme ile kurumsal kalite hosting.",
+    eyebrow: "İş Ortaklığı Programı",
+    title: "LSG ile birlikte büyüyün",
+    desc: "Hosting, güvenlik ve dijital çözümleri kendi markanızla sunun.",
     color: "text-indigo-400",
-    allHref: "/hosting",
-    allLabel: "Tüm Hosting Planları",
+    allHref: "/is-ortakligi",
+    allLabel: "Tüm Partner Programları",
     cards: [
       {
-        name: "Starter Hosting",
-        tag: "Bireysel",
-        price: "₺149",
-        period: "/ay",
-        desc: "Kişisel projeler ve küçük siteler için ideal başlangıç paketi.",
-        features: ["5 GB SSD depolama", "cPanel dahil", "Ücretsiz SSL"],
-        href: "/hosting/starter",
+        name: "Hosting Partner",
+        tag: "Başlangıç",
+        desc: "Hosting hizmetlerini kendi markanızla sunun.",
+        features: ["WHMCS entegrasyonu", "Beyaz etiket", "Teknik destek"],
+        href: "/partner/hosting",
       },
       {
-        name: "Business Hosting",
+        name: "Teknoloji Partneri",
         tag: "En Popüler",
         featured: true,
-        price: "₺349",
-        period: "/ay",
-        desc: "Orta ölçekli işletmeler için güçlü ve ölçeklenebilir hosting.",
-        features: ["50 GB SSD NVMe", "Sınırsız e-posta", "Günlük yedekleme"],
-        href: "/hosting/business",
+        desc: "API destekli güçlü entegrasyon çözümleri.",
+        features: [
+          "API entegrasyonu",
+          "Global CA erişimi",
+          "Proje bazlı çözümler",
+        ],
+        href: "/partner/teknoloji",
       },
       {
-        name: "Reseller Hosting",
-        tag: "Bayi",
-        price: "₺699",
-        period: "/ay",
-        desc: "Kendi hosting markanızı oluşturun. WHM + cPanel dahil.",
-        features: ["Sınırsız cPanel", "WHMCS lisansı", "Beyaz etiket"],
-        href: "/hosting/reseller",
+        name: "Bayilik Programı",
+        tag: "Premium",
+        desc: "Yüksek kâr marjı ile ürünleri yeniden satın.",
+        features: ["Yüksek komisyon", "Tüm ürünler", "Öncelikli destek"],
+        href: "/partner/bayilik",
       },
     ],
   },
 
   domain: {
-    eyebrow: "Alan Adı Tescili",
-    title: "Markanızı dijitale taşıyın",
-    desc: ".com.tr, .com, .net ve 500+ TLD seçeneğiyle alan adınızı hemen alın.",
+    eyebrow: "Alan Adı Yönetimi",
+    title: "Doğru domaini bulun",
+    desc: "500+ uzantı ile domaininizi anında sorgulayın.",
     color: "text-sky-400",
-    allHref: "/alan-adi",
-    allLabel: "Alan Adı Ara",
+    allHref: "/domain",
+    allLabel: "Alan Adı Sorgula",
     cards: [
       {
-        name: ".com.tr",
-        tag: "Türkiye",
-        price: "₺99",
-        period: "/yıl",
-        desc: "Türk işletmeleri için en güvenilir ulusal alan adı uzantısı.",
-        features: ["Kimlik doğrulamalı", "Yerel SEO avantajı", "Hızlı tescil"],
-        href: "/alan-adi/com-tr",
+        name: "Domain Sorgulama",
+        tag: "Başlangıç",
+        desc: "Domain uygunluğunu anında kontrol edin.",
+        features: ["Anlık sorgu", "500+ TLD", "Hızlı sonuç"],
+        href: "/domain",
       },
       {
-        name: ".com",
+        name: "Domain Transfer",
         tag: "En Popüler",
         featured: true,
-        price: "₺249",
-        period: "/yıl",
-        desc: "Global marka için en tanınan ve tercih edilen alan adı uzantısı.",
-        features: ["Global tanınırlık", "Sınırsız transfer", "WHOIS koruması"],
-        href: "/alan-adi/com",
+        desc: "Domaininizi LSG’ye kolayca taşıyın.",
+        features: ["Kolay transfer", "DNS yönetimi", "Kesintisiz taşıma"],
+        href: "/domain/transfer",
       },
       {
-        name: "Premium Paket",
-        tag: "Özel",
-        price: "₺399",
-        period: "/yıl",
-        desc: ".com + .com.tr + Ücretsiz DV SSL paketi. Hem yerel hem global.",
-        features: [".com + .com.tr", "Ücretsiz DV SSL", "Ücretsiz gizlilik"],
-        href: "/alan-adi/paket",
+        name: "Domain Yönetimi",
+        tag: "Profesyonel",
+        desc: "Tüm domainlerinizi tek panelden yönetin.",
+        features: ["DNS", "WHOIS", "Otomatik yenileme"],
+        href: "/domain/manage",
+      },
+    ],
+  },
+
+  "web-security": {
+    eyebrow: "Web Güvenliği",
+    title: "Web sitenizi koruyun",
+    desc: "Malware, DDoS ve saldırılara karşı tam koruma.",
+    color: "text-emerald-400",
+    allHref: "/web-guvenligi",
+    allLabel: "Tüm Web Güvenliği Çözümleri",
+    cards: [
+      {
+        name: "SiteLock",
+        tag: "Başlangıç",
+        desc: "Web sitenizi otomatik olarak koruyun.",
+        features: ["Malware tarama", "Otomatik temizlik", "Zafiyet analizi"],
+        href: "/web-guvenligi/sitelock",
+      },
+      {
+        name: "Secure Site Pro",
+        tag: "En Popüler",
+        featured: true,
+        desc: "WAF + CDN + DDoS koruma.",
+        features: ["WAF", "CDN", "DDoS koruması"],
+        href: "/web-guvenligi/secure-site-pro",
       },
     ],
   },
 
   security: {
     eyebrow: "Siber Güvenlik",
-    title: "Tehditlere karşı tam koruma",
-    desc: "Malware tarama, WAF, DDoS koruması ve 7/24 izleme ile güvende kalın.",
+    title: "Kurumsal çözümler",
+    desc: "Enterprise seviyede güvenlik platformları.",
     color: "text-emerald-400",
     allHref: "/guvenlik",
     allLabel: "Tüm Güvenlik Çözümleri",
     cards: [
       {
-        name: "Web Sitesi Güvenliği",
-        tag: "Temel",
-        price: "₺299",
-        period: "/ay",
-        desc: "Günlük malware tarama, WAF ve otomatik temizlik ile site koruması.",
-        features: ["Günlük tarama", "WAF koruması", "Otomatik temizlik"],
-        href: "/guvenlik/web",
+        name: "SecurEnvoy",
+        tag: "MFA",
+        desc: "Multi-factor authentication çözümü.",
+        features: ["Passwordless", "AD entegrasyonu", "Zero Trust"],
+        href: "/guvenlik/securenvoy",
       },
       {
-        name: "Sunucu Güvenliği",
-        tag: "En Popüler",
+        name: "NoSpamProxy",
+        tag: "E-posta",
         featured: true,
-        price: "₺599",
-        period: "/ay",
-        desc: "Imunify360 ile sunucu genelinde DDoS ve saldırı koruması.",
-        features: ["Imunify360 dahil", "DDoS koruması", "Real-time izleme"],
-        href: "/guvenlik/sunucu",
+        desc: "Gelişmiş e-posta güvenliği.",
+        features: ["Anti-spam", "Encryption", "Gateway"],
+        href: "/guvenlik/nospamproxy",
       },
       {
-        name: "Kurumsal Paket",
-        tag: "Enterprise",
-        price: "Teklif Al",
-        period: "",
-        desc: "SOC hizmeti, penetrasyon testi ve özel güvenlik danışmanlığı.",
-        features: ["SOC izleme", "Penetrasyon testi", "Özel danışman"],
-        href: "/guvenlik/kurumsal",
-      },
-    ],
-  },
-
-  bayi: {
-    eyebrow: "Partner Programı",
-    title: "LSG ile büyüyün",
-    desc: "SSL, hosting ve güvenlik ürünlerini bayiniz üzerinden satın, kâr edin.",
-    color: "text-purple-400",
-    allHref: "/bayi",
-    allLabel: "Bayilik Başvurusu",
-    cards: [
-      {
-        name: "Hosting Partner",
-        tag: "Giriş",
-        price: "%20",
-        period: "komisyon",
-        desc: "Hosting ürünlerini yeniden satın. WHMCS entegrasyonu ve panel dahil.",
-        features: ["WHMCS lisansı", "Beyaz etiket panel", "Teknik destek"],
-        href: "/bayi/hosting",
+        name: "Keeper",
+        tag: "PAM",
+        desc: "Parola ve erişim yönetimi.",
+        features: ["Vault", "Privileged access", "Zero knowledge"],
+        href: "/guvenlik/keeper",
       },
       {
-        name: "SSL Bayi",
-        tag: "En Popüler",
-        featured: true,
-        price: "%30",
-        period: "komisyon",
-        desc: "DigiCert, GeoTrust ve Sectigo sertifikalarını bayi fiyatına satın.",
-        features: ["Tüm CA'lar dahil", "Otomatik provizyon", "API erişimi"],
-        href: "/bayi/ssl",
+        name: "KeyTalk",
+        tag: "PKI",
+        desc: "Otomatik sertifika yönetimi.",
+        features: ["PKI", "Device auth", "Automation"],
+        href: "/guvenlik/keytalk",
       },
       {
-        name: "Yetkili Bayi",
-        tag: "Premium",
-        price: "%40",
-        period: "komisyon",
-        desc: "Tüm ürün gamına erişim. Öncelikli destek ve ortak marka fırsatı.",
-        features: ["Tüm ürünler", "Öncelikli destek", "Co-marketing"],
-        href: "/bayi/yetkili",
+        name: "Venafi",
+        tag: "CLM",
+        desc: "Certificate lifecycle management.",
+        features: ["Lifecycle", "Risk", "Auto renew"],
+        href: "/guvenlik/venafi",
       },
     ],
   },
@@ -245,8 +227,9 @@ export default function HomeProducts() {
   const content = CONTENT[active];
 
   return (
-    <section className="py-24 bg-[#f8fafc]">
+    <section id="products" className="py-24 bg-[#f8fafc]">
       <div className="max-w-7xl mx-auto px-6">
+        {/* HEADER */}
         <div className="text-center mb-12">
           <p className="text-[11px] uppercase tracking-[0.2em] text-blue-500/50 font-bold mb-3">
             Ürün & Hizmetler
@@ -256,19 +239,20 @@ export default function HomeProducts() {
           </h2>
         </div>
 
-        <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-2xl p-1.5 mb-10 overflow-x-auto [scrollbar-width:none]">
+        {/* TABS */}
+        <div className="flex gap-1.5 bg-white border rounded-2xl p-1.5 mb-10 overflow-x-auto">
           {TABS.map((tab) => {
-            const Icon = ICONS[tab.icon] ?? ICONS.lock;
+            const Icon = ICONS[tab.icon];
             const isActive = active === tab.id;
 
             return (
               <button
                 key={tab.id}
                 onClick={() => setActive(tab.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-[13px] font-semibold whitespace-nowrap transition-all flex-shrink-0 ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-[13px] font-semibold transition ${
                   isActive
-                    ? "bg-[#040E21] text-white shadow-sm"
-                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+                    ? "bg-[#040E21] text-white"
+                    : "text-slate-500 hover:bg-slate-50"
                 }`}
               >
                 <Icon size={15} />
@@ -278,114 +262,40 @@ export default function HomeProducts() {
           })}
         </div>
 
-        <div className="grid lg:grid-cols-4 gap-8 items-start">
-          <div className="lg:col-span-1">
-            <p
-              className={`text-[11px] font-bold uppercase tracking-widest mb-3 ${content.color}`}
-            >
+        {/* CONTENT */}
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* LEFT */}
+          <div>
+            <p className={`text-xs font-bold mb-2 ${content.color}`}>
               {content.eyebrow}
             </p>
+            <h3 className="text-xl font-bold mb-3">{content.title}</h3>
+            <p className="text-sm text-slate-500 mb-6">{content.desc}</p>
 
-            <h3 className="text-[22px] font-bold text-slate-900 mb-3 leading-tight">
-              {content.title}
-            </h3>
-
-            <p className="text-[14px] text-slate-500 leading-relaxed mb-6">
-              {content.desc}
-            </p>
-
-            <Link
-              href={content.allHref}
-              className="inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-900 hover:gap-3 transition-all"
-            >
-              {content.allLabel}
-              <ICONS.arrowRight size={13} />
+            <Link href={content.allHref} className="font-bold text-sm">
+              {content.allLabel} →
             </Link>
           </div>
 
+          {/* CARDS */}
           <div className="lg:col-span-3 grid sm:grid-cols-3 gap-4">
             {content.cards.map((card) => (
-              <div
-                key={card.name}
-                className={`relative flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 ${
-                  card.featured
-                    ? "shadow-[0_8px_32px_rgba(11,61,145,0.12)] ring-2 ring-blue-600/15"
-                    : "shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
-                }`}
-              >
-                <div
-                  className={`h-[3px] w-full ${
-                    card.featured
-                      ? "bg-gradient-to-r from-blue-600 to-indigo-500"
-                      : "bg-slate-100"
-                  }`}
-                />
+              <Link key={card.name} href={card.href} className="block group">
+                <div className="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+                  <h4 className="font-bold mb-2">{card.name}</h4>
+                  <p className="text-sm text-slate-500 mb-4">{card.desc}</p>
 
-                {card.tag && (
-                  <div className="px-5 pt-4">
-                    <span
-                      className={`inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
-                        card.featured
-                          ? "bg-blue-900 text-white"
-                          : "bg-slate-100 text-slate-500"
-                      }`}
-                    >
-                      {card.featured && (
-                        <ICONS.star size={8} className="fill-white" />
-                      )}
-                      {card.tag}
-                    </span>
-                  </div>
-                )}
-
-                <div className="flex flex-col flex-1 px-5 pt-3 pb-5">
-                  <h4 className="text-[15px] font-bold text-slate-900 mb-1">
-                    {card.name}
-                  </h4>
-
-                  <p className="text-[12px] text-slate-400 leading-relaxed mb-4">
-                    {card.desc}
-                  </p>
-
-                  <div className="flex items-baseline gap-1 mb-4">
-                    <span className="text-[24px] font-extrabold text-slate-900">
-                      {card.price}
-                    </span>
-                    {card.period && (
-                      <span className="text-[12px] text-slate-400">
-                        {card.period}
-                      </span>
-                    )}
-                  </div>
-
-                  <ul className="space-y-1.5 mb-5 flex-1">
+                  <ul className="text-sm space-y-1 mb-4">
                     {card.features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-center gap-2 text-[12px] text-slate-600"
-                      >
-                        <ICONS.check
-                          size={12}
-                          className="text-emerald-500 flex-shrink-0"
-                        />
-                        {f}
-                      </li>
+                      <li key={f}>✓ {f}</li>
                     ))}
                   </ul>
 
-                  <Link
-                    href={card.href}
-                    className={`flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl text-[13px] font-bold transition-all ${
-                      card.featured
-                        ? "bg-blue-900 hover:bg-blue-800 text-white"
-                        : "bg-slate-900 hover:bg-slate-800 text-white"
-                    }`}
-                  >
-                    Başla
-                    <ICONS.arrowRight size={12} />
-                  </Link>
+                  <span className="text-sm font-bold text-blue-600 group-hover:underline">
+                    Detayları Gör →
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

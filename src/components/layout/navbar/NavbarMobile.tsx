@@ -28,7 +28,6 @@ type NavbarMobileProps = {
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (v: boolean) => void;
   setActiveDropdown: (v: null) => void;
-  /** Tüm ekran boyutlarında göster (varsayılan: false = yalnızca lg:hidden) */
   showOnAllScreens?: boolean;
 };
 
@@ -71,13 +70,17 @@ const NAV_GROUPS = [
     label: "Domain",
     icon: <Globe size={18} />,
     children: [
-      { label: "Domain Sorgula", href: "/domain", desc: "Alan adı ara" },
+      { label: "Domain Sorgula", href: "/domain/search", desc: "Alan adı ara" },
       {
         label: "Domain Transfer",
         href: "/domain/transfer",
         desc: "Taşıma işlemleri",
       },
-      { label: "Toplu Domain", href: "/domain/toplu", desc: "Çoklu kayıt" },
+      {
+        label: "Domain Yenileme",
+        href: "/domain/renew",
+        desc: "Kayıt süresini uzat",
+      },
     ],
   },
   {
@@ -108,19 +111,14 @@ const NAV_GROUPS = [
     icon: <ShieldCheck size={18} />,
     children: [
       {
-        label: "Imunify360",
-        href: "/guvenlik/imunify360",
-        desc: "Sunucu koruması",
+        label: "Secure Site Pro",
+        href: "/web-guvenligi/secure-site-pro",
+        desc: "Gelişmiş güvenlik hizmetleri",
       },
       {
-        label: "Web Uygulama Güvenlik Duvarı",
-        href: "/guvenlik/waf",
-        desc: "WAF çözümleri",
-      },
-      {
-        label: "DDoS Koruması",
-        href: "/guvenlik/ddos",
-        desc: "Saldırı engelleme",
+        label: "SiteLock",
+        href: "/web-guvenligi/sitelock",
+        desc: "Kötü amaçlı yazılım taraması",
       },
     ],
   },
@@ -130,14 +128,29 @@ const NAV_GROUPS = [
     icon: <Cpu size={18} />,
     children: [
       {
-        label: "Penetrasyon Testi",
-        href: "/siber-guvenlik/pentest",
-        desc: "Güvenlik testi",
+        label: "SecurEnvoy",
+        href: "/siber-guvenlik/securenvoy",
+        desc: "Çok faktörlü kimlik doğrulama",
       },
       {
-        label: "Güvenlik Danışmanlığı",
-        href: "/siber-guvenlik/danismanlik",
-        desc: "Uzman desteği",
+        label: "NoSpamProxy",
+        href: "/siber-guvenlik/nospamproxy",
+        desc: "E-posta güvenliği çözümleri",
+      },
+      {
+        label: "Venafi",
+        href: "/siber-guvenlik/venafi",
+        desc: "Makine kimlik yönetimi",
+      },
+      {
+        label: "Keeper",
+        href: "/siber-guvenlik/keeper",
+        desc: "Parola yönetimi ve güvenlik",
+      },
+      {
+        label: "KeyTalk",
+        href: "/siber-guvenlik/keytalk",
+        desc: "Kimlik ve erişim yönetimi",
       },
     ],
   },
@@ -170,7 +183,7 @@ const NAV_GROUPS = [
     children: [
       {
         label: "Destek Talebi Oluştur",
-        href: "/iletisim",
+        href: "/support",
         desc: "7/24 teknik destek",
       },
     ],
@@ -240,7 +253,6 @@ function AccordionItem({
   );
 }
 
-/* ── Ana Bileşen ─────────────────────────────────── */
 export default function NavbarMobile({
   isMobileMenuOpen,
   setIsMobileMenuOpen,
@@ -262,7 +274,6 @@ export default function NavbarMobile({
 
   return (
     <>
-      {/* ── Hamburger Butonu ── */}
       {!showOnAllScreens && (
         <button
           onClick={() => {
@@ -276,7 +287,6 @@ export default function NavbarMobile({
         </button>
       )}
 
-      {/* ── Overlay ───────────────────────── */}
       {isMobileMenuOpen && (
         <div
           className={`${vis} fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]`}
@@ -284,13 +294,11 @@ export default function NavbarMobile({
         />
       )}
 
-      {/* ── Drawer ────────────────────────── */}
       <div
         className={`${vis} fixed top-0 left-0 bottom-0 w-80 max-w-[92vw] bg-[#0d0f14] z-[70] flex flex-col shadow-2xl transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.07] shrink-0">
           <Link
             href="/"
@@ -318,7 +326,6 @@ export default function NavbarMobile({
           </button>
         </div>
 
-        {/* Hızlı Aksiyonlar */}
         <div className="flex gap-2 px-4 pt-4 pb-3 shrink-0">
           {session ? (
             <Link
@@ -349,7 +356,6 @@ export default function NavbarMobile({
           </Link>
         </div>
 
-        {/* Arama Çubuğu */}
         <div className="px-4 pb-3 shrink-0">
           <div className="flex items-center gap-2 px-3 py-2.5 bg-white/5 rounded-xl border border-white/10">
             <svg

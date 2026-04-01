@@ -1,238 +1,279 @@
 export const dvProducts = [
 
-  // DV — Standard
+  // ─────────────────────────────────────────────
+  // DV — Standard (Single Domain)
+  // ─────────────────────────────────────────────
 
   {
-    name: "Sectigo PositiveSSL DV",
-    slug: "sectigo-positive-dv",
+    name: "Sectigo DV",
+    slug: "sectigo-dv",
     category: "SSL",
     validation: "DV",
     productType: "Standard",
+    tier: "Basic",
     brand: "Sectigo",
-    description: "Sectigo PositiveSSL, kişisel siteler ve bloglar için uygun fiyatlı giriş seviyesi DV SSL sertifikasıdır.",
-    shortDescription: "Uygun fiyatlı giriş seviyesi DV SSL.",
+    description: "Sectigo DV, kişisel siteler ve bloglar için uygun fiyatlı giriş seviyesi domain doğrulamalı SSL sertifikasıdır.",
+    shortDescription: "Hızlı ve ekonomik giriş seviyesi DV SSL.",
     price: { oneYear: 299, twoYear: 549, threeYear: 799 },
-    specs: {
-      Warranty: "$10,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.5,
-    reviewCount: 210,
-    featured: false,
-    inStock: true
+    specs: { Warranty: "$10,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Domain doğrulaması (5–10 dk)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Tüm modern tarayıcılarla uyumluluk",
+      "Sınırsız sunucu lisansı",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.5, reviewCount: 210, featured: false, inStock: true,
   },
 
   {
-    name: "Sectigo Essential SSL DV",
-    slug: "sectigo-essential-dv",
-    category: "SSL",
-    validation: "DV",
-    productType: "Standard",
-    brand: "Sectigo",
-    description: "Sectigo Essential SSL, küçük işletmeler ve startup'lar için hızlı aktivasyonlu DV sertifikasıdır.",
-    shortDescription: "Hızlı aktivasyonlu DV SSL çözümü.",
-    price: { oneYear: 499, twoYear: 899, threeYear: 1299 },
-    specs: {
-      Warranty: "$50,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.6,
-    reviewCount: 185,
-    featured: true,
-    inStock: true
-  },
-
-  {
-    name: "RapidSSL Standard DV",
-    slug: "rapidssl-standard-dv",
-    category: "SSL",
-    validation: "DV",
-    productType: "Standard",
-    brand: "RapidSSL",
-    description: "RapidSSL, dakikalar içinde verilen uygun fiyatlı DV SSL sertifikasıdır.",
-    shortDescription: "Dakikalar içinde aktif DV SSL.",
-    price: { oneYear: 349, twoYear: 649, threeYear: 899 },
-    specs: {
-      Warranty: "$10,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.4,
-    reviewCount: 160,
-    featured: false,
-    inStock: true
-  },
-
-  {
-    name: "Thawte SSL123 DV",
+    name: "Thawte SSL 123 DV",
     slug: "thawte-ssl123-dv",
     category: "SSL",
     validation: "DV",
     productType: "Standard",
+    tier: "Basic",
     brand: "Thawte",
-    description: "Thawte SSL123, basit ve hızlı domain doğrulamalı SSL sertifikasıdır.",
-    shortDescription: "Basit ve hızlı DV SSL.",
+    description: "Thawte SSL 123, basit kurulum ve hızlı domain doğrulaması sunan güvenilir DV SSL sertifikasıdır.",
+    shortDescription: "Güvenilir ve hızlı DV SSL.",
     price: { oneYear: 599, twoYear: 1099, threeYear: 1499 },
-    specs: {
-      Warranty: "$100,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.6,
-    reviewCount: 140,
-    featured: false,
-    inStock: true
+    specs: { Warranty: "$100,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Domain doğrulaması (5–10 dk)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Tüm modern tarayıcılarla uyumluluk",
+      "7/24 teknik destek",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.6, reviewCount: 140, featured: false, inStock: true,
   },
 
   {
-    name: "GeoTrust QuickSSL Premium DV",
-    slug: "geotrust-quickssl-premium-dv",
+    name: "PositiveSSL DV",
+    slug: "positivessl-dv",
     category: "SSL",
     validation: "DV",
     productType: "Standard",
+    tier: "Basic",
+    brand: "PositiveSSL",
+    description: "PositiveSSL, bütçe dostu fiyatıyla kişisel siteler ve küçük projeler için idealdir.",
+    shortDescription: "En uygun fiyatlı DV SSL çözümü.",
+    price: { oneYear: 149, twoYear: 279, threeYear: 399 },
+    specs: { Warranty: "$10,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Domain doğrulaması (5–10 dk)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Tüm modern tarayıcılarla uyumluluk",
+      "Ücretsiz tekrar verme",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.4, reviewCount: 320, featured: false, inStock: true,
+  },
+
+  {
+    name: "GeoTrust DV",
+    slug: "geotrust-dv",
+    category: "SSL",
+    validation: "DV",
+    productType: "Standard",
+    tier: "Basic",
     brand: "GeoTrust",
-    description: "GeoTrust QuickSSL Premium, yüksek garantili ve hızlı aktivasyonlu DV SSL sertifikasıdır.",
+    description: "GeoTrust DV, yüksek garantili ve hızlı aktivasyonlu domain doğrulamalı SSL sertifikasıdır.",
     shortDescription: "Yüksek garantili DV SSL.",
     price: { oneYear: 799, twoYear: 1499, threeYear: 2099 },
-    specs: {
-      Warranty: "$500,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.7,
-    reviewCount: 175,
-    featured: true,
-    inStock: true
+    specs: { Warranty: "$500,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Domain doğrulaması (5–10 dk)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "$500,000 garanti koruması",
+      "7/24 teknik destek",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.7, reviewCount: 175, featured: true, inStock: true,
   },
 
-  {
-    name: "DigiCert Basic DV SSL",
-    slug: "digicert-basic-dv",
-    category: "SSL",
-    validation: "DV",
-    productType: "Standard",
-    brand: "DigiCert",
-    description: "DigiCert Basic DV, güvenilir altyapı ve hızlı aktivasyon sunan giriş seviyesi DV SSL sertifikasıdır.",
-    shortDescription: "DigiCert güvencesiyle DV SSL.",
-    price: { oneYear: 999, twoYear: 1849, threeYear: 2599 },
-    specs: {
-      Warranty: "$1,000,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.8,
-    reviewCount: 220,
-    featured: true,
-    inStock: true
-  },
-
-  // DV — Wildcard
+  // ─────────────────────────────────────────────
+  // DV — Wildcard (Single Domain tab'ında gösterilir)
+  // ─────────────────────────────────────────────
 
   {
-    name: "Sectigo PositiveSSL Wildcard DV",
-    slug: "sectigo-positive-wildcard-dv",
+    name: "Sectigo Wildcard DV",
+    slug: "sectigo-wildcard-dv",
     category: "SSL",
     validation: "DV",
     productType: "Wildcard",
+    tier: "Basic",
     brand: "Sectigo",
-    description: "Sectigo PositiveSSL Wildcard, tüm alt domainleri tek sertifikayla koruyan ekonomik DV çözümüdür.",
-    shortDescription: "Ekonomik wildcard DV SSL.",
+    description: "Sectigo Wildcard DV, *.domain.com formatındaki tüm alt domainleri tek sertifikayla koruyan ekonomik çözümdür.",
+    shortDescription: "Tüm alt domainler için ekonomik DV.",
     price: { oneYear: 1299, twoYear: 2399, threeYear: 3399 },
-    specs: {
-      Warranty: "$10,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.5,
-    reviewCount: 130,
-    featured: false,
-    inStock: true
+    specs: { Warranty: "$10,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: false, wildcard: true },
+    features: [
+      "Tüm alt domainleri kapsar (*.domain.com)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Sınırsız subdomain",
+      "Tek sertifika ile kolay yönetim",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.5, reviewCount: 130, featured: false, inStock: true,
   },
 
   {
-    name: "RapidSSL Wildcard DV",
-    slug: "rapidssl-wildcard-dv",
+    name: "Thawte Wildcard SSL 123 DV",
+    slug: "thawte-wildcard-ssl123-dv",
     category: "SSL",
     validation: "DV",
     productType: "Wildcard",
-    brand: "RapidSSL",
-    description: "RapidSSL Wildcard, uygun fiyatla tüm alt domainleri koruyan DV wildcard sertifikasıdır.",
-    shortDescription: "Uygun fiyatlı wildcard DV SSL.",
-    price: { oneYear: 1499, twoYear: 2799, threeYear: 3899 },
-    specs: {
-      Warranty: "$10,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.4,
-    reviewCount: 115,
-    featured: false,
-    inStock: true
-  },
-
-  {
-    name: "Thawte Wildcard SSL DV",
-    slug: "thawte-wildcard-dv",
-    category: "SSL",
-    validation: "DV",
-    productType: "Wildcard",
+    tier: "Basic",
     brand: "Thawte",
-    description: "Thawte Wildcard SSL, tüm alt domainleri tek sertifikayla koruyan güvenilir DV çözümüdür.",
+    description: "Thawte Wildcard SSL 123, tüm alt domainleri tek sertifikayla koruyan güvenilir DV wildcard çözümüdür.",
     shortDescription: "Güvenilir wildcard DV SSL.",
     price: { oneYear: 2499, twoYear: 4599, threeYear: 6499 },
-    specs: {
-      Warranty: "$100,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.6,
-    reviewCount: 100,
-    featured: false,
-    inStock: true
+    specs: { Warranty: "$100,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: false, wildcard: true },
+    features: [
+      "Tüm alt domainleri kapsar (*.domain.com)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "$100,000 garanti koruması",
+      "7/24 teknik destek",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.6, reviewCount: 100, featured: false, inStock: true,
   },
 
   {
-    name: "GeoTrust QuickSSL Premium Wildcard DV",
-    slug: "geotrust-quickssl-wildcard-dv",
+    name: "PositiveSSL Wildcard DV",
+    slug: "positivessl-wildcard-dv",
     category: "SSL",
     validation: "DV",
     productType: "Wildcard",
+    tier: "Basic",
+    brand: "PositiveSSL",
+    description: "PositiveSSL Wildcard, tüm alt domainleri en uygun fiyatla koruyan DV wildcard sertifikasıdır.",
+    shortDescription: "En uygun fiyatlı wildcard DV SSL.",
+    price: { oneYear: 999, twoYear: 1849, threeYear: 2599 },
+    specs: { Warranty: "$10,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: false, wildcard: true },
+    features: [
+      "Tüm alt domainleri kapsar (*.domain.com)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Sınırsız subdomain",
+      "Tek sertifika ile kolay yönetim",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.4, reviewCount: 115, featured: false, inStock: true,
+  },
+
+  // ─────────────────────────────────────────────
+  // DV — Multi-Domain (SAN)
+  // ─────────────────────────────────────────────
+
+  {
+    name: "Sectigo DV Multi-Domain",
+    slug: "sectigo-dv-multi-domain",
+    category: "SSL",
+    validation: "DV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "Sectigo",
+    description: "Sectigo DV Multi-Domain, SAN desteği ile birden fazla domaini tek sertifikayla koruyan esnek DV çözümüdür.",
+    shortDescription: "Çoklu domain için DV SAN SSL.",
+    price: { oneYear: 799, twoYear: 1499, threeYear: 2099, pricePerDomain: 150 },
+    specs: { Warranty: "$10,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: true, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Tek sertifika ile yönetim kolaylığı",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.5, reviewCount: 90, featured: false, inStock: true,
+  },
+
+  {
+    name: "Thawte SSL 123 DV Multi-Domain",
+    slug: "thawte-ssl123-dv-multi-domain",
+    category: "SSL",
+    validation: "DV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "Thawte",
+    description: "Thawte SSL 123 Multi-Domain, birden fazla domaini tek DV sertifikasıyla koruyan güvenilir SAN çözümüdür.",
+    shortDescription: "Güvenilir çoklu domain DV SSL.",
+    price: { oneYear: 1499, twoYear: 2799, threeYear: 3899, pricePerDomain: 250 },
+    specs: { Warranty: "$100,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: true, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "256-bit şifreleme",
+      "$100,000 garanti koruması",
+      "7/24 teknik destek",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.6, reviewCount: 85, featured: false, inStock: true,
+  },
+
+  {
+    name: "PositiveSSL Multi-Domain DV",
+    slug: "positivessl-dv-multi-domain",
+    category: "SSL",
+    validation: "DV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "PositiveSSL",
+    description: "PositiveSSL Multi-Domain, çok sayıda domaini en uygun fiyatla tek DV sertifikasında toplayan çözümdür.",
+    shortDescription: "Ekonomik çoklu domain DV SSL.",
+    price: { oneYear: 599, twoYear: 1099, threeYear: 1499, pricePerDomain: 120 },
+    specs: { Warranty: "$10,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: true, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Tek sertifika ile yönetim kolaylığı",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.4, reviewCount: 110, featured: false, inStock: true,
+  },
+
+  {
+    name: "GeoTrust DV Multi-Domain",
+    slug: "geotrust-dv-multi-domain",
+    category: "SSL",
+    validation: "DV",
+    productType: "Multi-Domain",
+    tier: "Basic",
     brand: "GeoTrust",
-    description: "GeoTrust QuickSSL Premium Wildcard, yüksek garantili wildcard DV SSL sertifikasıdır.",
-    shortDescription: "Yüksek garantili wildcard DV SSL.",
-    price: { oneYear: 2999, twoYear: 5499, threeYear: 7799 },
-    specs: {
-      Warranty: "$500,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.7,
-    reviewCount: 120,
-    featured: true,
-    inStock: true
-  },
-
-  {
-    name: "DigiCert Basic Wildcard DV SSL",
-    slug: "digicert-basic-wildcard-dv",
-    category: "SSL",
-    validation: "DV",
-    productType: "Wildcard",
-    brand: "DigiCert",
-    description: "DigiCert Basic Wildcard DV, güçlü altyapı ve geniş uyumluluk ile wildcard DV SSL çözümüdür.",
-    shortDescription: "DigiCert wildcard DV SSL.",
-    price: { oneYear: 3499, twoYear: 6499, threeYear: 9199 },
-    specs: {
-      Warranty: "$1,000,000",
-      Encryption: "256-bit",
-      Issuance: "5–10 dk"
-    },
-    rating: 4.9,
-    reviewCount: 145,
-    featured: true,
-    inStock: true
+    description: "GeoTrust DV Multi-Domain, yüksek garanti ve SAN desteği ile birden fazla domaini koruyan DV çözümüdür.",
+    shortDescription: "Yüksek garantili çoklu domain DV SSL.",
+    price: { oneYear: 1999, twoYear: 3699, threeYear: 5199, pricePerDomain: 350 },
+    specs: { Warranty: "$500,000", Encryption: "256-bit", Issuance: "5–10 dk" },
+    domainSupport: { standard: true, wildcard: true, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "$500,000 garanti koruması",
+      "256-bit şifreleme",
+      "7/24 teknik destek",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.7, reviewCount: 95, featured: true, inStock: true,
   },
 
 ]

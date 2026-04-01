@@ -8,7 +8,6 @@ export default function PricingNavbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      // Sadece 50px'den fazla kaydırıldıysa tetikle
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", onScroll);

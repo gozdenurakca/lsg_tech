@@ -1,22 +1,31 @@
 export const evProducts = [
 
+  // ─────────────────────────────────────────────
+  // EV — Standard (Single Domain)
+  // ─────────────────────────────────────────────
+
   {
     name: "DigiCert Basic EV",
     slug: "digicert-basic-ev",
     category: "SSL",
     validation: "EV",
     productType: "Standard",
+    tier: "Basic",
     brand: "DigiCert",
-
-    shortDescription: "Temel Extended Validation SSL sertifikası.",
-    description:
-      "DigiCert Basic EV, kurumsal doğrulama sağlayan ve en yüksek güven seviyesini sunan Extended Validation SSL sertifikasıdır.",
-
-    price: {
-      oneYear: 899,
-      twoYear: 1699,
-      threeYear: 2399,
-    },
+    description: "DigiCert Basic EV, kurumsal kimlik doğrulaması ve en yüksek güven seviyesiyle giriş seviyesi Extended Validation SSL'dir.",
+    shortDescription: "DigiCert giriş seviyesi EV SSL.",
+    price: { oneYear: 1899, twoYear: 3499, threeYear: 4899 },
+    specs: { Warranty: "$1,500,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "256-bit şifreleme",
+      "Otomatik SSL yaşam döngüsü yönetimi",
+      "Uzman teknik destek",
+      "Merkezi SSL yönetim paneli",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.9, reviewCount: 120, featured: true, inStock: true,
   },
 
   {
@@ -25,17 +34,22 @@ export const evProducts = [
     category: "SSL",
     validation: "EV",
     productType: "Standard",
+    tier: "Premium",
     brand: "DigiCert",
-
-    shortDescription: "Kurumsal web siteleri için güçlü EV SSL.",
-    description:
-      "Secure Site EV, yüksek güven seviyesi ve gelişmiş güvenlik özellikleri ile kurumsal platformlar için idealdir.",
-
-    price: {
-      oneYear: 1299,
-      twoYear: 2399,
-      threeYear: 3399,
-    },
+    description: "DigiCert Secure Site EV, yüksek güven seviyesi ve gelişmiş güvenlik özellikleriyle kurumsal platformlar için idealdir.",
+    shortDescription: "Premium EV SSL çözümü.",
+    price: { oneYear: 3999, twoYear: 7499, threeYear: 10499 },
+    specs: { Warranty: "$1,750,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "Öncelikli sertifika doğrulama ve aktivasyon",
+      "Web sitesi güven mührü (Trust Seal)",
+      "Alan adı itibar izleme",
+      "Web sitesi güvenlik açığı taraması",
+      "Gelişmiş SSL yönetim paneli",
+    ],
+    rating: 4.9, reviewCount: 145, featured: true, inStock: true,
   },
 
   {
@@ -44,168 +58,266 @@ export const evProducts = [
     category: "SSL",
     validation: "EV",
     productType: "Standard",
+    tier: "Enterprise",
     brand: "DigiCert",
-
-    shortDescription: "En gelişmiş DigiCert EV SSL çözümü.",
-    description:
-      "Secure Site Pro EV, gelişmiş tehdit koruması ve maksimum güvenlik sağlayan premium EV SSL sertifikasıdır.",
-
-    price: {
-      oneYear: 1899,
-      twoYear: 3499,
-      threeYear: 4899,
-    },
+    description: "DigiCert Secure Site Pro EV, gelişmiş tehdit koruması ve maksimum güvenlik sağlayan en üst seviye EV SSL'dir.",
+    shortDescription: "En üst seviye EV SSL.",
+    price: { oneYear: 5999, twoYear: 11299, threeYear: 15899 },
+    specs: { Warranty: "$2,000,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "Gelişmiş SSL sertifika yaşam döngüsü otomasyonu",
+      "CT log izleme",
+      "Web sitesi güven mührü (Trust Seal)",
+      "Öncelikli aktivasyon",
+      "Certificate Transparency desteği",
+    ],
+    rating: 5.0, reviewCount: 165, featured: true, inStock: true,
   },
 
   {
-    name: "DigiCert Basic EV Multi Domain",
-    slug: "digicert-basic-ev-multi-domain",
-    category: "SSL",
-    validation: "EV",
-    productType: "Multi Domain",
-    brand: "DigiCert",
-
-    shortDescription: "Birden fazla domain için EV SSL.",
-    description:
-      "Basic EV Multi Domain, çoklu domain desteği ile kurumsal platformlar için güçlü doğrulama sağlar.",
-
-    price: {
-      oneYear: 1499,
-      twoYear: 2799,
-      threeYear: 3999,
-    },
-  },
-
-  {
-    name: "DigiCert Secure Site EV Multi Domain",
-    slug: "digicert-secure-site-ev-multi-domain",
-    category: "SSL",
-    validation: "EV",
-    productType: "Multi Domain",
-    brand: "DigiCert",
-
-    shortDescription: "Kurumsal çoklu domain EV SSL.",
-    description:
-      "Secure Site EV Multi Domain, çoklu domain koruması ile kurumsal güvenlik sağlar.",
-
-    price: {
-      oneYear: 1999,
-      twoYear: 3699,
-      threeYear: 5199,
-    },
-  },
-
-  {
-    name: "DigiCert Secure Site Pro EV Multi Domain",
-    slug: "digicert-secure-site-pro-ev-multi-domain",
-    category: "SSL",
-    validation: "EV",
-    productType: "Multi Domain",
-    brand: "DigiCert",
-
-    shortDescription: "Premium EV Multi Domain SSL.",
-    description:
-      "Secure Site Pro EV Multi Domain, DigiCert'in en gelişmiş çoklu domain EV sertifikasıdır.",
-
-    price: {
-      oneYear: 2599,
-      twoYear: 4699,
-      threeYear: 6599,
-    },
-  },
-
-  {
-    name: "Sectigo EV SSL",
-    slug: "sectigo-ev-ssl",
+    name: "Sectigo EV",
+    slug: "sectigo-ev",
     category: "SSL",
     validation: "EV",
     productType: "Standard",
+    tier: "Basic",
     brand: "Sectigo",
-
-    shortDescription: "Sectigo EV SSL ile güçlü kurumsal güven.",
-    description:
-      "Sectigo EV SSL, uygun fiyatlı ve güvenilir Extended Validation sertifikasıdır.",
-
-    price: {
-      oneYear: 699,
-      twoYear: 1299,
-      threeYear: 1799,
-    },
+    description: "Sectigo EV, uygun fiyatlı ve güvenilir Extended Validation sertifikasıdır. Kurumsal güven için idealdir.",
+    shortDescription: "Ekonomik EV SSL çözümü.",
+    price: { oneYear: 1299, twoYear: 2399, threeYear: 3399 },
+    specs: { Warranty: "$1,000,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "256-bit şifreleme",
+      "7/24 uzman teknik destek",
+      "Sınırsız sunucu lisansı",
+      "Web sitesi güven mührü",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.7, reviewCount: 95, featured: false, inStock: true,
   },
 
   {
-    name: "Sectigo EV Multi Domain",
-    slug: "sectigo-ev-multi-domain",
-    category: "SSL",
-    validation: "EV",
-    productType: "Multi Domain",
-    brand: "Sectigo",
-
-    shortDescription: "Sectigo çoklu domain EV SSL.",
-    description:
-      "Sectigo EV Multi Domain, birden fazla domaini tek EV sertifikası ile korur.",
-
-    price: {
-      oneYear: 999,
-      twoYear: 1799,
-      threeYear: 2499,
-    },
-  },
-
-  {
-    name: "Thawte SSL Webserver EV",
-    slug: "thawte-ssl-webserver-ev",
+    name: "PositiveSSL EV",
+    slug: "positivessl-ev",
     category: "SSL",
     validation: "EV",
     productType: "Standard",
-    brand: "Thawte",
-
-    shortDescription: "Thawte EV SSL kurumsal doğrulama.",
-    description:
-      "Thawte SSL Webserver EV, güvenilir ve uygun fiyatlı kurumsal doğrulama sertifikasıdır.",
-
-    price: {
-      oneYear: 799,
-      twoYear: 1499,
-      threeYear: 2099,
-    },
+    tier: "Basic",
+    brand: "PositiveSSL",
+    description: "PositiveSSL EV, ekonomik fiyatıyla tam EV doğrulaması sunan giriş seviyesi Extended Validation sertifikasıdır.",
+    shortDescription: "Ekonomik EV SSL.",
+    price: { oneYear: 999, twoYear: 1849, threeYear: 2599 },
+    specs: { Warranty: "$250,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "256-bit şifreleme",
+      "HTTPS güven kilidi",
+      "Tüm modern tarayıcılarla uyumluluk",
+      "Ücretsiz tekrar verme",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.5, reviewCount: 78, featured: false, inStock: true,
   },
 
   {
-    name: "GeoTrust True Business ID EV",
+    name: "GeoTrust TrueBusiness ID EV",
     slug: "geotrust-true-businessid-ev",
     category: "SSL",
     validation: "EV",
     productType: "Standard",
+    tier: "Basic",
     brand: "GeoTrust",
+    description: "GeoTrust TrueBusiness ID EV, yüksek garantili ve güvenilir Extended Validation sertifikasıdır.",
+    shortDescription: "Yüksek garantili EV SSL.",
+    price: { oneYear: 1699, twoYear: 3199, threeYear: 4499 },
+    specs: { Warranty: "$1,500,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false },
+    features: [
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "$1,500,000 garanti koruması",
+      "256-bit şifreleme",
+      "7/24 teknik destek",
+      "Web sitesi güven mührü",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.8, reviewCount: 105, featured: true, inStock: true,
+  },
 
-    shortDescription: "GeoTrust EV SSL kurumsal doğrulama.",
-    description:
-      "True Business ID EV, GeoTrust tarafından sunulan kurumsal güven sağlayan EV sertifikasıdır.",
+  // ─────────────────────────────────────────────
+  // EV — Multi-Domain (SAN)
+  // ─────────────────────────────────────────────
 
-    price: {
-      oneYear: 899,
-      twoYear: 1699,
-      threeYear: 2399,
-    },
+  {
+    name: "DigiCert Basic EV Multi-Domain",
+    slug: "digicert-basic-ev-multi-domain",
+    category: "SSL",
+    validation: "EV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "DigiCert",
+    description: "DigiCert Basic EV Multi-Domain, SAN desteği ile birden fazla domaini tam EV doğrulamasıyla koruyan kurumsal çözümdür.",
+    shortDescription: "DigiCert çoklu domain EV SSL.",
+    price: { oneYear: 3499, twoYear: 6499, threeYear: 9099, pricePerDomain: 500 },
+    specs: { Warranty: "$1,500,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "Otomatik SSL yaşam döngüsü yönetimi",
+      "Uzman teknik destek",
+      "Merkezi SSL yönetim paneli",
+    ],
+    rating: 4.9, reviewCount: 90, featured: true, inStock: true,
   },
 
   {
-    name: "GeoTrust True Business ID EV Multi Domain",
+    name: "DigiCert Secure Site EV Multi-Domain",
+    slug: "digicert-secure-site-ev-multi-domain",
+    category: "SSL",
+    validation: "EV",
+    productType: "Multi-Domain",
+    tier: "Premium",
+    brand: "DigiCert",
+    description: "DigiCert Secure Site EV Multi-Domain, gelişmiş güvenlik ve SAN desteği ile premium çoklu domain EV çözümüdür.",
+    shortDescription: "Premium çoklu domain EV SSL.",
+    price: { oneYear: 5499, twoYear: 10299, threeYear: 14499, pricePerDomain: 700 },
+    specs: { Warranty: "$1,750,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "Öncelikli sertifika doğrulama",
+      "Web sitesi güven mührü (Trust Seal)",
+      "Alan adı itibar izleme",
+      "Güvenlik açığı taraması",
+    ],
+    rating: 4.9, reviewCount: 115, featured: true, inStock: true,
+  },
+
+  {
+    name: "DigiCert Secure Site Pro EV Multi-Domain",
+    slug: "digicert-secure-site-pro-ev-multi-domain",
+    category: "SSL",
+    validation: "EV",
+    productType: "Multi-Domain",
+    tier: "Enterprise",
+    brand: "DigiCert",
+    description: "DigiCert Secure Site Pro EV Multi-Domain, en üst düzey kurumsal çoklu domain EV SSL çözümüdür.",
+    shortDescription: "Enterprise çoklu domain EV SSL.",
+    price: { oneYear: 7999, twoYear: 14999, threeYear: 20999, pricePerDomain: 900 },
+    specs: { Warranty: "$2,000,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "Gelişmiş SSL yaşam döngüsü otomasyonu",
+      "CT log izleme",
+      "Certificate Transparency desteği",
+      "Öncelikli aktivasyon",
+    ],
+    rating: 5.0, reviewCount: 135, featured: true, inStock: true,
+  },
+
+  {
+    name: "Sectigo EV Multi-Domain",
+    slug: "sectigo-ev-multi-domain",
+    category: "SSL",
+    validation: "EV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "Sectigo",
+    description: "Sectigo EV Multi-Domain, birden fazla domaini tam EV doğrulamasıyla koruyan ekonomik SAN çözümüdür.",
+    shortDescription: "Ekonomik çoklu domain EV SSL.",
+    price: { oneYear: 2499, twoYear: 4699, threeYear: 6599, pricePerDomain: 380 },
+    specs: { Warranty: "$1,000,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "Tam şirket ve kimlik doğrulaması (EV)",
+      "7/24 uzman teknik destek",
+      "Web sitesi güven mührü",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.7, reviewCount: 88, featured: false, inStock: true,
+  },
+
+  {
+    name: "Thawte SSL Webserver EV Multi-Domain",
+    slug: "thawte-ssl-webserver-ev-multi-domain",
+    category: "SSL",
+    validation: "EV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "Thawte",
+    description: "Thawte SSL Webserver EV Multi-Domain, birden fazla domaini şirket EV doğrulamasıyla koruyan SAN çözümüdür.",
+    shortDescription: "Güvenilir çoklu domain EV SSL.",
+    price: { oneYear: 2999, twoYear: 5599, threeYear: 7899, pricePerDomain: 420 },
+    specs: { Warranty: "$1,250,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "$1,250,000 garanti koruması",
+      "7/24 teknik destek",
+      "Tüm modern tarayıcılarla uyumluluk",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.7, reviewCount: 82, featured: false, inStock: true,
+  },
+
+  {
+    name: "PositiveSSL EV Multi-Domain",
+    slug: "positivessl-ev-multi-domain",
+    category: "SSL",
+    validation: "EV",
+    productType: "Multi-Domain",
+    tier: "Basic",
+    brand: "PositiveSSL",
+    description: "PositiveSSL EV Multi-Domain, ekonomik fiyatıyla birden fazla domaini EV doğrulamasıyla koruyan SAN çözümüdür.",
+    shortDescription: "Ekonomik çoklu domain EV SSL.",
+    price: { oneYear: 1999, twoYear: 3699, threeYear: 5199, pricePerDomain: 300 },
+    specs: { Warranty: "$250,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "Tam EV doğrulaması",
+      "256-bit şifreleme",
+      "Ücretsiz tekrar verme",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.5, reviewCount: 72, featured: false, inStock: true,
+  },
+
+  {
+    name: "GeoTrust TrueBusiness ID EV Multi-Domain",
     slug: "geotrust-true-businessid-ev-multi-domain",
     category: "SSL",
     validation: "EV",
-    productType: "Multi Domain",
+    productType: "Multi-Domain",
+    tier: "Basic",
     brand: "GeoTrust",
-
-    shortDescription: "GeoTrust EV Multi Domain SSL.",
-    description:
-      "GeoTrust True Business ID EV Multi Domain, çoklu domain desteği ile kurumsal güven sağlar.",
-
-    price: {
-      oneYear: 1299,
-      twoYear: 2399,
-      threeYear: 3399,
-    },
+    description: "GeoTrust TrueBusiness ID EV Multi-Domain, yüksek garanti ve SAN desteği ile çoklu domain EV çözümüdür.",
+    shortDescription: "Yüksek garantili çoklu domain EV SSL.",
+    price: { oneYear: 3299, twoYear: 6199, threeYear: 8699, pricePerDomain: 550 },
+    specs: { Warranty: "$1,500,000", Encryption: "256-bit", Issuance: "3–5 gün" },
+    domainSupport: { standard: true, wildcard: false, multiDomainLimit: 3 },
+    features: [
+      "3 domain dahil (SAN)",
+      "Ek domain eklenebilir",
+      "$1,500,000 garanti koruması",
+      "7/24 teknik destek",
+      "Web sitesi güven mührü",
+      "30 gün para iade garantisi",
+    ],
+    rating: 4.8, reviewCount: 98, featured: false, inStock: true,
   },
+
 ]
