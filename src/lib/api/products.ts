@@ -23,17 +23,25 @@ async function safeFetch(url: string) {
   return data.data || [];
 }
 
-export async function getProducts(validation?: string) {
-  const baseUrl = getBaseUrl();
+type GetProductsParams = {
+  validation?: "DV" | "OV" | "EV";
+  type?: "Standard" | "Wildcard";
+};
 
-  const params = new URLSearchParams({
-    category: "SSL",
-    limit: "50",
-  });
+export async function getProducts(params?: GetProductsParams) {
+  const query = new URLSearchParams();
 
-  if (validation) params.append("validation", validation);
+  if (params?.validation) {
+    query.append("validation", params.validation);
+  }
 
-  return safeFetch(`${baseUrl}/api/products?${params}`);
+  if (params?.type) {
+    query.append("type", params.type);
+  }
+
+  const res = await fetch(`/api/products?${query.toString()}`);
+
+  return res.json();
 }
 export async function getBrands(validation: string) {
   const baseUrl = getBaseUrl();
