@@ -1,24 +1,22 @@
 import { rrFetch } from "@/lib/api/realtimeRegister";
 import { NextResponse } from "next/server";
 
-// Realtime Register'dan gelen ürün tipi (sadece ihtiyacımız olanlar)
+export const dynamic = "force-dynamic"; // 🔥 KRİTİK
+export const revalidate = 3600; // opsiyonel ama önerilir
+
 interface RRProduct {
-  product: string;       // örn: "DOMAIN_COM"
-  currency: string;      // örn: "EUR"
-  create?: number;       // kayıt fiyatı
-  renew?: number;        // yenileme fiyatı
-  transfer?: number;     // transfer fiyatı
+  product: string;
+  currency: string;
+  create?: number;
+  renew?: number;
+  transfer?: number;
   [key: string]: unknown;
 }
 
-// GET /api/domain/prices
-// Tüm domain ürünlerinin fiyatlarını Realtime Register'dan çeker.
 export async function GET() {
   try {
-    // Realtime Register: GET /v2/products
     const data = await rrFetch<{ products: RRProduct[] }>("/products");
 
-    // Sadece domain ürünlerini filtrele (SSL, hosting vb. hariç)
     const domainProducts = (data.products ?? []).filter((p) =>
       p.product?.startsWith("DOMAIN_"),
     );

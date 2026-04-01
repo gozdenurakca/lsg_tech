@@ -14,9 +14,10 @@ import { getProducts, getBrands } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 
 export default async function SecureSiteProPage() {
-  const [products] = await Promise.all([
-    getProducts("WEB_SECURITY", "SecureSitePro"),
-  ]);
+  const products = await getProducts({
+    category: "WEB_SECURITY",
+    productType: "SecureSitePro",
+  });
 
   const sortedProducts = sortByBrand(products);
 

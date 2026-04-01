@@ -9,7 +9,9 @@ import type { Product } from "@/lib/ssl/types";
 
 export default async function DVMarketingPage() {
   // 🔥 TEK API CALL
-  const products: Product[] = await getProducts("DV");
+  const products: Product[] = await getProducts({
+    validation: "DV",
+  });
 
   // 🔥 TAB MANTIĞI
   const singleDomainProducts = products.filter(

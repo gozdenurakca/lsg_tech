@@ -8,7 +8,9 @@ import { sortByBrand } from "@/lib/utils/sortProducts";
 import type { Product } from "@/lib/ssl/types";
 
 export default async function OVMarketingPage() {
-  const products: Product[] = await getProducts("OV");
+  const products: Product[] = await getProducts({
+    validation: "OV",
+  });
 
   const singleDomainProducts = products.filter(
     (p) => p.productType && ["Standard", "Wildcard"].includes(p.productType),

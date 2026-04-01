@@ -8,7 +8,9 @@ import { getProducts } from "@/lib/api/products";
 import { sortByBrand } from "@/lib/utils/sortProducts";
 
 export default async function EVMarketingPage() {
-  const products: Product[] = await getProducts("EV");
+  const products: Product[] = await getProducts({
+    validation: "EV",
+  });
 
   // 🔥 TAB mantığı (UI = productType)
   const standardProducts = products.filter(

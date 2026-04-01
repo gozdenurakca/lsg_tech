@@ -9,10 +9,10 @@ import { sortByBrand } from "@/lib/utils/sortProducts";
 import type { Product } from "@/lib/ssl/types";
 
 export default async function SiteLockPage() {
-  const [products] = await Promise.all([
-    getProducts("WEB_SECURITY", "SiteLock"),
-    getBrands("WEB_SECURITY"),
-  ]);
+  const products = await getProducts({
+    category: "WEB_SECURITY",
+    productType: "SiteLock",
+  });
 
   const sortedProducts = sortByBrand(products);
 

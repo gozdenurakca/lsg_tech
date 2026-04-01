@@ -29,10 +29,11 @@ async function safeFetch(url: string) {
 }
 
 type GetProductsParams = {
+  category?: string;
   validation?: "DV" | "OV" | "EV";
   type?: "Standard" | "Wildcard";
+  productType?: string; // 🔥 EKLE
 };
-
 export async function getProducts(params?: GetProductsParams) {
   const baseUrl = getBaseUrl(); // 👈 EKLEDİK
 
