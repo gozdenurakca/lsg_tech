@@ -3,9 +3,14 @@ function getBaseUrl() {
     return "http://localhost:3000";
   }
 
+  // Vercel ortamı
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  // fallback (custom domain)
   return process.env.NEXT_PUBLIC_SITE_URL!;
 }
-
 async function safeFetch(url: string) {
   const res = await fetch(url, {
     next: { revalidate: 3600 }
@@ -29,6 +34,8 @@ type GetProductsParams = {
 };
 
 export async function getProducts(params?: GetProductsParams) {
+  const baseUrl = getBaseUrl(); // 👈 EKLEDİK
+
   const query = new URLSearchParams();
 
   if (params?.validation) {
@@ -39,9 +46,15 @@ export async function getProducts(params?: GetProductsParams) {
     query.append("type", params.type);
   }
 
-  const res = await fetch(`/api/products?${query.toString()}`);
+  const res = await fetch(
+    `${baseUrl}/api/products?${query.toString()}`,
+    {
+      next: { revalidate: 3600 } // (opsiyonel ama iyi)
+    }
+  );
 
-  return res.json();
+  const data = await res.json();
+  return data.data || [];
 }
 export async function getBrands(validation: string) {
   const baseUrl = getBaseUrl();
